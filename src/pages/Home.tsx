@@ -165,12 +165,14 @@ export const Home: React.FC = () => {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
           >
-            <Link
-              to="/contact"
+            <a
+              href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold uppercase tracking-wider text-sm text-black bg-[#ff9900] hover:bg-amber-500 shadow-lg shadow-[#ff9900]/20 hover:shadow-[#ff9900]/40 transition-all text-center"
             >
               Join Community
-            </Link>
+            </a>
             <Link
               to="/events"
               className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold uppercase tracking-wider text-sm text-white bg-white/5 border border-white/10 hover:border-blue-400 hover:bg-white/10 transition-all text-center flex items-center justify-center gap-2"
@@ -531,13 +533,15 @@ export const Home: React.FC = () => {
             Expand your cloud horizon. Join study circles, collaborate on open-source code repositories, get sponsored for certifications, and build real-world systems.
           </p>
           <div className="pt-4">
-            <Link
-              to="/contact"
+            <a
+              href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold uppercase tracking-wider text-sm text-black bg-[#ff9900] hover:bg-amber-500 shadow-xl shadow-[#ff9900]/20 hover:shadow-[#ff9900]/45 transition-all"
             >
-              Apply for Member Hub
+              Join Meetup Hub
               <ChevronRight className="w-4 h-4" />
-            </Link>
+            </a>
           </div>
         </div>
       </section>

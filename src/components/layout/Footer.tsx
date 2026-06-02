@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone, Globe } from 'lucide-react';
-import { LinkedinIcon, GithubIcon, TwitterIcon } from '../ui/SocialIcons';
+import { LinkedinIcon, GithubIcon, TwitterIcon, MeetupIcon } from '../ui/SocialIcons';
 import { Logo } from '../ui/Logo';
 
 
@@ -71,6 +71,15 @@ export const Footer: React.FC = () => {
                 aria-label="University Website"
               >
                 <Globe className="w-4.5 h-4.5" />
+              </a>
+              <a
+                href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg border border-white/10 hover:border-[#c084fc] hover:text-[#c084fc] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
+                aria-label="Meetup Community Group"
+              >
+                <MeetupIcon className="w-4.5 h-4.5" />
               </a>
             </div>
           </div>

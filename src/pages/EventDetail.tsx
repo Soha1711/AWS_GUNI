@@ -6,6 +6,7 @@ import {
   Clock, ShieldAlert, Award, Send 
 } from 'lucide-react';
 import type { EventItem } from '../data/mockData';
+import { MeetupIcon } from '../components/ui/SocialIcons';
 
 
 interface EventDetailProps {
@@ -193,6 +194,21 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                     <p className="text-xs text-slate-400 font-sans">
                       Enrollment is free, backed by AWS Academy. Bring your laptop and your active campus sandbox credentials.
                     </p>
+                  </div>
+
+                  <div className="pb-2 border-b border-white/10">
+                    <a
+                      href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs text-white bg-[#c084fc] hover:bg-purple-600 shadow-md shadow-[#c084fc]/15 hover:scale-101 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <MeetupIcon className="w-4 h-4" />
+                      RSVP via Meetup
+                    </a>
+                    <div className="text-center my-3 text-[10px] text-slate-500 uppercase tracking-widest font-mono">
+                      or register locally below
+                    </div>
                   </div>
 
                   <form onSubmit={handleRegister} className="space-y-4 text-sm font-sans">

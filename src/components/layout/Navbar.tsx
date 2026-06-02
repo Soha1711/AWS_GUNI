@@ -90,13 +90,15 @@ export const Navbar: React.FC = () => {
               </div>
 
               {/* Action Button */}
-              <Link
-                to="/contact"
+              <a
+                href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-4.5 py-2 text-xs font-semibold uppercase tracking-wider text-black bg-[#ff9900] hover:bg-amber-500 rounded-lg shadow-md shadow-[#ff9900]/20 hover:shadow-[#ff9900]/35 transition-all duration-300"
               >
                 <Compass className="w-3.5 h-3.5" />
                 Join Hub
-              </Link>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -141,12 +143,14 @@ export const Navbar: React.FC = () => {
                 );
               })}
               <div className="pt-4 px-4">
-                <Link
-                  to="/contact"
+                <a
+                  href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full text-center block py-3.5 text-sm font-semibold uppercase tracking-wider text-black bg-[#ff9900] hover:bg-amber-500 rounded-xl shadow-lg shadow-[#ff9900]/15"
                 >
                   Join Community
-                </Link>
+                </a>
               </div>
             </div>
           </motion.div>
