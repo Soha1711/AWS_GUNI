@@ -97,7 +97,7 @@ export const Home: React.FC = () => {
       const timer = setInterval(() => {
         step++;
         setStats({
-          members: Math.min(Math.round((350 / steps) * step), 350),
+          members: Math.min(Math.round((990 / steps) * step), 990),
           events: Math.min(Math.round((18 / steps) * step), 18),
           workshops: Math.min(Math.round((12 / steps) * step), 12),
           certs: Math.min(Math.round((65 / steps) * step), 65)

@@ -161,7 +161,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
 export const EVENTS: EventItem[] = [
   {
     id: 'event-1',
-    name: 'Cloud Odyssey: AWS Cloud Practitioner Essentials',
+    name: 'AWS Academy Practitioner Bootcamp',
     date: 'June 25, 2026',
     venue: 'Seminar Hall 3, UVPCE Building, GNU',
     type: 'workshop',
@@ -177,33 +177,13 @@ export const EVENTS: EventItem[] = [
       { time: '01:00 PM - 03:00 PM', activity: 'AWS Academy Sandbox Labs: S3 & RDS' },
       { time: '03:00 PM - 04:00 PM', activity: 'Certification Prep & Quiz' }
     ],
-    registrationUrl: 'https://forms.gle/aws-guni-odyssey'
+    registrationUrl: 'https://www.meetup.com/aws-sbg-at-ganpat-university/'
   },
   {
     id: 'event-2',
-    name: 'AI Spark: Serverless GenAI with AWS Bedrock',
+    name: 'Serverless DevOps Pipelines',
     date: 'July 18, 2026',
     venue: 'Centre of Excellence in AI, GNU Campus',
-    type: 'workshop',
-    status: 'upcoming',
-    poster: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80',
-    description: 'Explore the universe of Generative AI! Learn how to leverage AWS Bedrock, Amazon Q, and serverless architectures to deploy modern intelligent applications without managing heavy infrastructure.',
-    details: 'In this advanced developer workshop, you will learn to interact with foundation models (Claude, Llama, Jurassic) using AWS Bedrock, construct langchain agents, and run serverless inference with AWS Lambda. Bring your laptop and your API thinking cap.',
-    speakers: ['Neha Prajapati (AI/ML Lead)', 'Dr. Amit Patel (Faculty Advisor)'],
-    itinerary: [
-      { time: '10:00 AM - 11:00 AM', activity: 'GenAI & AWS Bedrock Overview' },
-      { time: '11:00 AM - 01:00 PM', activity: 'Lab: Building a Chatbot using Claude 3' },
-      { time: '01:00 PM - 02:00 PM', activity: 'Lunch & Networking' },
-      { time: '02:00 PM - 03:30 PM', activity: 'Lab: Deploying LLM with Lambda & API Gateway' },
-      { time: '03:30 PM - 04:30 PM', activity: 'Showcase & Project Pitching' }
-    ],
-    registrationUrl: 'https://forms.gle/aws-guni-aispark'
-  },
-  {
-    id: 'event-3',
-    name: 'DevOps Horizon: CI/CD Pipeline Automation',
-    date: 'August 08, 2026',
-    venue: 'GNU Computer Lab 5',
     type: 'workshop',
     status: 'upcoming',
     poster: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
@@ -217,60 +197,43 @@ export const EVENTS: EventItem[] = [
       { time: '01:30 PM - 03:30 PM', activity: 'Lab: Deploying containers on AWS ECS & Fargate' },
       { time: '03:30 PM - 04:00 PM', activity: 'Pipeline Debugging & Best Practices' }
     ],
-    registrationUrl: 'https://forms.gle/aws-guni-devops'
+    registrationUrl: 'https://www.meetup.com/aws-sbg-at-ganpat-university/'
+  },
+  {
+    id: 'event-3',
+    name: 'GEN AI ON AWS',
+    date: 'May 25, 2026',
+    venue: 'Online Event (Meetup Live)',
+    type: 'speaker',
+    status: 'past',
+    poster: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80',
+    description: 'An online technical session illustrating the future of Generative AI, featuring industry use cases, building agents, and real-world tools using AWS Bedrock.',
+    details: 'This online webinar was highly focused on Generative AI. Over 225+ student attendees gathered online to listen to Mr. Ashwin Raiyani break down the mechanics of Large Language Models (LLMs), foundational models on Amazon Bedrock, and building modern agentic apps.',
+    speakers: ['Mr. Ashwin Raiyani (Expert AI Speaker)'],
+    itinerary: [
+      { time: '04:00 PM - 04:15 PM', activity: 'Introduction to GenAI' },
+      { time: '04:15 PM - 05:00 PM', activity: 'AWS Bedrock Service Walkthrough' },
+      { time: '05:00 PM - 05:30 PM', activity: 'Q&A & Learning Roadmaps' }
+    ],
+    registrationUrl: 'https://www.meetup.com/aws-sbg-at-ganpat-university/'
   },
   {
     id: 'event-4',
-    name: 'SpaceHack: Ganpat Cloud Hackathon 2026',
-    date: 'April 14, 2026',
-    venue: 'Main Auditorium & IT Building Labs, GNU',
-    type: 'hackathon',
+    name: 'AWS Cloud Ignite',
+    date: 'March 24, 2026',
+    venue: '209 Seminar Hall, New Building, Ganpat University, Mehsana',
+    type: 'workshop',
     status: 'past',
     poster: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
-    description: 'An intensive 36-hour hackathon where student teams built cloud-native solutions aligning with the UN Sustainable Development Goals, using AWS services.',
-    details: 'SpaceHack 2026 brought together 200+ students across Ganpat University to build scalable solutions. Mentors from AWS and industry evaluated projects based on cloud architecture, user experience, and social impact. Over $1,500 in AWS Credits was distributed.',
-    speakers: ['Mr. Jatin Kulkarni (Senior Solutions Architect, AWS)', 'Dr. Amit Patel (GNU Coordinator)'],
+    description: 'The flagship tech-ignite event at UVPCE Campus, providing students with cloud essentials, hands-on serverless labs, and career pathways in the AWS ecosystem.',
+    details: 'With over 675+ active students attending in person at the 209 Seminar Hall, AWS Cloud Ignite served as a massive platform for cloud education. Attendees configured their first Amazon EC2 instances, explored AWS storage architectures, and learned about cloud computing paths.',
+    speakers: ['AWS SBG Core Team', 'GNU Faculty Coordinators'],
     itinerary: [
-      { time: 'Day 1, 09:00 AM', activity: 'Opening Ceremony & Theme Reveal' },
-      { time: 'Day 1, 10:00 AM', activity: 'Hacking Begins & AWS Mentor Sessions' },
-      { time: 'Day 2, 02:00 PM', activity: 'Hacking Concludes & Evaluation Round 1' },
-      { time: 'Day 2, 04:00 PM', activity: 'Top 8 Presentations & Closing Ceremony' }
-    ]
-  },
-  {
-    id: 'event-5',
-    name: 'AWS Serverless Deepdive',
-    date: 'March 05, 2026',
-    venue: 'Virtual Webinar (Microsoft Teams)',
-    type: 'speaker',
-    status: 'past',
-    poster: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80',
-    description: 'An online technical talk mapping serverless patterns on AWS, focusing on Lambda, DynamoDB, API Gateway, and EventBridge.',
-    details: 'This speaker session targeted intermediate programmers looking to understand event-driven architectures. The session highlighted standard decoupling strategies, DynamoDB single-table design, and cold-start mitigations.',
-    speakers: ['Ms. Priyanshi Shah (AWS User Group Leader & Cloud Consultant)']
-  },
-  {
-    id: 'event-6',
-    name: 'Nebula Talk: Cybersecurity in AWS Cloud',
-    date: 'February 12, 2026',
-    venue: 'UVPCE Conference Room, GNU',
-    type: 'speaker',
-    status: 'past',
-    poster: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
-    description: 'A cybersecurity masterclass illustrating defense-in-depth methodologies on AWS, covering VPC Peering, WAF, GuardDuty, and KMS.',
-    details: 'An interactive offline session featuring live hacking demonstrations and cloud defense tactics. Students configured AWS GuardDuty, set up AWS WAF rules to prevent SQL injection, and learned key security principles.',
-    speakers: ['Smit Joshi (Security Lead)', 'Prof. Rajesh Mehta (Faculty Mentor)']
-  },
-  {
-    id: 'event-7',
-    name: 'AWS Student Builder Community Kickoff',
-    date: 'January 10, 2026',
-    venue: 'GNU Amphitheatre',
-    type: 'community',
-    status: 'past',
-    poster: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80',
-    description: 'Welcoming the new cohort of tech innovators to Ganpat University\'s AWS Student Builder Group. Program roadmap, cloud paths, and fun icebreakers.',
-    details: 'Our annual kickoff where we launched the community registration for 2026. The core team introduced the AWS learning paths, upcoming certification sponsorships, study groups, and organized code challenges and cloud trivia with exciting goodies.'
+      { time: '10:00 AM - 10:30 AM', activity: 'Keynote & Launch' },
+      { time: '10:30 AM - 12:00 PM', activity: 'EC2 & S3 Console Hands-On' },
+      { time: '12:00 PM - 01:00 PM', activity: 'Q&A & Career Guidance' }
+    ],
+    registrationUrl: 'https://www.meetup.com/aws-sbg-at-ganpat-university/'
   }
 ];
 
