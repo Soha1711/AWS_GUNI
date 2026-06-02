@@ -200,16 +200,16 @@ export const EVENTS: EventItem[] = [
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 'gal-1',
-    title: 'Cloud Practitioner Bootcamp Labs',
+    title: 'AWS Cloud Ignite - Offline Session',
     category: 'workshop',
-    image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80',
-    date: 'May 2026'
+    image: '/gallery/workshop1.png',
+    date: 'March 2026'
   },
   {
     id: 'gal-2',
-    title: 'Collaborative Group Ideation',
+    title: 'GenAI on AWS - Live Expert Session',
     category: 'workshop',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80',
+    image: '/gallery/workshop2.png',
     date: 'May 2026'
   },
   {
@@ -228,30 +228,30 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: 'gal-5',
-    title: 'Keynote on Serverless Architecture',
+    title: 'Keynote by Mr. Ashwin Raiyani',
     category: 'speaker',
-    image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80',
+    image: '/gallery/speaker2.png',
     date: 'March 2026'
   },
   {
     id: 'gal-6',
-    title: 'Q&A Round with Cloud Consultant',
+    title: 'Cloud Computing Insights by Nilesh Vaghela Sir & Dimple Vaghela Ma’am',
     category: 'speaker',
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80',
+    image: '/gallery/speaker1.png',
     date: 'March 2026'
   },
   {
     id: 'gal-7',
-    title: 'Community Team Building in Amphitheatre',
+    title: 'AWS Cloud Ignite Community Group Photo',
     category: 'community',
-    image: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80',
+    image: '/gallery/community1.jpeg',
     date: 'January 2026'
   },
   {
     id: 'gal-8',
-    title: 'Interactive Icebreaker Quiz Winners',
+    title: 'AWS Student Builder Group Team Meetup',
     category: 'community',
-    image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80',
+    image: '/gallery/community2.png',
     date: 'January 2026'
   }
 ];
