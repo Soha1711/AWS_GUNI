@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Cloud, Compass } from 'lucide-react';
+import { Menu, X, Compass } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Logo } from '../ui/Logo';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,17 +49,10 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center justify-between">
             {/* Logo Brand */}
             <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-[#ff9900] to-amber-600 shadow-md shadow-[#ff9900]/25 group-hover:scale-105 transition-transform duration-300">
-                <Cloud className="w-5.5 h-5.5 text-black stroke-[2.2]" />
-                <div className="absolute -bottom-1 w-6 h-1.5 flex justify-center">
-                  <svg viewBox="0 0 24 6" fill="none" className="w-full h-full text-black">
-                    <path d="M 2 2 Q 12 5 22 2" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-                    <path d="M 22 2 L 18 3.5 M 22 2 L 19.5 0.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                </div>
-              </div>
+              <Logo size={28} className="group-hover:scale-105 transition-transform duration-300" />
+
               <div className="flex flex-col">
-                <span className="text-white font-bold text-sm sm:text-base font-heading tracking-wide group-hover:text-[#ff9900] transition-colors duration-300">
+                <span className="text-white font-bold text-sm sm:text-base font-heading tracking-wide group-hover:text-[#c084fc] transition-colors duration-300">
                   AWS Student Builder Group
                 </span>
                 <span className="text-[10px] text-blue-400 font-sans tracking-widest uppercase">

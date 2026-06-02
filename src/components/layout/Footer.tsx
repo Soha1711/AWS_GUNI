@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Phone, Cloud, Globe } from 'lucide-react';
+import { Mail, MapPin, Phone, Globe } from 'lucide-react';
 import { LinkedinIcon, GithubIcon, TwitterIcon } from '../ui/SocialIcons';
+import { Logo } from '../ui/Logo';
 
 
 export const Footer: React.FC = () => {
@@ -18,17 +19,9 @@ export const Footer: React.FC = () => {
           {/* Brand Info Column */}
           <div className="md:col-span-1.5 space-y-4">
             <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-gradient-to-br from-[#ff9900] to-amber-600 shadow-md shadow-[#ff9900]/15">
-                <Cloud className="w-5 h-5 text-black stroke-[2.2]" />
-                <div className="absolute -bottom-0.5 w-5.5 h-1 flex justify-center">
-                  <svg viewBox="0 0 24 6" fill="none" className="w-full h-full text-black">
-                    <path d="M 2 2 Q 12 5 22 2" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-                    <path d="M 22 2 L 18 3.5 M 22 2 L 19.5 0.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                </div>
-              </div>
+              <Logo size={24} className="group-hover:scale-105 transition-transform duration-300" />
               <div className="flex flex-col">
-                <span className="text-white font-bold text-sm font-heading tracking-wide group-hover:text-[#ff9900] transition-colors duration-300">
+                <span className="text-white font-bold text-sm font-heading tracking-wide group-hover:text-[#c084fc] transition-colors duration-300">
                   AWS Student Builder Group
                 </span>
                 <span className="text-[9px] text-blue-400 font-sans tracking-widest uppercase">

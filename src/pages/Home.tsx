@@ -6,6 +6,7 @@ import {
   Users, Calendar, Star, GraduationCap, ChevronRight, MessageSquare 
 } from 'lucide-react';
 import { EVENTS } from '../data/mockData';
+import { Logo } from '../components/ui/Logo';
 
 // Domain details helper
 const DOMAINS = [
@@ -123,14 +124,19 @@ export const Home: React.FC = () => {
 
         <div className="max-w-5xl mx-auto text-center z-10 space-y-8">
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#ff9900]/25 bg-[#ff9900]/5 text-[#ff9900] text-xs font-semibold uppercase tracking-wider shadow-[0_0_15px_rgba(255,153,0,0.06)]"
+            className="flex flex-col items-center gap-4"
           >
-            <Server className="w-3.5 h-3.5 animate-spin-slow" />
-            Vanguard Cloud Community at GNU
+            <Logo size={76} className="mx-auto select-none" />
+            
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#ff9900]/25 bg-[#ff9900]/5 text-[#ff9900] text-xs font-semibold uppercase tracking-wider shadow-[0_0_15px_rgba(255,153,0,0.06)]">
+              <Server className="w-3.5 h-3.5 animate-spin-slow" />
+              Vanguard Cloud Community at GNU
+            </div>
           </motion.div>
+
 
           <motion.h1
             initial={{ opacity: 0, y: 15 }}

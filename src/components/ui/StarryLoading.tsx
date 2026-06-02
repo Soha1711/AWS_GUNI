@@ -34,28 +34,39 @@ export const StarryLoading: React.FC<StarryLoadingProps> = ({ onComplete }) => {
     return () => clearInterval(timer);
   }, [onComplete]);
 
-  // Constellation stars inside the logo region
+  // Constellation stars outlining the new CPU chip logo
   const logoStars = [
-    { x: 60, y: 70 },   // A - left base
-    { x: 80, y: 30 },   // A - peak
-    { x: 100, y: 70 },  // A - right base
-    { x: 80, y: 55 },   // A - crossbar
-    { x: 120, y: 35 },  // W - top left
-    { x: 130, y: 70 },  // W - bottom left
-    { x: 140, y: 45 },  // W - middle peak
-    { x: 150, y: 70 },  // W - bottom right
-    { x: 160, y: 35 },  // W - top right
-    { x: 180, y: 35 },  // S - top curve start
-    { x: 200, y: 35 },  // S - top curve end
-    { x: 180, y: 52 },  // S - middle curve
-    { x: 200, y: 70 },  // S - bottom curve
-    { x: 180, y: 70 },  // S - bottom curve end
-    // Arrow (A to Z smile)
-    { x: 60, y: 90 },   // Arrow start
-    { x: 130, y: 105 }, // Arrow bend
-    { x: 200, y: 90 },  // Arrow end
-    { x: 190, y: 95 },  // Arrow arrowhead top
-    { x: 192, y: 83 },  // Arrow arrowhead bottom
+    // Outer Square Corners (0-3)
+    { x: 90, y: 30 },
+    { x: 170, y: 30 },
+    { x: 170, y: 110 },
+    { x: 90, y: 110 },
+    
+    // Inner Square Corners (4-7)
+    { x: 110, y: 50 },
+    { x: 150, y: 50 },
+    { x: 150, y: 90 },
+    { x: 110, y: 90 },
+
+    // Top Prongs (8-13)
+    { x: 100, y: 30 }, { x: 100, y: 10 },
+    { x: 130, y: 30 }, { x: 130, y: 10 },
+    { x: 160, y: 30 }, { x: 160, y: 10 },
+
+    // Bottom Prongs (14-19)
+    { x: 100, y: 110 }, { x: 100, y: 130 },
+    { x: 130, y: 110 }, { x: 130, y: 130 },
+    { x: 160, y: 110 }, { x: 160, y: 130 },
+
+    // Left Prongs (20-25)
+    { x: 90, y: 40 }, { x: 70, y: 40 },
+    { x: 90, y: 70 }, { x: 70, y: 70 },
+    { x: 90, y: 100 }, { x: 70, y: 100 },
+
+    // Right Prongs (26-31)
+    { x: 170, y: 40 }, { x: 190, y: 40 },
+    { x: 170, y: 70 }, { x: 190, y: 70 },
+    { x: 170, y: 100 }, { x: 190, y: 100 }
   ];
 
   return (
@@ -95,164 +106,71 @@ export const StarryLoading: React.FC<StarryLoadingProps> = ({ onComplete }) => {
 
           <div className="relative flex flex-col items-center select-none">
             {/* Constellation Logo Box */}
-            <div className="w-[300px] h-[160px] relative mb-8">
+            <div className="w-[260px] h-[140px] relative mb-8">
+              
               {/* Star nodes */}
-              {logoStars.map((star, idx) => (
-                <motion.div
-                  key={idx}
-                  className="absolute rounded-full"
-                  style={{
-                    left: `${star.x}px`,
-                    top: `${star.y}px`,
-                    width: idx >= 14 ? '4.5px' : '3.5px',
-                    height: idx >= 14 ? '4.5px' : '3.5px',
-                    backgroundColor: idx >= 14 ? '#ff9900' : '#60a5fa',
-                    boxShadow: idx >= 14 
-                      ? '0 0 8px rgba(255,153,0,0.8)' 
-                      : '0 0 8px rgba(96,165,250,0.8)'
-                  }}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ 
-                    opacity: progress > 15 ? 1 : 0, 
-                    scale: progress > 15 ? [1, 1.3, 1] : 0 
-                  }}
-                  transition={{ 
-                    delay: idx * 0.03, 
-                    duration: 0.5 
-                  }}
-                />
-              ))}
+              {logoStars.map((star, idx) => {
+                const isTip = [9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31].includes(idx);
+                return (
+                  <motion.div
+                    key={idx}
+                    className="absolute rounded-full"
+                    style={{
+                      left: `${star.x}px`,
+                      top: `${star.y}px`,
+                      width: isTip ? '4.5px' : '3.5px',
+                      height: isTip ? '4.5px' : '3.5px',
+                      backgroundColor: isTip ? '#ff9900' : '#c084fc',
+                      boxShadow: isTip 
+                        ? '0 0 8px rgba(255,153,0,0.8)' 
+                        : '0 0 8px rgba(192,132,252,0.8)'
+                    }}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ 
+                      opacity: progress > 15 ? 1 : 0, 
+                      scale: progress > 15 ? [1, 1.3, 1] : 0 
+                    }}
+                    transition={{ 
+                      delay: idx * 0.02, 
+                      duration: 0.5 
+                    }}
+                  />
+                );
+              })}
 
               {/* Logo SVG Connecting Constellation Lines */}
-              <svg className="w-full h-full absolute inset-0 pointer-events-none" viewBox="0 0 260 130">
-                {/* A */}
-                <motion.line
-                  x1="60" y1="70" x2="80" y2="30"
-                  stroke="rgba(96, 165, 250, 0.4)"
-                  strokeWidth="1.2"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 30 ? 1 : 0 }}
-                  transition={{ duration: 0.6 }}
-                />
-                <motion.line
-                  x1="80" y1="30" x2="100" y2="70"
-                  stroke="rgba(96, 165, 250, 0.4)"
-                  strokeWidth="1.2"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 35 ? 1 : 0 }}
-                  transition={{ duration: 0.6 }}
-                />
-                <motion.line
-                  x1="70" y1="55" x2="90" y2="55"
-                  stroke="rgba(96, 165, 250, 0.4)"
-                  strokeWidth="1.2"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 40 ? 1 : 0 }}
-                  transition={{ duration: 0.4 }}
-                />
+              <svg className="w-full h-full absolute inset-0 pointer-events-none" viewBox="0 0 260 140">
+                {/* Outer Square Connections */}
+                <motion.line x1="90" y1="30" x2="170" y2="30" stroke="rgba(192, 132, 252, 0.45)" strokeWidth="1.2" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 25 ? 1 : 0 }} transition={{ duration: 0.4 }} />
+                <motion.line x1="170" y1="30" x2="170" y2="110" stroke="rgba(192, 132, 252, 0.45)" strokeWidth="1.2" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 30 ? 1 : 0 }} transition={{ duration: 0.4 }} />
+                <motion.line x1="170" y1="110" x2="90" y2="110" stroke="rgba(192, 132, 252, 0.45)" strokeWidth="1.2" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 35 ? 1 : 0 }} transition={{ duration: 0.4 }} />
+                <motion.line x1="90" y1="110" x2="90" y2="30" stroke="rgba(192, 132, 252, 0.45)" strokeWidth="1.2" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 40 ? 1 : 0 }} transition={{ duration: 0.4 }} />
 
-                {/* W */}
-                <motion.line
-                  x1="120" y1="35" x2="130" y2="70"
-                  stroke="rgba(96, 165, 250, 0.4)"
-                  strokeWidth="1.2"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 30 ? 1 : 0 }}
-                  transition={{ duration: 0.5 }}
-                />
-                <motion.line
-                  x1="130" y1="70" x2="140" y2="45"
-                  stroke="rgba(96, 165, 250, 0.4)"
-                  strokeWidth="1.2"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 38 ? 1 : 0 }}
-                  transition={{ duration: 0.5 }}
-                />
-                <motion.line
-                  x1="140" y1="45" x2="150" y2="70"
-                  stroke="rgba(96, 165, 250, 0.4)"
-                  strokeWidth="1.2"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 42 ? 1 : 0 }}
-                  transition={{ duration: 0.5 }}
-                />
-                <motion.line
-                  x1="150" y1="70" x2="160" y2="35"
-                  stroke="rgba(96, 165, 250, 0.4)"
-                  strokeWidth="1.2"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 46 ? 1 : 0 }}
-                  transition={{ duration: 0.5 }}
-                />
+                {/* Inner Square Connections */}
+                <motion.line x1="110" y1="50" x2="150" y2="50" stroke="rgba(192, 132, 252, 0.3)" strokeWidth="1" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 45 ? 1 : 0 }} transition={{ duration: 0.4 }} />
+                <motion.line x1="150" y1="50" x2="150" y2="90" stroke="rgba(192, 132, 252, 0.3)" strokeWidth="1" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 50 ? 1 : 0 }} transition={{ duration: 0.4 }} />
+                <motion.line x1="150" y1="90" x2="110" y2="90" stroke="rgba(192, 132, 252, 0.3)" strokeWidth="1" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 55 ? 1 : 0 }} transition={{ duration: 0.4 }} />
+                <motion.line x1="110" y1="90" x2="110" y2="50" stroke="rgba(192, 132, 252, 0.3)" strokeWidth="1" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 60 ? 1 : 0 }} transition={{ duration: 0.4 }} />
 
-                {/* S */}
-                <motion.line
-                  x1="200" y1="35" x2="180" y2="35"
-                  stroke="rgba(96, 165, 250, 0.4)"
-                  strokeWidth="1.2"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 35 ? 1 : 0 }}
-                  transition={{ duration: 0.4 }}
-                />
-                <motion.line
-                  x1="180" y1="35" x2="180" y2="52"
-                  stroke="rgba(96, 165, 250, 0.4)"
-                  strokeWidth="1.2"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 45 ? 1 : 0 }}
-                  transition={{ duration: 0.4 }}
-                />
-                <motion.line
-                  x1="180" y1="52" x2="200" y2="52"
-                  stroke="rgba(96, 165, 250, 0.4)"
-                  strokeWidth="1.2"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 50 ? 1 : 0 }}
-                  transition={{ duration: 0.4 }}
-                />
-                <motion.line
-                  x1="200" y1="52" x2="200" y2="70"
-                  stroke="rgba(96, 165, 250, 0.4)"
-                  strokeWidth="1.2"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 55 ? 1 : 0 }}
-                  transition={{ duration: 0.4 }}
-                />
-                <motion.line
-                  x1="200" y1="70" x2="180" y2="70"
-                  stroke="rgba(96, 165, 250, 0.4)"
-                  strokeWidth="1.2"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 60 ? 1 : 0 }}
-                  transition={{ duration: 0.4 }}
-                />
+                {/* Top Prongs */}
+                <motion.line x1="100" y1="30" x2="100" y2="10" stroke="#ff9900" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 50 ? 1 : 0 }} />
+                <motion.line x1="130" y1="30" x2="130" y2="10" stroke="#ff9900" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 52 ? 1 : 0 }} />
+                <motion.line x1="160" y1="30" x2="160" y2="10" stroke="#ff9900" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 54 ? 1 : 0 }} />
 
-                {/* Signature Arrow (A to Z smile) */}
-                <motion.path
-                  d="M 60 90 Q 130 115 200 90"
-                  fill="none"
-                  stroke="#ff9900"
-                  strokeWidth="1.8"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 60 ? 1 : 0 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                />
-                <motion.line
-                  x1="200" y1="90" x2="190" y2="95"
-                  stroke="#ff9900"
-                  strokeWidth="1.8"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 75 ? 1 : 0 }}
-                  transition={{ duration: 0.2 }}
-                />
-                <motion.line
-                  x1="200" y1="90" x2="192" y2="83"
-                  stroke="#ff9900"
-                  strokeWidth="1.8"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: progress > 75 ? 1 : 0 }}
-                  transition={{ duration: 0.2 }}
-                />
+                {/* Bottom Prongs */}
+                <motion.line x1="100" y1="110" x2="100" y2="130" stroke="#ff9900" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 56 ? 1 : 0 }} />
+                <motion.line x1="130" y1="110" x2="130" y2="130" stroke="#ff9900" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 58 ? 1 : 0 }} />
+                <motion.line x1="160" y1="110" x2="160" y2="130" stroke="#ff9900" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 60 ? 1 : 0 }} />
+
+                {/* Left Prongs */}
+                <motion.line x1="90" y1="40" x2="70" y2="40" stroke="#ff9900" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 62 ? 1 : 0 }} />
+                <motion.line x1="90" y1="70" x2="70" y2="70" stroke="#ff9900" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 64 ? 1 : 0 }} />
+                <motion.line x1="90" y1="100" x2="70" y2="100" stroke="#ff9900" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 66 ? 1 : 0 }} />
+
+                {/* Right Prongs */}
+                <motion.line x1="170" y1="40" x2="190" y2="40" stroke="#ff9900" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 68 ? 1 : 0 }} />
+                <motion.line x1="170" y1="70" x2="190" y2="70" stroke="#ff9900" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 70 ? 1 : 0 }} />
+                <motion.line x1="170" y1="100" x2="190" y2="100" stroke="#ff9900" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: progress > 72 ? 1 : 0 }} />
               </svg>
             </div>
 
