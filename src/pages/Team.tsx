@@ -331,6 +331,98 @@ export const Team: React.FC = () => {
         </p>
       </section>
 
+      {/* Club Captain Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 flex flex-col items-center">
+        <div className="flex items-center gap-4 mb-8 w-full max-w-md justify-center">
+          <div className="h-[1px] flex-1 bg-gradient-to-l from-white/10 to-transparent" />
+          <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading tracking-tight flex items-center gap-3">
+            <span className="w-1.5 h-7 rounded-full bg-[#ff9900]" />
+            Club Captain
+          </h2>
+          <div className="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+        </div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          whileHover="hover"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={cardVariants('rgba(255, 153, 0, 0.35)', 'rgba(255, 153, 0, 0.25)')}
+          className="w-full max-w-md cursor-pointer"
+        >
+          {/* Glassmorphic Card Container */}
+          <div 
+            className="p-8 flex flex-col items-center text-center transition-all duration-300 relative overflow-hidden group h-full"
+            style={{
+              borderRadius: "24px",
+              background: "rgba(11, 16, 38, 0.45)",
+              backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(16px)",
+              border: "1px solid rgba(255, 153, 0, 0.15)",
+              boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.35)"
+            }}
+          >
+            {/* Ambient gold light glow behind card */}
+            <div 
+              className="absolute -right-16 -top-16 w-32 h-32 rounded-full blur-[80px] opacity-20 pointer-events-none transition-all duration-500 group-hover:scale-150 group-hover:opacity-40"
+              style={{ background: "#ff9900" }}
+            />
+
+            {/* Profile Photo frame */}
+            <div 
+              className="w-32 h-32 rounded-full overflow-hidden border-3 mb-6 relative bg-slate-900 shadow-md transition-all duration-300 border-[#ff9900]/30"
+            >
+              <motion.img
+                variants={imageVariants}
+                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80"
+                alt="Harshil Maniyar"
+                className="w-full h-full object-cover origin-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1026]/30 to-transparent pointer-events-none" />
+            </div>
+
+            {/* Full Name & Role */}
+            <h3 className="text-2xl font-bold text-white font-heading leading-snug mb-1 tracking-tight">
+              Harshil Maniyar
+            </h3>
+
+            <span 
+              className="text-xs font-mono font-bold uppercase tracking-wider mb-4 block text-[#ff9900] px-3 py-1 bg-[#ff9900]/10 rounded-full animate-pulse"
+            >
+              Club Captain
+            </span>
+
+            {/* Tagline */}
+            <p className="text-slate-300 text-sm leading-relaxed mb-6 max-w-sm">
+              Guiding the AWS Student Builder Group at Ganpat University to inspire next-generation cloud builders and technical innovators.
+            </p>
+
+            {/* Social Action buttons */}
+            <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/5 w-full justify-center">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-xl border border-white/5 hover:border-[#ff9900] hover:text-[#ff9900] text-slate-400 bg-white/5 hover:bg-[#ff9900]/10 transition-all duration-300 cursor-pointer"
+                title="Harshil Maniyar's LinkedIn"
+              >
+                <LinkedinIcon className="w-4 h-4" />
+              </a>
+
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-xl border border-white/5 hover:border-blue-400 hover:text-blue-400 text-slate-400 bg-white/5 hover:bg-blue-400/10 transition-all duration-300 cursor-pointer"
+                title="Harshil Maniyar's GitHub"
+              >
+                <GithubIcon className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Sub-Teams Showcase Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
         {TEAM_ORDER.map((teamName) => {
