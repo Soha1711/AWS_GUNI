@@ -161,46 +161,6 @@ export const TEAM_MEMBERS: TeamMember[] = [
 export const EVENTS: EventItem[] = [
   {
     id: 'event-1',
-    name: 'AWS Academy Practitioner Bootcamp',
-    date: 'June 25, 2026',
-    venue: 'Seminar Hall 3, UVPCE Building, GNU',
-    type: 'workshop',
-    status: 'upcoming',
-    poster: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-    description: 'A comprehensive, hands-on bootcamp designed to introduce student developers to the fundamental concepts of AWS Cloud Computing and prepare them for the AWS Certified Cloud Practitioner exam.',
-    details: 'This boot camp is specifically tailored for beginners in cloud computing. We will cover core AWS services (EC2, S3, RDS, IAM, VPC), billing structures, support options, and cloud security principles. Participants will get hands-on labs using AWS Academy sandboxes.',
-    speakers: ['Aryan Shah (AWS Student Lead)', 'Smit Joshi (Cloud Architect)'],
-    itinerary: [
-      { time: '09:30 AM - 10:00 AM', activity: 'Inauguration & Cloud Fundamentals' },
-      { time: '10:00 AM - 12:00 PM', activity: 'Hands-on: EC2 & VPC Configurations' },
-      { time: '12:00 PM - 01:00 PM', activity: 'Networking Lunch' },
-      { time: '01:00 PM - 03:00 PM', activity: 'AWS Academy Sandbox Labs: S3 & RDS' },
-      { time: '03:00 PM - 04:00 PM', activity: 'Certification Prep & Quiz' }
-    ],
-    registrationUrl: 'https://www.meetup.com/aws-sbg-at-ganpat-university/'
-  },
-  {
-    id: 'event-2',
-    name: 'Serverless DevOps Pipelines',
-    date: 'July 18, 2026',
-    venue: 'Centre of Excellence in AI, GNU Campus',
-    type: 'workshop',
-    status: 'upcoming',
-    poster: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
-    description: 'Learn the secrets of modern dev teams. Set up robust, automated, continuous integration and deployment pipelines using GitHub Actions, AWS CodePipeline, and AWS ECS (Elastic Container Service).',
-    details: 'This workshop provides a complete walkthrough of DevOps principles on AWS. You will containerize a React + Node application, set up Git-triggered builds, configure AWS CodeBuild and deploy dynamically to containers.',
-    speakers: ['Devan Patel (DevOps Lead)', 'Aryan Shah (AWS Student Lead)'],
-    itinerary: [
-      { time: '09:00 AM - 10:30 AM', activity: 'DevOps Principles & Dockerization' },
-      { time: '10:30 AM - 12:30 PM', activity: 'Lab: GitHub Actions & AWS Integration' },
-      { time: '12:30 PM - 01:30 PM', activity: 'Lunch' },
-      { time: '01:30 PM - 03:30 PM', activity: 'Lab: Deploying containers on AWS ECS & Fargate' },
-      { time: '03:30 PM - 04:00 PM', activity: 'Pipeline Debugging & Best Practices' }
-    ],
-    registrationUrl: 'https://www.meetup.com/aws-sbg-at-ganpat-university/'
-  },
-  {
-    id: 'event-3',
     name: 'GEN AI ON AWS',
     date: 'May 25, 2026',
     venue: 'Online Event (Meetup Live)',
@@ -218,7 +178,7 @@ export const EVENTS: EventItem[] = [
     registrationUrl: 'https://www.meetup.com/aws-sbg-at-ganpat-university/'
   },
   {
-    id: 'event-4',
+    id: 'event-2',
     name: 'AWS Cloud Ignite',
     date: 'March 24, 2026',
     venue: '209 Seminar Hall, New Building, Ganpat University, Mehsana',

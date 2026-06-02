@@ -98,12 +98,28 @@ export const Events: React.FC = () => {
       {/* Events Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {filteredEvents.length === 0 ? (
-          <div className="text-center py-20 glass border border-white/5 rounded-2xl max-w-xl mx-auto space-y-4">
+          <div className="text-center py-12 px-6 glass border border-white/5 rounded-2xl max-w-lg mx-auto space-y-6">
             <Compass className="w-12 h-12 text-[#ff9900] mx-auto animate-spin-slow" />
-            <h3 className="text-xl font-bold text-white font-heading">No Orbit Events Located</h3>
-            <p className="text-sm text-slate-400">
-              There are no current events matching your filter metrics. Try adjusting filters or check back later!
-            </p>
+            <div className="space-y-2">
+              <h3 className="text-xl font-bold text-white font-heading">No Orbit Events Located</h3>
+              <p className="text-sm text-slate-400 font-sans leading-relaxed">
+                {activeStatus === 'upcoming'
+                  ? 'We are currently scheduling our next cycle of developer bootcamps and workshops. Connect with us on Meetup to stay updated!'
+                  : 'There are no current events matching your filter metrics. Try adjusting filters or check back later!'}
+              </p>
+            </div>
+            {activeStatus === 'upcoming' && (
+              <div>
+                <a
+                  href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider text-black bg-[#ff9900] hover:bg-amber-500 shadow-md shadow-[#ff9900]/10 transition-all cursor-pointer"
+                >
+                  Join Our Meetup Hub
+                </a>
+              </div>
+            )}
           </div>
         ) : (
           <motion.div 

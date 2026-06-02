@@ -413,48 +413,75 @@ export const Home: React.FC = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {upcomingEvents.map((event) => (
-              <div key={event.id} className="glass rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col group">
-                <div className="relative h-56 overflow-hidden bg-black shrink-0">
-                  <img
-                    src={event.poster}
-                    alt={event.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050714] to-transparent" />
-                  <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10px] font-bold tracking-wider uppercase text-black bg-[#ff9900] shadow-[0_0_10px_#ff9900]/40">
-                    <Calendar className="w-3 h-3" />
-                    {event.date}
-                  </span>
-                </div>
-
-                <div className="p-6 flex-1 flex flex-col justify-between gap-6">
-                  <div className="space-y-3">
-                    <h3 className="text-lg sm:text-xl font-bold text-white font-heading group-hover:text-[#ff9900] transition-colors leading-snug">
-                      {event.name}
-                    </h3>
-                    <p className="text-sm text-slate-400 font-sans line-clamp-3">
-                      {event.description}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                    <span className="text-[11px] font-mono text-slate-500 truncate max-w-[200px]">
-                      {event.venue}
+          {upcomingEvents.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {upcomingEvents.map((event) => (
+                <div key={event.id} className="glass rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col group">
+                  <div className="relative h-56 overflow-hidden bg-black shrink-0">
+                    <img
+                      src={event.poster}
+                      alt={event.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050714] to-transparent" />
+                    <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10px] font-bold tracking-wider uppercase text-black bg-[#ff9900] shadow-[0_0_10px_#ff9900]/40">
+                      <Calendar className="w-3 h-3" />
+                      {event.date}
                     </span>
-                    <Link
-                      to={`/events?id=${event.id}`}
-                      className="px-4.5 py-2 text-xs font-bold uppercase tracking-wider text-black bg-white group-hover:bg-[#ff9900] rounded-lg transition-colors flex items-center gap-1 shrink-0"
-                    >
-                      Inspect
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </Link>
+                  </div>
+
+                  <div className="p-6 flex-1 flex flex-col justify-between gap-6">
+                    <div className="space-y-3">
+                      <h3 className="text-lg sm:text-xl font-bold text-white font-heading group-hover:text-[#ff9900] transition-colors leading-snug">
+                        {event.name}
+                      </h3>
+                      <p className="text-sm text-slate-400 font-sans line-clamp-3">
+                        {event.description}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                      <span className="text-[11px] font-mono text-slate-500 truncate max-w-[200px]">
+                        {event.venue}
+                      </span>
+                      <Link
+                        to={`/events?id=${event.id}`}
+                        className="px-4.5 py-2 text-xs font-bold uppercase tracking-wider text-black bg-white group-hover:bg-[#ff9900] rounded-lg transition-colors flex items-center gap-1 shrink-0"
+                      >
+                        Inspect
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
+              ))}
+            </div>
+          ) : (
+            <div className="glass rounded-2xl p-8 sm:p-12 border border-white/5 text-center max-w-xl mx-auto space-y-6">
+              <div className="w-14 h-14 rounded-full bg-[#ff9900]/10 border border-[#ff9900]/25 flex items-center justify-center mx-auto text-[#ff9900]">
+                <Calendar className="w-6 h-6 animate-pulse" />
               </div>
-            ))}
-          </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-bold text-white font-heading">
+                  No Upcoming Events Planned
+                </h3>
+                <p className="text-sm text-slate-400 font-sans leading-relaxed">
+                  We are currently planning our next cohort of hands-on cloud labs and speaker webinars. Join our Meetup Hub to be notified instantly as soon as new schedules release!
+                </p>
+              </div>
+              <div>
+                <a
+                  href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold uppercase tracking-wider text-xs text-black bg-[#ff9900] hover:bg-amber-500 shadow-md shadow-[#ff9900]/20 hover:scale-101 transition-all cursor-pointer"
+                >
+                  Join Our Meetup Hub
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
