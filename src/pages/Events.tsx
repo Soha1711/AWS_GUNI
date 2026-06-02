@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Calendar, MapPin, Tag, Compass, ChevronRight, Hourglass, PlayCircle
+  Calendar, MapPin, Tag, Compass, ChevronRight, Hourglass, PlayCircle, Users
 } from 'lucide-react';
 import { EVENTS } from '../data/mockData';
 import { EventDetail } from './EventDetail';
+import { useMeetupData } from '../utils/meetup';
 
 
 export const Events: React.FC = () => {
@@ -16,13 +17,25 @@ export const Events: React.FC = () => {
   const [activeStatus, setActiveStatus] = useState<'all' | 'upcoming' | 'past'>('all');
   const [activeType, setActiveType] = useState<'all' | 'workshop' | 'hackathon' | 'speaker' | 'community'>('all');
 
+  const { memberCount, pastEvents, isLive } = useMeetupData();
+
+  // Merge live attendee/rsvp count into static EVENTS data
+  const mergedEvents = EVENTS.map(e => {
+    const meetupId = e.id === 'event-1' ? '314906294' : e.id === 'event-2' ? '313855270' : null;
+    const liveEvent = pastEvents.find(pe => pe.id === meetupId);
+    return {
+      ...e,
+      attendeeCount: liveEvent ? liveEvent.going : (e.id === 'event-1' ? 221 : e.id === 'event-2' ? 675 : 0)
+    };
+  });
+
   // If a specific event is selected, render the EventDetail page instead
   if (selectedEventId) {
-    const selectedEvent = EVENTS.find(e => e.id === selectedEventId);
-    return <EventDetail event={selectedEvent} />;
+    const selectedEvent = mergedEvents.find(e => e.id === selectedEventId);
+    return <EventDetail event={selectedEvent as any} />;
   }
 
-  const filteredEvents = EVENTS.filter((e) => {
+  const filteredEvents = mergedEvents.filter((e) => {
     const statusMatch = activeStatus === 'all' || e.status === activeStatus;
     const typeMatch = activeType === 'all' || e.type === activeType;
     return statusMatch && typeMatch;
@@ -50,8 +63,17 @@ export const Events: React.FC = () => {
         <h1 className="text-4xl sm:text-5xl font-extrabold text-white font-heading tracking-tight">
           Cloud Event Calendars
         </h1>
-        <p className="max-w-2xl mx-auto text-slate-400 text-sm sm:text-base">
-          Browse our upcoming bootcamps, hands-on academy sessions, global speaker panels, and past university hackathons.
+        <p className="max-w-2xl mx-auto text-slate-400 text-sm sm:text-base flex flex-col items-center gap-2">
+          <span>Browse our upcoming bootcamps, hands-on academy sessions, global speaker panels, and past university hackathons.</span>
+          {memberCount > 0 && (
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold uppercase tracking-wider">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              Joined by {memberCount} active meetup members {isLive && '(live)'}
+            </span>
+          )}
         </p>
       </section>
 
@@ -167,9 +189,17 @@ export const Events: React.FC = () => {
                     {/* Content */}
                     <div className="p-6 flex-1 flex flex-col justify-between gap-6">
                       <div className="space-y-3">
-                        <div className="flex items-center gap-1.5 text-blue-400 text-xs font-mono font-medium uppercase">
-                          <Tag className="w-3.5 h-3.5" />
-                          {event.type}
+                        <div className="flex items-center justify-between text-blue-400 text-xs font-mono font-medium uppercase">
+                          <span className="flex items-center gap-1.5">
+                            <Tag className="w-3.5 h-3.5" />
+                            {event.type}
+                          </span>
+                          {(event as any).attendeeCount !== undefined && (
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                              <Users className="w-3.5 h-3.5" />
+                              {(event as any).attendeeCount} Joined
+                            </span>
+                          )}
                         </div>
                         
                         <h3 className="text-lg font-bold text-white font-heading group-hover:text-[#ff9900] transition-colors leading-snug">

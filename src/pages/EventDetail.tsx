@@ -113,6 +113,12 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                   {event.speakers.length} Speaker(s)
                 </span>
               )}
+              {(event as any).attendeeCount !== undefined && (
+                <span className="flex items-center gap-1.5">
+                  <Users className="w-4 h-4 text-emerald-400 shrink-0" />
+                  {(event as any).attendeeCount} Members Joined
+                </span>
+              )}
             </div>
 
             <div className="space-y-4 font-sans leading-relaxed text-slate-300">

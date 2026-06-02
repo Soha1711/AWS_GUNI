@@ -166,7 +166,7 @@ export const EVENTS: EventItem[] = [
     venue: 'Online Event (Meetup Live)',
     type: 'speaker',
     status: 'past',
-    poster: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80',
+    poster: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80',
     description: 'An online technical session illustrating the future of Generative AI, featuring industry use cases, building agents, and real-world tools using AWS Bedrock.',
     details: 'This online webinar was highly focused on Generative AI. Over 225+ student attendees gathered online to listen to Mr. Ashwin Raiyani break down the mechanics of Large Language Models (LLMs), foundational models on Amazon Bedrock, and building modern agentic apps.',
     speakers: ['Mr. Ashwin Raiyani (Expert AI Speaker)'],
