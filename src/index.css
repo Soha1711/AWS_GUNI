@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+
+:root {
+  --font-sans: 'Outfit', 'Poppins', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #050714;
+  color: #e2e8f0;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #ff9900 #050714;
+}
+
+/* Custom scrollbar for Webkit */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050714;
+}
+::-webkit-scrollbar-thumb {
+  background: #ff9900;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e08800;
+}
+
+/* Glassmorphism custom classes */
+.glass {
+  background: rgba(11, 16, 38, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-nav {
+  background: rgba(5, 7, 20, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-orange {
+  background: rgba(11, 16, 38, 0.45);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 153, 0, 0.15);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-card-orange:hover {
+  border-color: rgba(255, 153, 0, 0.4);
+  box-shadow: 0 0 25px rgba(255, 153, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+.glass-card-blue {
+  background: rgba(11, 16, 38, 0.45);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-card-blue:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Constellation team card glow hover */
+.team-glow-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(11, 16, 38, 0.45);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.team-glow-card:hover {
+  border-color: rgba(255, 153, 0, 0.35);
+  box-shadow: 0 0 30px rgba(255, 153, 0, 0.12), 0 0 50px rgba(59, 130, 246, 0.08);
+  transform: translateY(-6px);
+}
+
+.team-glow-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(255,153,0,0.1) 0%, rgba(255,153,0,0.6) 50%, rgba(59,130,246,0.6) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.team-glow-card:hover::before {
+  opacity: 1;
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(255, 153, 0, 0.4);
+}
+
+.text-glow-blue {
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+/* Custom transitions and utility animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.pulse-glow-orange {
+  animation: pulseGlow 4s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Standard styling of input elements to match theme */
+input, textarea, select {
+  outline: none;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: rgba(255, 153, 0, 0.6);
+  box-shadow: 0 0 15px rgba(255, 153, 0, 0.15);
+}
