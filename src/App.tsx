@@ -7,6 +7,8 @@ import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { ConstellationBackground } from './components/ui/ConstellationBackground';
 import { StarryLoading } from './components/ui/StarryLoading';
+import { Rocky } from './components/ui/Rocky';
+import { SonarClickEffect } from './components/ui/SonarClickEffect';
 
 // Pages
 import { Home } from './pages/Home';
@@ -52,6 +54,12 @@ const AppContent: React.FC = () => {
     <div className="flex flex-col min-h-screen relative text-slate-100 selection:bg-[#ff9900]/30 selection:text-[#ff9900]">
       {/* Dynamic interactive star constellation background */}
       <ConstellationBackground />
+
+      {/* Interactive global click sonar sweeping waves */}
+      <SonarClickEffect />
+
+      {/* Floating Eridian Companion (Rocky) */}
+      <Rocky />
 
       {/* Sticky navigation header */}
       <Navbar />
