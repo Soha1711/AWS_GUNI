@@ -9,10 +9,10 @@ export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-[#030510] border-t border-white/10 text-slate-400 py-16 overflow-hidden z-10">
+    <footer className="relative bg-[#020205] border-t border-[#06b6d4]/15 text-slate-400 py-16 overflow-hidden z-10">
       {/* Background space glow grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(255,153,0,0.06),transparent_50%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(96,165,250,0.06),transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(255,170,0,0.06),transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(6,182,212,0.06),transparent_50%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-12">
@@ -21,10 +21,10 @@ export const Footer: React.FC = () => {
             <Link to="/" className="flex items-center gap-2.5 group">
               <Logo size={24} className="group-hover:scale-105 transition-transform duration-300" />
               <div className="flex flex-col">
-                <span className="text-white font-bold text-sm font-heading tracking-wide group-hover:text-[#c084fc] transition-colors duration-300">
+                <span className="text-white font-bold text-sm font-heading tracking-wide group-hover:text-[#00f5ff] transition-colors duration-300">
                   AWS Student Builder Group
                 </span>
-                <span className="text-[9px] text-blue-400 font-sans tracking-widest uppercase">
+                <span className="text-[9px] text-cyan-400 font-mono tracking-widest uppercase">
                   Ganpat University
                 </span>
               </div>
@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg border border-white/10 hover:border-[#ff9900] hover:text-[#ff9900] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
+                className="w-9 h-9 rounded-lg border border-white/10 hover:border-[#ffaa00] hover:text-[#ffaa00] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
                 aria-label="LinkedIn Profile"
               >
                 <LinkedinIcon className="w-4.5 h-4.5" />
@@ -49,7 +49,7 @@ export const Footer: React.FC = () => {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg border border-white/10 hover:border-blue-400 hover:text-blue-400 flex items-center justify-center bg-white/5 transition-all hover:scale-105"
+                className="w-9 h-9 rounded-lg border border-white/10 hover:border-[#00f5ff] hover:text-[#00f5ff] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
                 aria-label="GitHub Repository"
               >
                 <GithubIcon className="w-4.5 h-4.5" />
@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg border border-white/10 hover:border-[#ff9900] hover:text-[#ff9900] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
+                className="w-9 h-9 rounded-lg border border-white/10 hover:border-[#ffaa00] hover:text-[#ffaa00] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
                 aria-label="Twitter Profile"
               >
                 <TwitterIcon className="w-4.5 h-4.5" />
@@ -67,7 +67,7 @@ export const Footer: React.FC = () => {
                 href="https://ganpatuniversity.ac.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg border border-white/10 hover:border-blue-400 hover:text-blue-400 flex items-center justify-center bg-white/5 transition-all hover:scale-105"
+                className="w-9 h-9 rounded-lg border border-white/10 hover:border-[#00f5ff] hover:text-[#00f5ff] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
                 aria-label="University Website"
               >
                 <Globe className="w-4.5 h-4.5" />
@@ -76,7 +76,7 @@ export const Footer: React.FC = () => {
                 href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg border border-white/10 hover:border-[#c084fc] hover:text-[#c084fc] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
+                className="w-9 h-9 rounded-lg border border-white/10 hover:border-[#00f5ff] hover:text-[#00f5ff] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
                 aria-label="Meetup Community Group"
               >
                 <MeetupIcon className="w-4.5 h-4.5" />
@@ -91,32 +91,32 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-sm font-sans">
               <li>
-                <Link to="/" className="hover:text-[#ff9900] transition-colors">
+                <Link to="/" className="hover:text-[#ffaa00] transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-[#ff9900] transition-colors">
+                <Link to="/about" className="hover:text-[#ffaa00] transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/team" className="hover:text-[#ff9900] transition-colors">
+                <Link to="/team" className="hover:text-[#ffaa00] transition-colors">
                   Meet the Team
                 </Link>
               </li>
               <li>
-                <Link to="/events" className="hover:text-[#ff9900] transition-colors">
+                <Link to="/events" className="hover:text-[#ffaa00] transition-colors">
                   Upcoming & Past Events
                 </Link>
               </li>
               <li>
-                <Link to="/gallery" className="hover:text-[#ff9900] transition-colors">
+                <Link to="/gallery" className="hover:text-[#ffaa00] transition-colors">
                   Activity Gallery
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:text-[#ff9900] transition-colors">
+                <Link to="/contact" className="hover:text-[#ffaa00] transition-colors">
                   Contact Support
                 </Link>
               </li>
@@ -129,19 +129,19 @@ export const Footer: React.FC = () => {
               Builder Domains
             </h4>
             <ul className="space-y-2.5 text-sm font-sans">
-              <li className="hover:text-blue-400 transition-colors cursor-default">
+              <li className="hover:text-[#00f5ff] transition-colors cursor-default">
                 Cloud Computing
               </li>
-              <li className="hover:text-blue-400 transition-colors cursor-default">
+              <li className="hover:text-[#00f5ff] transition-colors cursor-default">
                 Artificial Intelligence
               </li>
-              <li className="hover:text-blue-400 transition-colors cursor-default">
+              <li className="hover:text-[#00f5ff] transition-colors cursor-default">
                 Machine Learning
               </li>
-              <li className="hover:text-blue-400 transition-colors cursor-default">
+              <li className="hover:text-[#00f5ff] transition-colors cursor-default">
                 DevOps & Automation
               </li>
-              <li className="hover:text-blue-400 transition-colors cursor-default">
+              <li className="hover:text-[#00f5ff] transition-colors cursor-default">
                 Cybersecurity & Identity
               </li>
             </ul>
@@ -154,19 +154,19 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-3.5 text-sm font-sans">
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-5 h-5 text-[#ff9900] shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 text-[#00f5ff] shrink-0 mt-0.5" />
                 <span>
                   Ganpat University (GNU), Mehsana-Gandinagar Highway, Kherva, Gujarat, India - 384315.
                 </span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Mail className="w-4.5 h-4.5 text-[#ff9900] shrink-0" />
+                <Mail className="w-4.5 h-4.5 text-[#00f5ff] shrink-0" />
                 <a href="mailto:aws.sbg@ganpatuniversity.ac.in" className="hover:text-white transition-colors">
                   aws.sbg@ganpatuniversity.ac.in
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="w-4.5 h-4.5 text-[#ff9900] shrink-0" />
+                <Phone className="w-4.5 h-4.5 text-[#00f5ff] shrink-0" />
                 <a href="tel:+912762286080" className="hover:text-white transition-colors">
                   +91 2762 286080
                 </a>

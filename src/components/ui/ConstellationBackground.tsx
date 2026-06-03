@@ -33,10 +33,10 @@ export const ConstellationBackground: React.FC = () => {
     };
 
     const colors = [
-      'rgba(255, 153, 0, 0.75)', // AWS Orange
-      'rgba(96, 165, 250, 0.75)', // Cosmic Blue
-      'rgba(244, 244, 245, 0.65)', // White-Zinc
-      'rgba(147, 51, 234, 0.55)', // Purple
+      'rgba(255, 170, 0, 0.85)',  // Astrophage Gold
+      'rgba(6, 182, 212, 0.85)',  // Eridian Teal
+      'rgba(244, 244, 245, 0.65)',  // Star White-Zinc
+      'rgba(14, 165, 233, 0.65)',   // Space Blue
     ];
 
     const resizeCanvas = () => {
@@ -53,8 +53,8 @@ export const ConstellationBackground: React.FC = () => {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.45,
-          vy: (Math.random() - 0.5) * 0.45,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
           radius: radius,
           originalRadius: radius,
           color: colors[Math.floor(Math.random() * colors.length)],
@@ -91,6 +91,11 @@ export const ConstellationBackground: React.FC = () => {
     window.addEventListener('touchmove', handleTouchMove);
     window.addEventListener('touchend', handleTouchEnd);
 
+    // Radar scan variables
+    let sweepAngle = 0;
+    let sonarRadius1 = 0;
+    let sonarRadius2 = 0;
+
     // Init
     resizeCanvas();
 
@@ -98,21 +103,62 @@ export const ConstellationBackground: React.FC = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw starry ambient backgrounds
+      // Draw space void backgrounds
       const grad = ctx.createRadialGradient(
         canvas.width / 2, canvas.height / 2, 10,
-        canvas.width / 2, canvas.height / 2, canvas.width
+        canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height)
       );
-      grad.addColorStop(0, '#0a0d24');
-      grad.addColorStop(1, '#03040b');
+      grad.addColorStop(0, '#04050d'); // Void slate dark
+      grad.addColorStop(1, '#010204'); // True space black void
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      const mouse = mouseRef.current;
-      const connectionDist = 110;
-      const mouseDist = 160;
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const maxDist = Math.max(canvas.width, canvas.height);
 
-      // Update and draw particles
+      // 1. Draw Rotating Sonar Radar Line (Eridian sound navigation)
+      sweepAngle += 0.0035;
+      if (sweepAngle > Math.PI * 2) sweepAngle = 0;
+
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.lineTo(centerX + Math.cos(sweepAngle) * maxDist, centerY + Math.sin(sweepAngle) * maxDist);
+      
+      // Gradient stroke for sweeping arm fade
+      const lineGrad = ctx.createLinearGradient(
+        centerX, centerY, 
+        centerX + Math.cos(sweepAngle) * maxDist * 0.8, centerY + Math.sin(sweepAngle) * maxDist * 0.8
+      );
+      lineGrad.addColorStop(0, 'rgba(6, 182, 212, 0.15)');
+      lineGrad.addColorStop(1, 'rgba(6, 182, 212, 0)');
+      
+      ctx.strokeStyle = lineGrad;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+      // 2. Draw Expanding Sonar Wave Circles (Rocky's vocalization waves)
+      sonarRadius1 += 1.2;
+      if (sonarRadius1 > maxDist * 0.75) sonarRadius1 = 0;
+      
+      sonarRadius2 = sonarRadius1 - (maxDist * 0.35);
+      
+      [sonarRadius1, sonarRadius2].forEach((r) => {
+        if (r > 0) {
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, r, 0, Math.PI * 2);
+          const alpha = Math.max(0, 0.08 * (1 - r / (maxDist * 0.75)));
+          ctx.strokeStyle = `rgba(6, 182, 212, ${alpha})`;
+          ctx.lineWidth = 1.0;
+          ctx.stroke();
+        }
+      });
+
+      const mouse = mouseRef.current;
+      const connectionDist = 115;
+      const mouseDist = 170;
+
+      // Update and draw particles (Astrophage cell models)
       particles.forEach((p) => {
         // Move
         p.x += p.vx;
@@ -129,27 +175,22 @@ export const ConstellationBackground: React.FC = () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
           
           if (dist < mouseDist) {
-            // Pull particles slightly towards mouse
             const force = (mouseDist - dist) / mouseDist;
-            p.x += (dx / dist) * force * 0.55;
-            p.y += (dy / dist) * force * 0.55;
+            p.x += (dx / dist) * force * 0.6;
+            p.y += (dy / dist) * force * 0.6;
             
-            // Expand slightly
-            p.radius = p.originalRadius + force * 1.5;
+            // Expand slightly due to "Astrophage energy storage" on touch
+            p.radius = p.originalRadius + force * 2.0;
           } else {
             // Restore size
-            if (p.radius > p.originalRadius) {
-              p.radius -= 0.1;
-            }
+            if (p.radius > p.originalRadius) p.radius -= 0.1;
           }
         } else {
           // Restore size
-          if (p.radius > p.originalRadius) {
-            p.radius -= 0.1;
-          }
+          if (p.radius > p.originalRadius) p.radius -= 0.1;
         }
 
-        // Draw particle
+        // Faint ambient light glow on particles
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
@@ -166,19 +207,19 @@ export const ConstellationBackground: React.FC = () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < connectionDist) {
-            const alpha = (1 - dist / connectionDist) * 0.22;
+            const alpha = (1 - dist / connectionDist) * 0.25;
             
-            // Decide line color based on particles
-            let strokeColor = `rgba(96, 165, 250, ${alpha})`; // Blue line
-            if (p1.color.includes('255, 153') || p2.color.includes('255, 153')) {
-              strokeColor = `rgba(255, 153, 0, ${alpha})`; // Orange line
+            // Decide line color based on particles: Teal or Gold
+            let strokeColor = `rgba(6, 182, 212, ${alpha})`; // Eridian Teal line
+            if (p1.color.includes('255, 170') || p2.color.includes('255, 170')) {
+              strokeColor = `rgba(255, 170, 0, ${alpha})`; // Astrophage Gold line
             }
 
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = strokeColor;
-            ctx.lineWidth = 0.6;
+            ctx.lineWidth = 0.65;
             ctx.stroke();
           }
         }
@@ -190,12 +231,12 @@ export const ConstellationBackground: React.FC = () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < mouseDist) {
-            const alpha = (1 - dist / mouseDist) * 0.28;
+            const alpha = (1 - dist / mouseDist) * 0.32;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(255, 153, 0, ${alpha})`;
-            ctx.lineWidth = 0.8;
+            ctx.strokeStyle = `rgba(255, 170, 0, ${alpha})`; // Golden threads
+            ctx.lineWidth = 0.85;
             ctx.stroke();
           }
         }

@@ -6,18 +6,34 @@
 :root {
   --font-sans: 'Outfit', 'Poppins', sans-serif;
   --font-heading: 'Outfit', sans-serif;
+  --font-mono: 'Share Tech Mono', 'Courier New', Courier, monospace;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #050714;
+  background-color: #020205; /* Space Void Black */
   color: #e2e8f0;
   font-family: var(--font-sans);
   overflow-x: hidden;
   scrollbar-width: thin;
-  scrollbar-color: #ff9900 #050714;
+  scrollbar-color: #ffaa00 #020205; /* Astrophage Gold / Void Black */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.625;
 }
+
+/* Contrast & Readability Enhancements for space-void theme */
+.text-slate-400 {
+  color: #e2e8f0 !important; /* Elevate description text to slate-200 for excellent contrast */
+}
+.text-slate-500 {
+  color: #94a3b8 !important; /* Elevate secondary labels to slate-400 */
+}
+.text-slate-600 {
+  color: #64748b !important; /* Elevate dark labels to slate-500 */
+}
+
 
 /* Custom scrollbar for Webkit */
 ::-webkit-scrollbar {
@@ -25,52 +41,54 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #050714;
+  background: #020205;
 }
 ::-webkit-scrollbar-thumb {
-  background: #ff9900;
+  background: #ffaa00; /* Astrophage Gold */
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #e08800;
+  background: #e09000;
 }
 
-/* Glassmorphism custom classes */
+/* Glassmorphism bulkhead panel styles */
 .glass {
-  background: rgba(11, 16, 38, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 11, 20, 0.65); /* Spacecraft bulkhead dark grey */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .glass-nav {
-  background: rgba(5, 7, 20, 0.65);
+  background: rgba(4, 4, 8, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(6, 182, 212, 0.15); /* Eridian Teal border indicator */
 }
 
+/* Astrophage Fuel Module Card styling */
 .glass-card-orange {
-  background: rgba(11, 16, 38, 0.45);
+  background: rgba(13, 14, 28, 0.6);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 153, 0, 0.15);
+  border: 1px solid rgba(255, 170, 0, 0.15);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass-card-orange:hover {
-  border-color: rgba(255, 153, 0, 0.4);
-  box-shadow: 0 0 25px rgba(255, 153, 0, 0.15);
+  border-color: rgba(255, 170, 0, 0.45);
+  box-shadow: 0 0 25px rgba(255, 170, 0, 0.2);
   transform: translateY(-4px);
 }
 
+/* Eridian Science Module Card styling */
 .glass-card-blue {
-  background: rgba(11, 16, 38, 0.45);
+  background: rgba(13, 14, 28, 0.6);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(6, 182, 212, 0.15);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass-card-blue:hover {
-  border-color: rgba(59, 130, 246, 0.4);
-  box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
+  border-color: rgba(6, 182, 212, 0.45);
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.2);
   transform: translateY(-4px);
 }
 
@@ -78,15 +96,15 @@ body {
 .team-glow-card {
   position: relative;
   overflow: hidden;
-  background: rgba(11, 16, 38, 0.45);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(10, 11, 22, 0.6);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .team-glow-card:hover {
-  border-color: rgba(255, 153, 0, 0.35);
-  box-shadow: 0 0 30px rgba(255, 153, 0, 0.12), 0 0 50px rgba(59, 130, 246, 0.08);
+  border-color: rgba(6, 182, 212, 0.35); /* Eridian Teal hover border */
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.15), 0 0 50px rgba(255, 170, 0, 0.1); /* Teal + Astrophage Gold composite glow */
   transform: translateY(-6px);
 }
 
@@ -99,7 +117,7 @@ body {
   bottom: 0;
   border-radius: inherit;
   padding: 1.5px;
-  background: linear-gradient(135deg, rgba(255,153,0,0.1) 0%, rgba(255,153,0,0.6) 50%, rgba(59,130,246,0.6) 100%);
+  background: linear-gradient(135deg, rgba(255,170,0,0.1) 0%, rgba(255,170,0,0.6) 50%, rgba(6,182,212,0.6) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -112,20 +130,20 @@ body {
 }
 
 .text-glow {
-  text-shadow: 0 0 10px rgba(255, 153, 0, 0.4);
+  text-shadow: 0 0 10px rgba(255, 170, 0, 0.45); /* Astrophage Gold glow */
 }
 
 .text-glow-blue {
-  text-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.45); /* Eridian Teal glow */
 }
 
 /* Custom transitions and utility animations */
 @keyframes pulseGlow {
   0%, 100% {
-    opacity: 0.15;
+    opacity: 0.2;
   }
   50% {
-    opacity: 0.35;
+    opacity: 0.55;
   }
 }
 
@@ -138,7 +156,7 @@ body {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 }
 
@@ -146,11 +164,37 @@ body {
   animation: float 6s ease-in-out infinite;
 }
 
+/* Radar scan animation for console elements */
+@keyframes radarSweep {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.radar-sweep-indicator {
+  position: relative;
+  overflow: hidden;
+}
+.radar-sweep-indicator::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.65), transparent);
+  animation: radarSweep 3.5s infinite linear;
+  pointer-events: none;
+}
+
 /* Standard styling of input elements to match theme */
 input, textarea, select {
   outline: none;
 }
 input:focus, textarea:focus, select:focus {
-  border-color: rgba(255, 153, 0, 0.6);
-  box-shadow: 0 0 15px rgba(255, 153, 0, 0.15);
+  border-color: rgba(6, 182, 212, 0.6);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
 }
