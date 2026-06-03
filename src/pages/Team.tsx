@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { LinkedinIcon, GithubIcon } from '../components/ui/SocialIcons';
+import { LinkedinIcon } from '../components/ui/SocialIcons';
 
 interface TeamMember {
   id: string;
@@ -408,16 +408,6 @@ export const Team: React.FC = () => {
               >
                 <LinkedinIcon className="w-4 h-4" />
               </a>
-
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl border border-white/5 hover:border-blue-400 hover:text-blue-400 text-slate-400 bg-white/5 hover:bg-blue-400/10 transition-all duration-300 cursor-pointer"
-                title="Harshil Maniyar's GitHub"
-              >
-                <GithubIcon className="w-4 h-4" />
-              </a>
             </div>
           </div>
         </motion.div>
@@ -522,18 +512,6 @@ export const Team: React.FC = () => {
                         >
                           <LinkedinIcon className="w-4 h-4" />
                         </a>
-
-                        {member.github && (
-                          <a
-                            href={member.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2.5 rounded-xl border border-white/5 hover:border-blue-400 hover:text-blue-400 text-slate-400 bg-white/5 hover:bg-blue-400/10 transition-all duration-300 cursor-pointer"
-                            title={`${member.name}'s GitHub`}
-                          >
-                            <GithubIcon className="w-4 h-4" />
-                          </a>
-                        )}
                       </div>
                     </div>
                   </motion.div>

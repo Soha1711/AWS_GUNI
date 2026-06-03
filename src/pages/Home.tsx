@@ -2,89 +2,22 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { 
-  Server, Cpu, Infinity as LoopIcon, Shield, Cloud, ArrowRight, 
-  Users, Calendar, Star, GraduationCap, ChevronRight, MessageSquare 
+  Server, ArrowRight, 
+  Users, Calendar, ChevronRight, MessageSquare 
 } from 'lucide-react';
 import { EVENTS } from '../data/mockData';
 import { Logo } from '../components/ui/Logo';
 import { useMeetupData } from '../utils/meetup';
 
-// Domain details helper
-const DOMAINS = [
-  {
-    id: 'cloud',
-    title: 'Cloud Computing',
-    icon: Cloud,
-    desc: 'Master the foundation of modern infrastructure: compute, storage, databases, and global networking services.',
-    techs: ['Amazon EC2', 'Amazon S3', 'AWS Lambda', 'Amazon RDS', 'Amazon VPC'],
-    color: 'border-orange-500/20 hover:border-orange-500/50'
-  },
-  {
-    id: 'ai',
-    title: 'Artificial Intelligence',
-    icon: Cpu,
-    desc: 'Build smart systems. Deploy generative models and configure pre-trained neural networks for cognitive services.',
-    techs: ['Amazon Bedrock', 'Amazon Q', 'AWS Lex', 'AWS Rekognition'],
-    color: 'border-blue-500/20 hover:border-blue-500/50'
-  },
-  {
-    id: 'ml',
-    title: 'Machine Learning',
-    icon: Star,
-    desc: 'Dive into algorithms. Train, optimize, and deploy models from scratch for predictive analysis.',
-    techs: ['Amazon SageMaker', 'AWS Trainium', 'AWS Inferentia', 'AutoPilot'],
-    color: 'border-purple-500/20 hover:border-purple-500/50'
-  },
-  {
-    id: 'devops',
-    title: 'DevOps & GitOps',
-    icon: LoopIcon,
-    desc: 'Automate containerized software releases. Orchestrate cloud delivery pipelines with continuous integration tools.',
-    techs: ['AWS CodePipeline', 'Amazon ECS', 'Amazon EKS', 'AWS CodeBuild'],
-    color: 'border-emerald-500/20 hover:border-emerald-500/50'
-  },
-  {
-    id: 'sec',
-    title: 'Cybersecurity',
-    icon: Shield,
-    desc: 'Lock down cloud systems. Secure access directories, encrypt records, and mitigate security threats.',
-    techs: ['AWS IAM', 'AWS KMS', 'AWS GuardDuty', 'AWS WAF', 'AWS Shield'],
-    color: 'border-red-500/20 hover:border-red-500/50'
-  }
-];
 
-const TESTIMONIALS = [
-  {
-    quote: "Being part of GNU's AWS Student Builder Group was a turning point. The hands-on serverless labs helped me clear the AWS Developer Associate exam and land my dream internship at an AWS Partner company.",
-    author: "Pratik Patel",
-    role: "Core Member, CSE Student (Alumni)",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
-  },
-  {
-    quote: "The hackathons and speaker sessions here are top-tier. Getting to build on actual AWS Sandboxes and presenting to real AWS Architects gave me confidence that classroom lectures never could.",
-    author: "Dhwani Mehta",
-    role: "Winner, SpaceHack 2026",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
-  },
-  {
-    quote: "As a mentor, it's incredible to see these students tackle complex distributed systems. Ganpat University's AWS SBG provides the ideal launchpad for the next generation of cloud architects.",
-    author: "Prof. Sneha Sharma",
-    role: "Faculty Mentor, GNU IT Department",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
-  }
-];
 
-const SPONSORS = [
-  { name: 'AWS Academy', logo: 'AWS Academy' },
-  { name: 'Ganpat University', logo: 'GNU' },
-  { name: 'AWS User Group Gujarat', logo: 'AWS UG' },
-  { name: 'CSI Student Branch GNU', logo: 'CSI GNU' }
-];
+
+
+
 
 export const Home: React.FC = () => {
   const { memberCount, pastEvents, isLive } = useMeetupData();
-  const [activeDomain, setActiveDomain] = useState(DOMAINS[0]);
-  const [stats, setStats] = useState({ members: 0, events: 0, workshops: 0, certs: 0 });
+  const [stats, setStats] = useState({ members: 0, events: 0 });
   
   const statsRef = useRef(null);
   const isStatsInView = useInView(statsRef, { once: true, amount: 0.3 });
@@ -100,9 +33,7 @@ export const Home: React.FC = () => {
         step++;
         setStats({
           members: Math.min(Math.round((memberCount / steps) * step), memberCount),
-          events: Math.min(Math.round((18 / steps) * step), 18),
-          workshops: Math.min(Math.round((12 / steps) * step), 12),
-          certs: Math.min(Math.round((65 / steps) * step), 65)
+          events: Math.min(Math.round((2 / steps) * step), 2)
         });
 
         if (step >= steps) {
@@ -197,178 +128,9 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. ABOUT OVERVIEW SECTION */}
-      <section className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <div className="text-xs font-bold uppercase tracking-widest text-[#ff9900] font-mono">
-              // Cosmic Nexus
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading leading-tight">
-              Fueling Innovation in the Cloud Universe
-            </h2>
-            <p className="text-slate-400 leading-relaxed font-sans">
-              The AWS Student Builder Group at Ganpat University acts as an intellectual bridge, taking abstract theories of technology and applying them directly using AWS enterprise resources. We guide students from zero-knowledge concepts through AWS certification paths, serverless computing labs, and hackathons.
-            </p>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-4">
-              <div className="flex gap-3">
-                <div className="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
-                  <GraduationCap className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-white font-semibold text-sm font-heading">AWS Academy Syllabus</h4>
-                  <p className="text-xs text-slate-400 mt-1 font-sans">Curated modules matching AWS certification criteria.</p>
-                </div>
-              </div>
-              
-              <div className="flex gap-3">
-                <div className="w-10 h-10 rounded-lg bg-[#ff9900]/10 border border-[#ff9900]/20 flex items-center justify-center text-[#ff9900] shrink-0">
-                  <Users className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-white font-semibold text-sm font-heading">Peer Constellations</h4>
-                  <p className="text-xs text-slate-400 mt-1 font-sans">Collaborate on team hackathons and cloud projects.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-4">
-              <Link to="/about" className="text-[#ff9900] hover:text-amber-500 font-semibold inline-flex items-center gap-1.5 transition-colors uppercase text-xs tracking-wider">
-                Discover More About Us <ChevronRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-
-          <div className="relative">
-            {/* Visual Glass Box */}
-            <div className="glass rounded-2xl p-6 border border-white/10 relative overflow-hidden shadow-2xl">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl pointer-events-none" />
-              
-              <h3 className="text-white font-bold text-lg font-heading mb-4 border-b border-white/5 pb-3 flex items-center justify-between">
-                <span>Active study nodes</span>
-                <span className="px-2 py-0.5 text-[9px] font-mono bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded">ONLINE</span>
-              </h3>
-              
-              <div className="space-y-4">
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex justify-between items-center hover:bg-white/8 transition-colors">
-                  <span className="text-sm text-slate-300 font-sans font-medium">AWS Cloud Practitioner Group</span>
-                  <span className="text-xs font-mono text-[#ff9900]">60 Students</span>
-                </div>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex justify-between items-center hover:bg-white/8 transition-colors">
-                  <span className="text-sm text-slate-300 font-sans font-medium">GenAI Bedrock Incubator</span>
-                  <span className="text-xs font-mono text-blue-400">35 Students</span>
-                </div>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex justify-between items-center hover:bg-white/8 transition-colors">
-                  <span className="text-sm text-slate-300 font-sans font-medium">Serverless DevOps pipelines</span>
-                  <span className="text-xs font-mono text-purple-400">45 Students</span>
-                </div>
-              </div>
-
-              {/* Decorative nodes */}
-              <div className="mt-6 flex justify-between items-center text-[10px] text-slate-500 font-mono">
-                <span>GNU CLOUD HOSTED</span>
-                <span>PING: 24ms</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. DYNAMIC DOMAINS SECTION */}
-      <section className="py-20 relative bg-[#080c20]/45 border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#ff9900] font-mono">// Technical Spheres</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Interactive Builder Domains
-            </h2>
-            <p className="text-slate-400 font-sans">
-              Click on a domain sector below to inspect the focal points, learning tracks, and associated cloud-native AWS technologies we build with.
-            </p>
-          </div>
-
-          {/* Interactive Panels */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            {/* Domain buttons (Left Column) */}
-            <div className="lg:col-span-4 flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 scrollbar-none shrink-0">
-              {DOMAINS.map((domain) => {
-                const IconComp = domain.icon;
-                const isSelected = activeDomain.id === domain.id;
-                return (
-                  <button
-                    key={domain.id}
-                    onClick={() => setActiveDomain(domain)}
-                    className={`w-full text-left px-5 py-4 rounded-xl border flex items-center gap-4 transition-all duration-300 cursor-pointer whitespace-nowrap lg:whitespace-normal ${
-                      isSelected
-                        ? 'bg-[#ff9900]/10 border-[#ff9900] text-white shadow-[0_0_15px_rgba(255,153,0,0.1)]'
-                        : 'bg-white/5 border-white/5 text-slate-400 hover:bg-white/8 hover:text-slate-200'
-                    }`}
-                  >
-                    <IconComp className={`w-5 h-5 ${isSelected ? 'text-[#ff9900]' : 'text-slate-500'}`} />
-                    <span className="font-semibold text-sm sm:text-base font-heading">
-                      {domain.title}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Domain details viewer (Right Column) */}
-            <div className="lg:col-span-8">
-              <motion.div
-                key={activeDomain.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4 }}
-                className="h-full glass rounded-2xl p-8 border border-white/10 flex flex-col justify-between shadow-2xl relative"
-              >
-                <div className="space-y-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-[#ff9900]/10 flex items-center justify-center text-[#ff9900]">
-                      <activeDomain.icon className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white font-heading">
-                      {activeDomain.title}
-                    </h3>
-                  </div>
-
-                  <p className="text-slate-300 leading-relaxed font-sans text-base">
-                    {activeDomain.desc}
-                  </p>
-
-                  <div className="space-y-3">
-                    <h4 className="text-white font-bold text-xs uppercase tracking-wider font-mono text-[#ff9900]">
-                      Core Service Ecosystem
-                    </h4>
-                    <div className="flex flex-wrap gap-2.5">
-                      {activeDomain.techs.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1.5 text-xs bg-slate-900 border border-white/5 text-slate-300 rounded-lg hover:border-[#ff9900]/30 transition-all font-mono"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs font-mono text-slate-500">
-                  <span>GNU STUDENT BUILDER RESOURCE NODE</span>
-                  <Link to="/about" className="text-[#ff9900] hover:underline flex items-center gap-1">
-                    View roadmap <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 4. STATISTICS COUNTER SECTION */}
-      <section ref={statsRef} className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section ref={statsRef} className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
+        <div className="grid grid-cols-2 gap-8 max-w-3xl mx-auto">
           <div className="glass p-6 rounded-2xl border border-white/5 text-center shadow-lg hover:border-blue-500/20 transition-all relative">
             {isLive && (
               <span className="absolute top-3 right-3 flex h-2 w-2">
@@ -387,28 +149,10 @@ export const Home: React.FC = () => {
           
           <div className="glass p-6 rounded-2xl border border-white/5 text-center shadow-lg hover:border-[#ff9900]/20 transition-all">
             <div className="text-3xl sm:text-5xl font-extrabold text-[#ff9900] font-mono mb-2">
-              {stats.events}+
+              {stats.events}
             </div>
             <div className="text-xs uppercase tracking-widest text-slate-400 font-sans font-medium">
               Events Conducted
-            </div>
-          </div>
-
-          <div className="glass p-6 rounded-2xl border border-white/5 text-center shadow-lg hover:border-purple-500/20 transition-all">
-            <div className="text-3xl sm:text-5xl font-extrabold text-purple-400 font-mono mb-2">
-              {stats.workshops}+
-            </div>
-            <div className="text-xs uppercase tracking-widest text-slate-400 font-sans font-medium">
-              Hands-On Workshops
-            </div>
-          </div>
-
-          <div className="glass p-6 rounded-2xl border border-white/5 text-center shadow-lg hover:border-emerald-500/20 transition-all">
-            <div className="text-3xl sm:text-5xl font-extrabold text-emerald-400 font-mono mb-2">
-              {stats.certs}+
-            </div>
-            <div className="text-xs uppercase tracking-widest text-slate-400 font-sans font-medium">
-              AWS Certifications
             </div>
           </div>
         </div>
@@ -579,67 +323,9 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 6. TESTIMONIALS SECTION */}
-      <section className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#ff9900] font-mono">// Testimonial Signals</span>
-          <h2 className="text-3xl font-bold text-white font-heading">
-            Voices from the Constellation
-          </h2>
-          <p className="text-slate-400 font-sans">
-            Hear from our student leaders, certification achievers, and faculty coordinators on how SBG impacted their learning orbit.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {TESTIMONIALS.map((t, idx) => (
-            <div key={idx} className="glass p-6 rounded-2xl border border-white/5 flex flex-col justify-between shadow-xl relative">
-              <div className="absolute -top-4 -left-2 text-6xl text-[#ff9900]/10 font-serif pointer-events-none select-none">“</div>
-              <div className="space-y-4 relative z-10">
-                <div className="flex items-center gap-1.5 text-amber-400">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                  ))}
-                </div>
-                <p className="text-sm text-slate-300 leading-relaxed font-sans italic">
-                  "{t.quote}"
-                </p>
-              </div>
 
-              <div className="flex items-center gap-3 pt-6 border-t border-white/5 mt-6 shrink-0">
-                <img
-                  src={t.avatar}
-                  alt={t.author}
-                  className="w-10 h-10 rounded-full object-cover border border-white/10"
-                />
-                <div>
-                  <h4 className="text-white text-sm font-semibold font-heading">{t.author}</h4>
-                  <p className="text-[10px] text-blue-400 mt-0.5">{t.role}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      {/* 7. SPONSORS & PARTNERS */}
-      <section className="py-16 relative bg-[#040612] border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-xs font-mono uppercase tracking-widest text-slate-500 mb-8">
-            Co-aligned Institutes & Supporters
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
-            {SPONSORS.map((s, idx) => (
-              <span
-                key={idx}
-                className="text-lg sm:text-xl font-extrabold text-slate-500 tracking-wider hover:text-slate-300 hover:text-glow transition-all duration-300 uppercase select-none cursor-default font-heading"
-              >
-                {s.logo}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 8. CALL TO ACTION SECTION */}
       <section className="py-24 relative overflow-hidden bg-gradient-to-r from-blue-950/20 via-[#0a0d24]/50 to-[#ff9900]/5 border-y border-white/5">

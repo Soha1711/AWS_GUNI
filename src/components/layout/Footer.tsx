@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone, Globe } from 'lucide-react';
-import { LinkedinIcon, GithubIcon, TwitterIcon, MeetupIcon } from '../ui/SocialIcons';
+import { LinkedinIcon, MeetupIcon, InstagramIcon } from '../ui/SocialIcons';
 import { Logo } from '../ui/Logo';
 
 
@@ -15,9 +15,9 @@ export const Footer: React.FC = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(96,165,250,0.06),transparent_50%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-12">
           {/* Brand Info Column */}
-          <div className="md:col-span-1.5 space-y-4">
+          <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2.5 group">
               <Logo size={24} className="group-hover:scale-105 transition-transform duration-300" />
               <div className="flex flex-col">
@@ -37,32 +37,24 @@ export const Footer: React.FC = () => {
             {/* Social Links */}
             <div className="flex items-center gap-4 pt-2">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/aws-student-builder-group-guni/posts/?feedView=all"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg border border-white/10 hover:border-[#ff9900] hover:text-[#ff9900] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
+                className="w-9 h-9 rounded-lg border border-white/10 hover:border-[#0077b5] hover:text-[#0077b5] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
                 aria-label="LinkedIn Profile"
               >
                 <LinkedinIcon className="w-4.5 h-4.5" />
               </a>
               <a
-                href="https://github.com"
+                href="https://www.instagram.com/aws.sbg_guni?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg border border-white/10 hover:border-blue-400 hover:text-blue-400 flex items-center justify-center bg-white/5 transition-all hover:scale-105"
-                aria-label="GitHub Repository"
+                className="w-9 h-9 rounded-lg border border-white/10 hover:border-[#e1306c] hover:text-[#e1306c] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
+                aria-label="Instagram Profile"
               >
-                <GithubIcon className="w-4.5 h-4.5" />
+                <InstagramIcon className="w-4.5 h-4.5" />
               </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg border border-white/10 hover:border-[#ff9900] hover:text-[#ff9900] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
-                aria-label="Twitter Profile"
-              >
-                <TwitterIcon className="w-4.5 h-4.5" />
-              </a>
+
               <a
                 href="https://ganpatuniversity.ac.in"
                 target="_blank"
@@ -123,30 +115,6 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Technical Domains Column */}
-          <div className="space-y-4">
-            <h4 className="text-white font-bold text-sm tracking-widest uppercase font-heading">
-              Builder Domains
-            </h4>
-            <ul className="space-y-2.5 text-sm font-sans">
-              <li className="hover:text-blue-400 transition-colors cursor-default">
-                Cloud Computing
-              </li>
-              <li className="hover:text-blue-400 transition-colors cursor-default">
-                Artificial Intelligence
-              </li>
-              <li className="hover:text-blue-400 transition-colors cursor-default">
-                Machine Learning
-              </li>
-              <li className="hover:text-blue-400 transition-colors cursor-default">
-                DevOps & Automation
-              </li>
-              <li className="hover:text-blue-400 transition-colors cursor-default">
-                Cybersecurity & Identity
-              </li>
-            </ul>
-          </div>
-
           {/* Contact Details Column */}
           <div className="space-y-4">
             <h4 className="text-white font-bold text-sm tracking-widest uppercase font-heading">
@@ -179,22 +147,10 @@ export const Footer: React.FC = () => {
         <div className="w-full h-px bg-white/10 my-8" />
 
         {/* Footer bottom */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-sans">
+        <div className="text-center text-xs font-sans">
           <p>
             &copy; {currentYear} AWS Student Builder Group - Ganpat University. All rights reserved.
           </p>
-          <div className="flex items-center gap-5">
-            <a href="#" className="hover:text-white transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              Terms of Use
-            </a>
-            <span className="text-slate-600">|</span>
-            <span className="text-slate-500">
-              Designed in Partnership with AWS Academy
-            </span>
-          </div>
         </div>
       </div>
     </footer>

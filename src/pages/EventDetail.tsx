@@ -328,17 +328,6 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                     This technical event has concluded. Study circles, presentations, and resources generated during this event are available for members in our community repository.
                   </p>
                 </div>
-                
-                <div className="pt-2 space-y-2">
-                  <a
-                    href="https://github.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full text-center block py-3 border border-white/10 hover:border-[#ff9900] text-slate-300 hover:text-white rounded-xl text-xs uppercase tracking-wider transition-all"
-                  >
-                    Access Cloud Resources
-                  </a>
-                </div>
               </div>
             )}
           </AnimatePresence>
