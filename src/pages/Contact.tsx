@@ -31,9 +31,6 @@ export const Contact: React.FC = () => {
 
       {/* Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 space-y-4">
-        <div className="text-xs font-mono font-bold uppercase tracking-widest text-[#00f5ff] text-glow-blue">
-          [SIGNAL TRANSMISSION // COCKPIT PANEL]
-        </div>
         <h1 className="text-4xl sm:text-5xl font-extrabold text-white font-heading tracking-tight">
           Connect With SBG Hub
         </h1>

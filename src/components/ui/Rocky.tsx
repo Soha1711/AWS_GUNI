@@ -1,22 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useMotionValue, animate } from 'framer-motion';
 
-// Rocky quotes from Project Hail Mary
+// Rocky quotes from Project Hail Mary & AWS crossover
 const ROCKY_QUOTES = [
   "🎵 Amaze, amaze, amaze! 🎵",
-  "🎵 Fist my bump! 🎵",
-  "🎵 Question: You study cloud technology, yes? 🎵",
-  "🎵 You are happy, I am happy. 🎵",
-  "🎵 Good, proud, friendly! 🎵",
-  "🎵 Human are made of leaks. Scary! 🎵",
-  "🎵 Eridian atmosphere: super hot, super heavy! 🎵",
-  "🎵 I watch you build, human. 🎵",
+  "🎵 Fist my bump! We build cloud consoles together! 🎵",
+  "🎵 Question: What is S3 bucket? A box in the cloud made of starlight? 🎵",
+  "🎵 You are happy, I am happy. We code serverless! 🎵",
+  "🎵 Good, proud, friendly! AWS networks are strong! 🎵",
+  "🎵 S3 buckets have zero leaks. Human are made of leaks. Scary! 🎵",
+  "🎵 Eridian atmosphere: super hot, super heavy! Like a busy EC2 server! 🎵",
+  "🎵 I watch you build Lambda functions, human. 🎵",
   "🎵 Grace! Fist my bump! 🎵",
-  "🎵 Thank, thank, thank! 🎵",
-  "🎵 Eridians do not sleep, we build! 🎵",
-  "🎵 Sleep is stupid. 🎵",
-  "🎵 I am built of stone. Bumpy! 🎵",
-  "🎵 You observe? Eridian science is strong! 🎵"
+  "🎵 VPC tunnels are like Eridian tunnel webs. Invisible! 🎵",
+  "🎵 Eridians do not sleep, we deploy! 🎵",
+  "🎵 Sleep is stupid. DevOps CI/CD never sleeps! 🎵",
+  "🎵 Serverless DynamoDB: always query, build, build, build! 🎵",
+  "🎵 You use IAM roles? Good. Eridians like strong security locks! 🎵",
+  "🎵 Question: Is AWS Cloud hot like Erid? Or cold like space? 🎵",
+  "🎵 Question: Cloud Practitioner exam has questions? I help you study! 🎵",
+  "🎵 You deploy container? Bumpy stone container? No? Electronic container! 🎵",
+  "🎵 Amaze! AWS scale up to the sky! Infinite space! 🎵"
 ];
 
 // Musical symbols for rising effect on click

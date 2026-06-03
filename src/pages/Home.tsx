@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { 
-  Server, Cpu, Infinity as LoopIcon, Shield, Cloud, ArrowRight, 
+  Cpu, Infinity as LoopIcon, Shield, Cloud, ArrowRight, 
   Users, Calendar, Star, GraduationCap, ChevronRight, MessageSquare 
 } from 'lucide-react';
 import { EVENTS } from '../data/mockData';
@@ -81,6 +81,41 @@ const SPONSORS = [
   { name: 'CSI Student Branch GNU', logo: 'CSI GNU' }
 ];
 
+// Typewriter effect custom hook
+const useTypewriter = (text: string, speed: number = 25, delay: number = 0, startTrigger: boolean = true) => {
+  const [displayText, setDisplayText] = useState('');
+  const [isDone, setIsDone] = useState(false);
+
+  useEffect(() => {
+    if (!startTrigger) return;
+    
+    let timer: any;
+    let i = 0;
+    
+    const startTyping = () => {
+      timer = setInterval(() => {
+        if (i < text.length) {
+          const char = text.charAt(i);
+          setDisplayText((prev) => prev + char);
+          i++;
+        } else {
+          clearInterval(timer);
+          setIsDone(true);
+        }
+      }, speed);
+    };
+
+    const delayTimeout = setTimeout(startTyping, delay);
+
+    return () => {
+      clearTimeout(delayTimeout);
+      clearInterval(timer);
+    };
+  }, [text, speed, delay, startTrigger]);
+
+  return { displayText, isDone };
+};
+
 export const Home: React.FC = () => {
   const { memberCount, pastEvents, isLive } = useMeetupData();
   const [activeDomain, setActiveDomain] = useState(DOMAINS[0]);
@@ -88,6 +123,16 @@ export const Home: React.FC = () => {
   
   const statsRef = useRef(null);
   const isStatsInView = useInView(statsRef, { once: true, amount: 0.3 });
+
+  // Typewriter effects for Hero section
+  const { displayText: title1Text, isDone: title1Done } = useTypewriter("AWS Student Builder Group", 15, 100, true);
+  const { displayText: title2Text, isDone: title2Done } = useTypewriter("Ganpat University", 15, 0, title1Done);
+  const { displayText: paraText, isDone: paraDone } = useTypewriter(
+    `"Amaze, amaze, amaze! Fueling standard cloud infrastructures with Astrophage speed." Build cloud-native solutions, study serverless architectures, and light up the tech universe together.`,
+    6,
+    0,
+    title2Done
+  );
 
   useEffect(() => {
     if (isStatsInView) {
@@ -143,11 +188,6 @@ export const Home: React.FC = () => {
             className="flex flex-col items-center gap-4"
           >
             <Logo size={76} className="mx-auto select-none" />
-            
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border-[#ffaa00]/30 border bg-[#ffaa00]/5 text-[#ffaa00] text-xs font-mono font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(255,170,0,0.06)]">
-              <Server className="w-3.5 h-3.5 animate-spin-slow text-[#00f5ff]" />
-              [MISSION CONTROL // CREW CONSOLE]
-            </div>
           </motion.div>
 
 
@@ -155,21 +195,25 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.1] font-heading"
+            className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.1] font-heading min-h-[5.5rem] sm:min-h-[7.5rem]"
           >
-            AWS Student Builder Group <br />
+            {title1Text}
+            {!title1Done && <span className="text-[#ffaa00] ml-1 animate-pulse select-none">█</span>}
+            <br />
             <span className="bg-gradient-to-r from-[#ffaa00] via-amber-400 to-[#00f5ff] bg-clip-text text-transparent text-glow">
-              Ganpat University
+              {title2Text}
             </span>
+            {title1Done && !title2Done && <span className="text-[#00f5ff] ml-1 animate-pulse select-none">█</span>}
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 font-sans leading-relaxed"
+            className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 font-sans leading-relaxed min-h-[4.5rem] md:min-h-[3.5rem]"
           >
-            "Amaze, amaze, amaze! Fueling standard cloud infrastructures with Astrophage speed." Build cloud-native solutions, study serverless architectures, and light up the tech universe together.
+            {paraText}
+            {title2Done && !paraDone && <span className="text-[#00f5ff] ml-1 animate-pulse select-none">█</span>}
           </motion.p>
 
           <motion.div
@@ -201,9 +245,6 @@ export const Home: React.FC = () => {
       <section className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <div className="text-xs font-bold uppercase tracking-widest text-[#00f5ff] font-mono text-glow-blue">
-              [MISSION INTEL // COGNITIVE CORE]
-            </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading leading-tight">
               Fueling Innovation in the Cloud Universe
             </h2>
@@ -277,9 +318,8 @@ export const Home: React.FC = () => {
 
       {/* 3. DYNAMIC DOMAINS SECTION */}
       <section className="py-20 relative bg-[#060814]/45 border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#00f5ff] font-mono text-glow-blue">[TECHNICAL SPHERES // FOCAL NODE]</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
               Interactive Builder Domains
             </h2>
@@ -418,10 +458,9 @@ export const Home: React.FC = () => {
       <section className="py-20 relative bg-[#060814]/45 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-4">
-            <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#00f5ff] font-mono text-glow-blue">[EVENT RADAR // SYSTEM LOGS]</span>
-              <h2 className="text-3xl font-bold text-white font-heading">
-                Upcoming Constellations
+            <div className="text-center space-y-3">
+              <h2 className="text-3xl sm:text-5xl font-bold text-white font-heading tracking-tight">
+                Upcoming & Past Events
               </h2>
             </div>
             <Link
@@ -580,10 +619,9 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 6. TESTIMONIALS SECTION */}
-      <section className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#00f5ff] font-mono text-glow-blue">[TESTIMONIAL SIGNALS // TRANSMISSIONS]</span>
-          <h2 className="text-3xl font-bold text-white font-heading">
+      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 border-t border-white/5">
+        <div className="text-center space-y-3">
+          <h2 className="text-3xl sm:text-5xl font-bold text-white font-heading">
             Voices from the Constellation
           </h2>
           <p className="text-slate-400 font-sans">
@@ -625,8 +663,8 @@ export const Home: React.FC = () => {
       {/* 7. SPONSORS & PARTNERS */}
       <section className="py-16 relative bg-[#020205] border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-xs font-mono uppercase tracking-widest text-slate-500 mb-8">
-            [CO-ALIGNED INSTITUTES & MISSION SUPPORTERS]
+          <p className="text-center text-xs uppercase tracking-widest text-slate-500 mb-8 font-semibold">
+            Our Partners & Supporters
           </p>
           <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
             {SPONSORS.map((s, idx) => (
@@ -648,7 +686,7 @@ export const Home: React.FC = () => {
         <div className="max-w-4xl mx-auto text-center px-4 relative z-10 space-y-6">
           <MessageSquare className="w-12 h-12 text-[#00f5ff] mx-auto animate-bounce text-glow-blue" />
           <h2 className="text-3xl sm:text-5xl font-bold text-white font-heading">
-            Connect Your Core to Our Transmission Network
+            Connect With Our Community
           </h2>
           <p className="max-w-xl mx-auto text-slate-300 font-sans text-sm sm:text-base leading-relaxed">
             Expand your cloud horizon. Join study circles, collaborate on open-source code repositories, get sponsored for certifications, and build real-world systems.

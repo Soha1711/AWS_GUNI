@@ -68,14 +68,6 @@ export const About: React.FC = () => {
 
       {/* Hero Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-20 space-y-4">
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-xs font-mono font-bold uppercase tracking-widest text-[#00f5ff] text-glow-blue"
-        >
-          [FLIGHT PARAMETERS // CORE DIRECTIVE]
-        </motion.div>
         
         <motion.h1
           initial={{ opacity: 0, y: 15 }}
@@ -155,7 +147,6 @@ export const About: React.FC = () => {
       <section className="py-20 relative bg-[#060814]/45 border-y border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-xs font-mono uppercase tracking-widest text-slate-500">// Member Perks</span>
             <h2 className="text-3xl font-bold text-white font-heading">
               Why Join the GNU Builder Hub?
             </h2>
@@ -187,7 +178,6 @@ export const About: React.FC = () => {
       {/* Learning Path Timeline */}
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#00f5ff] font-mono text-glow-blue">[FLIGHT TRAJECTORY // TIMELINE LOGS]</span>
           <h2 className="text-3xl font-bold text-white font-heading">
             Student Builder Learning Path
           </h2>

@@ -53,9 +53,6 @@ export const Gallery: React.FC = () => {
 
       {/* Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 space-y-4">
-        <div className="text-xs font-mono font-bold uppercase tracking-widest text-[#ff9900]">
-          // Captured Orbits
-        </div>
         <h1 className="text-4xl sm:text-5xl font-extrabold text-white font-heading tracking-tight">
           Community Gallery
         </h1>
@@ -102,16 +99,21 @@ export const Gallery: React.FC = () => {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4 }}
+                  whileHover={{
+                    scale: 1.02,
+                    borderColor: "rgba(255, 170, 0, 0.4)",
+                    boxShadow: "0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 170, 0, 0.15)",
+                  }}
+                  transition={{ duration: 0.35 }}
                   key={item.id}
                   onClick={() => setLightboxItem(item)}
-                  className="break-inside-avoid relative rounded-2xl overflow-hidden bg-slate-900 border border-white/10 group cursor-zoom-in shadow-lg hover:border-[#ff9900]/30 hover:shadow-2xl transition-all duration-300"
+                  className="break-inside-avoid relative rounded-2xl overflow-hidden bg-slate-900 border border-white/10 group cursor-zoom-in shadow-lg transition-all duration-300"
                 >
                   {/* Image container */}
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 group-hover:scale-102 transition-all duration-500"
+                    className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                     loading="lazy"
                   />
 
