@@ -104,7 +104,7 @@ export const Lightbox: React.FC<LightboxProps> = ({ item, onClose, onPrev, onNex
 
               <div className="mt-8 flex justify-between items-center text-xs text-slate-500">
                 <span>Ganpat University Campus</span>
-                <span className="font-mono">GNU SBG 2026</span>
+                <span className="font-mono">GUNI SBG 2026</span>
               </div>
             </div>
 

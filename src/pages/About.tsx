@@ -2,39 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Compass, Eye, Target, Award, Key, Network, ShieldCheck, 
-  MapPin, CheckCircle, GraduationCap, Server, Code, Zap 
+  MapPin, CheckCircle 
 } from 'lucide-react';
 
-const TIMELINE = [
-  {
-    step: 'Phase 01',
-    title: 'Cloud Foundations & Academy Sandbox',
-    duration: 'Months 1-2',
-    icon: GraduationCap,
-    desc: 'Understanding cloud models (IaaS, PaaS, SaaS), setting up AWS IAM, working with simple EC2 instances, S3 storage buckets, and understanding security policies.'
-  },
-  {
-    step: 'Phase 02',
-    title: 'Architecture & Scalable Systems',
-    duration: 'Months 3-4',
-    icon: Server,
-    desc: 'Deploying highly-available systems. Configuring auto-scaling groups, application load balancers, database replication, and monitoring setups using AWS CloudWatch.'
-  },
-  {
-    step: 'Phase 03',
-    title: 'Serverless Deployments & DevOps',
-    duration: 'Months 5-6',
-    icon: Code,
-    desc: 'Transitioning to event-driven serverless architectures. Writing Lambda functions, integrating API Gateway, orchestrating DynamoDB tables, and automating pipeline builds.'
-  },
-  {
-    step: 'Phase 04',
-    title: 'GenAI Integrations & Specialist Tracks',
-    duration: 'Months 7+',
-    icon: Zap,
-    desc: 'Harnessing advanced intelligence. Deploying LLM pipelines using AWS Bedrock, model fine-tuning with SageMaker, or diving deep into security and governance scopes.'
-  }
-];
 
 const BENEFITS = [
   {
@@ -84,7 +54,7 @@ export const About: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="max-w-3xl mx-auto text-slate-400 text-base sm:text-lg"
         >
-          Learn who we are, our core drivers, and the timeline students traverse to morph from cloud novices into AWS Certified Builders.
+          Learn who we are, our core drivers, and how we help students morph from cloud novices into AWS Certified Builders.
         </motion.p>
       </section>
 
@@ -148,7 +118,7 @@ export const About: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
             <h2 className="text-3xl font-bold text-white font-heading">
-              Why Join the GNU Builder Hub?
+              Why Join the GUNI Builder Hub?
             </h2>
             <p className="text-slate-400 font-sans">
               Accelerate your engineering journey. As a certified group backed by AWS Academy and Ganpat University, we offer privileges designed for career launches.
@@ -175,51 +145,6 @@ export const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Learning Path Timeline */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <h2 className="text-3xl font-bold text-white font-heading">
-            Student Builder Learning Path
-          </h2>
-          <p className="text-slate-400 font-sans">
-            How we guide you step-by-step from local local-host directories straight to cloud-native cluster infrastructures.
-          </p>
-        </div>
-
-        {/* Chronological timeline layout */}
-        <div className="relative border-l border-white/10 max-w-4xl mx-auto pl-6 sm:pl-10 space-y-12">
-          {TIMELINE.map((item, idx) => {
-            const IconComponent = item.icon;
-            return (
-              <div key={idx} className="relative group">
-                {/* Timeline connector circle node */}
-                <div className="absolute -left-[38px] sm:-left-[54px] top-0 w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-[#020205] border border-[#00f5ff] flex items-center justify-center text-[#00f5ff] shadow-[0_0_8px_#00f5ff]/40 group-hover:scale-110 transition-transform">
-                  <IconComponent className="w-3 sm:w-4 h-3 sm:h-4" />
-                </div>
-
-                <div className="glass p-6 rounded-2xl border border-white/5 space-y-3 hover:border-cyan-400/30 transition-all">
-                  <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                    <span className="text-[10px] font-mono font-bold tracking-wider text-[#ffaa00] uppercase">
-                      {item.step}
-                    </span>
-                    <span className="text-xs font-mono text-slate-500">
-                      {item.duration}
-                    </span>
-                  </div>
-                  
-                  <h3 className="text-lg font-bold text-white font-heading">
-                    {item.title}
-                  </h3>
-                  
-                  <p className="text-sm text-slate-400 leading-relaxed font-sans">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
 
       {/* Community Impact Section */}
       <section className="py-20 relative bg-gradient-to-b from-[#060814]/45 to-transparent border-t border-white/5">
@@ -234,7 +159,7 @@ export const About: React.FC = () => {
                 AWS Community Impact
               </h3>
               <p className="text-sm md:text-base text-slate-400 leading-relaxed font-sans">
-                Our collaborative footprint stretches across the computer science and information technology disciplines at GNU. By offering hands-on technical labs, we enable student builders to develop project resumes that stand out.
+                Our collaborative footprint stretches across the computer science and information technology disciplines at GUNI. By offering hands-on technical labs, we enable student builders to develop project resumes that stand out.
               </p>
             </div>
             

@@ -187,7 +187,7 @@ export const EVENTS: EventItem[] = [
     poster: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
     description: 'The flagship tech-ignite event at UVPCE Campus, providing students with cloud essentials, hands-on serverless labs, and career pathways in the AWS ecosystem.',
     details: 'With over 675+ active students attending in person at the 209 Seminar Hall, AWS Cloud Ignite served as a massive platform for cloud education. Attendees configured their first Amazon EC2 instances, explored AWS storage architectures, and learned about cloud computing paths.',
-    speakers: ['AWS SBG Core Team', 'GNU Faculty Coordinators'],
+    speakers: ['AWS SBG Core Team', 'GUNI Faculty Coordinators'],
     itinerary: [
       { time: '10:00 AM - 10:30 AM', activity: 'Keynote & Launch' },
       { time: '10:30 AM - 12:00 PM', activity: 'EC2 & S3 Console Hands-On' },
@@ -211,20 +211,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     category: 'workshop',
     image: '/gallery/workshop2.png',
     date: 'May 2026'
-  },
-  {
-    id: 'gal-3',
-    title: 'SpaceHack 24-hour Hacking Zone',
-    category: 'hackathon',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
-    date: 'April 2026'
-  },
-  {
-    id: 'gal-4',
-    title: 'Final Pitching to AWS Judges',
-    category: 'hackathon',
-    image: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80',
-    date: 'April 2026'
   },
   {
     id: 'gal-5',

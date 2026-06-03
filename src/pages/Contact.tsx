@@ -68,8 +68,8 @@ export const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-bold font-heading mb-1">Electronic Mailbox</h4>
-                    <a href="mailto:aws.sbg@ganpatuniversity.ac.in" className="text-slate-400 hover:text-white transition-colors">
-                      aws.sbg@ganpatuniversity.ac.in
+                    <a href="mailto:awscloudclub@ganpatuniversity.ac.in" className="text-slate-400 hover:text-white transition-colors">
+                      awscloudclub@ganpatuniversity.ac.in
                     </a>
                   </div>
                 </li>
@@ -80,8 +80,8 @@ export const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-bold font-heading mb-1">Hotline Operator</h4>
-                    <a href="tel:+912762286080" className="text-slate-400 hover:text-white transition-colors">
-                      +91 2762 286080
+                    <a href="tel:+917984961282" className="text-slate-400 hover:text-white transition-colors">
+                      +91 79849 61282
                     </a>
                   </div>
                 </li>
@@ -100,7 +100,7 @@ export const Contact: React.FC = () => {
                 <span className="w-3.5 h-3.5 rounded-full bg-[#ffaa00] shadow-[0_0_12px_#ffaa00] animate-ping" />
                 <span className="w-3 h-3 rounded-full bg-[#ffaa00] border-2 border-white absolute" />
                 <span className="text-[10px] font-mono text-white font-bold mt-2 uppercase bg-slate-950 px-2 py-0.5 border border-white/10 rounded">
-                  GNU CAMPUS NODE
+                  GUNI CAMPUS NODE
                 </span>
               </div>
 

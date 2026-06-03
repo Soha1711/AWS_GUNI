@@ -123,19 +123,19 @@ export const Footer: React.FC = () => {
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-5 h-5 text-[#00f5ff] shrink-0 mt-0.5" />
                 <span>
-                  Ganpat University (GNU), Mehsana-Gandinagar Highway, Kherva, Gujarat, India - 384315.
+                  Ganpat University (GUNI), Mehsana-Gandinagar Highway, Kherva, Gujarat, India - 384315.
                 </span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4.5 h-4.5 text-[#00f5ff] shrink-0" />
-                <a href="mailto:aws.sbg@ganpatuniversity.ac.in" className="hover:text-white transition-colors">
-                  aws.sbg@ganpatuniversity.ac.in
+                <a href="mailto:awscloudclub@ganpatuniversity.ac.in" className="hover:text-white transition-colors">
+                  awscloudclub@ganpatuniversity.ac.in
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4.5 h-4.5 text-[#00f5ff] shrink-0" />
-                <a href="tel:+912762286080" className="hover:text-white transition-colors">
-                  +91 2762 286080
+                <a href="tel:+917984961282" className="hover:text-white transition-colors">
+                  +91 79849 61282
                 </a>
               </li>
             </ul>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeft, Calendar, MapPin, Tag, Users, CheckCircle2, 
-  Clock, ShieldAlert, Award, Send 
+  ShieldAlert, Award, Send 
 } from 'lucide-react';
 import type { EventItem } from '../data/mockData';
 import { MeetupIcon } from '../components/ui/SocialIcons';
@@ -152,31 +152,6 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
             </div>
           )}
 
-          {/* Event Itinerary Timeline */}
-          {event.itinerary && event.itinerary.length > 0 && (
-            <div className="glass rounded-2xl p-6 sm:p-8 border border-white/5 space-y-6">
-              <h3 className="text-white font-bold text-lg font-heading flex items-center gap-2">
-                <Clock className="w-5 h-5 text-blue-400" />
-                Schedule Timeline
-              </h3>
-              
-              <div className="relative border-l border-white/10 pl-5 space-y-8 font-sans">
-                {event.itinerary.map((item, idx) => (
-                  <div key={idx} className="relative group">
-                    <div className="absolute -left-[27px] top-1 w-3.5 h-3.5 rounded-full bg-[#050714] border border-[#ff9900]" />
-                    <div className="space-y-1">
-                      <span className="text-[10px] font-mono text-[#ff9900] tracking-wider font-semibold">
-                        {item.time}
-                      </span>
-                      <h4 className="text-sm font-bold text-white leading-tight">
-                        {item.activity}
-                      </h4>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
 
         </div>
 
@@ -308,7 +283,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                   </div>
                   
                   <div className="p-4 bg-emerald-500/5 border border-emerald-500/10 rounded-xl text-[11px] font-mono text-emerald-400 uppercase">
-                    GNU SBG Hub Ticket #{(Math.random() * 89999 + 10000).toFixed(0)}
+                    GUNI SBG Hub Ticket #{(Math.random() * 89999 + 10000).toFixed(0)}
                   </div>
                   
                   <Link
