@@ -6,7 +6,7 @@ import {
   ShieldAlert, Award, Send 
 } from 'lucide-react';
 import type { EventItem } from '../data/mockData';
-import { MeetupIcon } from '../components/ui/SocialIcons';
+import { MeetupIcon, LinkedinIcon } from '../components/ui/SocialIcons';
 
 
 interface EventDetailProps {
@@ -124,7 +124,9 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
             <div className="space-y-4 font-sans leading-relaxed text-slate-300">
               <h3 className="text-white font-bold text-lg font-heading">Event Overview</h3>
               <p>{event.description}</p>
-              <p>{event.details}</p>
+              {event.details.split('\n').filter(p => p.trim() !== '').map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
             </div>
           </div>
 
@@ -137,17 +139,37 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
               </h3>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                {event.speakers.map((speaker, idx) => (
-                  <div key={idx} className="p-4 bg-slate-900/60 border border-white/5 rounded-xl flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#ff9900]/10 border border-[#ff9900]/30 flex items-center justify-center font-bold text-[#ff9900]">
-                      {speaker.split(' ')[0][0]}
+                {event.speakers.map((speaker, idx) => {
+                  const isObj = typeof speaker === 'object';
+                  const name = isObj ? speaker.name : speaker;
+                  const linkedin = isObj ? speaker.linkedin : undefined;
+                  const initial = name ? name.split(' ')[0][0] : 'S';
+
+                  return (
+                    <div key={idx} className="p-4 bg-slate-900/60 border border-white/5 rounded-xl flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-[#ff9900]/10 border border-[#ff9900]/30 flex items-center justify-center font-bold text-[#ff9900] shrink-0">
+                          {initial}
+                        </div>
+                        <div>
+                          <h4 className="text-white font-bold text-sm font-heading">{name}</h4>
+                          <p className="text-[10px] text-slate-500 uppercase mt-0.5">AWS Certified Cloud Builder</p>
+                        </div>
+                      </div>
+                      {linkedin && (
+                        <a 
+                          href={linkedin} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="w-8 h-8 rounded-lg bg-[#0077b5]/10 border border-[#0077b5]/20 flex items-center justify-center text-[#0077b5] hover:bg-[#0077b5] hover:text-white transition-all duration-300 cursor-pointer shrink-0"
+                          title="LinkedIn Profile"
+                        >
+                          <LinkedinIcon className="w-4 h-4" />
+                        </a>
+                      )}
                     </div>
-                    <div>
-                      <h4 className="text-white font-bold text-sm font-heading">{speaker}</h4>
-                      <p className="text-[10px] text-slate-500 uppercase mt-0.5">AWS Certified Cloud Builder</p>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}

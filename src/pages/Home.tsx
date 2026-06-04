@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { 
-  Server, ArrowRight, 
+  ArrowRight, 
   Users, Calendar, ChevronRight, MessageSquare 
 } from 'lucide-react';
 import { EVENTS } from '../data/mockData';
