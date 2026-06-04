@@ -1,6 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  color: string;
+  size: number;
+  vx: number;
+  vy: number;
+}
+
+const PARTICLE_COLORS = ['#00f5ff', '#ffaa00', '#c084fc', '#ffffff'];
+
 export const CustomCursor: React.FC = () => {
   const [hovered, setHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
@@ -10,14 +22,14 @@ export const CustomCursor: React.FC = () => {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Smooth springs for trailing elements
-  const springConfig = { damping: 25, stiffness: 220, mass: 0.4 };
+  // Smooth trailing spring for the outer ring
+  const springConfig = { damping: 28, stiffness: 200, mass: 0.4 };
   const trailingX = useSpring(mouseX, springConfig);
   const trailingY = useSpring(mouseY, springConfig);
 
-  // Velocity detection for dynamic stretching/trail
-  const lastPos = useRef({ x: 0, y: 0, time: Date.now() });
-  const [speed, setSpeed] = useState(0);
+  // Particles array
+  const [particles, setParticles] = useState<Particle[]>([]);
+  const particleIdRef = useRef(0);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(hover: hover)');
@@ -26,27 +38,46 @@ export const CustomCursor: React.FC = () => {
     setIsVisible(true);
 
     const moveMouse = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
+      const x = e.clientX;
+      const y = e.clientY;
+      mouseX.set(x);
+      mouseY.set(y);
 
-      // Calculate speed/velocity
-      const now = Date.now();
-      const dt = now - lastPos.current.time;
-      if (dt > 10) {
-        const dx = e.clientX - lastPos.current.x;
-        const dy = e.clientY - lastPos.current.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const currentSpeed = Math.min(dist / dt, 10); // cap velocity
-        setSpeed(currentSpeed);
+      // Generate a new particle on movement with a small probability to throttle rate
+      if (Math.random() < 0.35) {
+        const id = particleIdRef.current++;
+        const color = PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)];
+        const size = Math.random() * 3 + 2; // 2px to 5px
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 0.8 + 0.2;
+        
+        const newParticle: Particle = {
+          id,
+          x,
+          y,
+          color,
+          size,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+        };
 
-        lastPos.current = { x: e.clientX, y: e.clientY, time: now };
+        setParticles((prev) => [...prev, newParticle].slice(-25)); // Keep max 25 particles
       }
     };
 
-    // Decay speed when mouse stops moving
-    const interval = setInterval(() => {
-      setSpeed((s) => Math.max(s - 0.5, 0));
-    }, 50);
+    // Update particle positions and shrink them
+    const updateParticles = setInterval(() => {
+      setParticles((prev) =>
+        prev
+          .map((p) => ({
+            ...p,
+            x: p.x + p.vx,
+            y: p.y + p.vy,
+            size: Math.max(p.size - 0.08, 0),
+          }))
+          .filter((p) => p.size > 0)
+      );
+    }, 16);
 
     const handleMouseDown = () => setClicked(true);
     const handleMouseUp = () => setClicked(false);
@@ -72,7 +103,7 @@ export const CustomCursor: React.FC = () => {
     window.addEventListener('mouseup', handleMouseUp);
     window.addEventListener('mouseover', handleMouseOver);
 
-    // Inject styles to hide default cursor
+    // Hide standard cursor
     const style = document.createElement('style');
     style.id = 'custom-cursor-hide-style';
     style.innerHTML = `
@@ -83,7 +114,7 @@ export const CustomCursor: React.FC = () => {
     document.head.appendChild(style);
 
     return () => {
-      clearInterval(interval);
+      clearInterval(updateParticles);
       window.removeEventListener('mousemove', moveMouse);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
@@ -97,135 +128,75 @@ export const CustomCursor: React.FC = () => {
 
   return (
     <>
-      {/* 1. Orbiting telemetry / target lock rings (Teal/Orange) */}
+      {/* 1. Stardust Particles Trail */}
+      {particles.map((p) => (
+        <div
+          key={p.id}
+          className="fixed rounded-full pointer-events-none z-[9998]"
+          style={{
+            left: p.x,
+            top: p.y,
+            width: p.size,
+            height: p.size,
+            backgroundColor: p.color,
+            boxShadow: `0 0 6px ${p.color}`,
+            transform: 'translate(-50%, -50%)',
+            opacity: p.size / 5, // Fade out as it gets smaller
+            transition: 'opacity 0.1s ease-out',
+          }}
+        />
+      ))}
+
+      {/* 2. Trailing Outer Ring */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 rounded-full border pointer-events-none z-[9999]"
         style={{
           x: trailingX,
           y: trailingY,
           translateX: '-50%',
           translateY: '-50%',
+          width: hovered ? 46 : 28,
+          height: hovered ? 46 : 28,
+          borderColor: hovered ? 'rgba(0, 245, 255, 0.8)' : 'rgba(255, 170, 0, 0.45)',
+          backgroundColor: hovered ? 'rgba(0, 245, 255, 0.08)' : 'rgba(0, 0, 0, 0)',
+          boxShadow: hovered 
+            ? '0 0 15px rgba(0, 245, 255, 0.45), inset 0 0 8px rgba(0, 245, 255, 0.2)' 
+            : '0 0 6px rgba(255, 170, 0, 0.12)',
         }}
-      >
-        {/* Outer segmented ring (slow counter-clockwise rotation) */}
-        <motion.div
-          className="absolute rounded-full border border-dashed"
-          style={{
-            width: hovered ? 56 : 38,
-            height: hovered ? 56 : 38,
-            borderColor: hovered ? 'rgba(0, 245, 255, 0.45)' : 'rgba(255, 170, 0, 0.35)',
-            borderStyle: 'dashed',
-            borderWidth: '1.5px',
-            translateX: '-50%',
-            translateY: '-50%',
-            // Scale dynamically based on move speed (creates organic elastic stretching)
-            scaleX: 1 + speed * 0.08,
-            scaleY: 1 - speed * 0.04,
-            rotate: speed * 15, // dynamic slant based on speed
-          }}
-          animate={{
-            // Infinite rotation
-            rotate: [360, 0],
-          }}
-          transition={{
-            rotate: {
-              repeat: Infinity,
-              duration: hovered ? 4 : 8,
-              ease: 'linear',
-            },
-          }}
-        />
+        animate={{
+          scale: clicked ? 0.85 : 1,
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 350,
+          damping: 24,
+        }}
+      />
 
-        {/* Inner crosshair brackets (fast clockwise rotation) */}
-        <motion.div
-          className="absolute"
-          style={{
-            width: hovered ? 40 : 26,
-            height: hovered ? 40 : 26,
-            translateX: '-50%',
-            translateY: '-50%',
-          }}
-          animate={{
-            rotate: [0, 360],
-          }}
-          transition={{
-            rotate: {
-              repeat: Infinity,
-              duration: hovered ? 3 : 6,
-              ease: 'linear',
-            },
-          }}
-        >
-          {/* Top bracket */}
-          <div 
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1 rounded-full transition-colors duration-300" 
-            style={{ backgroundColor: hovered ? '#00f5ff' : '#ffaa00' }}
-          />
-          {/* Bottom bracket */}
-          <div 
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1 rounded-full transition-colors duration-300" 
-            style={{ backgroundColor: hovered ? '#00f5ff' : '#ffaa00' }}
-          />
-          {/* Left bracket */}
-          <div 
-            className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-1.5 rounded-full transition-colors duration-300" 
-            style={{ backgroundColor: hovered ? '#00f5ff' : '#ffaa00' }}
-          />
-          {/* Right bracket */}
-          <div 
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-1.5 rounded-full transition-colors duration-300" 
-            style={{ backgroundColor: hovered ? '#00f5ff' : '#ffaa00' }}
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* 2. Core Star / Target lock dot */}
+      {/* 3. Core center dot */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[10000]"
+        className="fixed top-0 left-0 rounded-full pointer-events-none z-[10000]"
         style={{
           x: mouseX,
           y: mouseY,
           translateX: '-50%',
           translateY: '-50%',
+          width: 6,
+          height: 6,
+          backgroundColor: hovered ? '#00f5ff' : '#ffaa00',
+          boxShadow: hovered 
+            ? '0 0 12px #00f5ff, 0 0 20px #00f5ff' 
+            : '0 0 8px #ffaa00, 0 0 16px #ffaa00',
         }}
-      >
-        {/* Core center micro-dot */}
-        <motion.div
-          className="rounded-full"
-          style={{
-            width: 5,
-            height: 5,
-            backgroundColor: hovered ? '#00f5ff' : '#ffaa00',
-            boxShadow: hovered 
-              ? '0 0 10px #00f5ff, 0 0 20px #00f5ff' 
-              : '0 0 8px #ffaa00, 0 0 15px #ffaa00',
-          }}
-          animate={{
-            scale: clicked ? 2.5 : hovered ? 1.5 : 1,
-            // Rotate the core slightly when hovering
-            rotate: hovered ? 45 : 0,
-          }}
-          transition={{
-            type: 'spring',
-            stiffness: 400,
-            damping: 18,
-          }}
-        />
-        
-        {/* Hover lock-on target box */}
-        {hovered && (
-          <motion.div
-            initial={{ opacity: 0, scale: 2 }}
-            animate={{ opacity: [0.3, 0.8, 0.5], scale: 1 }}
-            className="absolute w-7 h-7 border border-[#00f5ff]/60 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-            style={{
-              top: '50%',
-              left: '50%',
-              borderRadius: '4px',
-            }}
-          />
-        )}
-      </motion.div>
+        animate={{
+          scale: clicked ? 1.8 : hovered ? 0.6 : 1,
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 450,
+          damping: 22,
+        }}
+      />
     </>
   );
 };
