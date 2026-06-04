@@ -1,35 +1,34 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
-  color: string;
-  size: number;
-  vx: number;
-  vy: number;
-}
-
-const PARTICLE_COLORS = ['#00f5ff', '#ffaa00', '#c084fc', '#ffffff'];
 
 export const CustomCursor: React.FC = () => {
   const [hovered, setHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  
-  // Position of the mouse
+
+  // Core Mouse position
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Smooth trailing spring for the outer ring
-  const springConfig = { damping: 28, stiffness: 200, mass: 0.4 };
-  const trailingX = useSpring(mouseX, springConfig);
-  const trailingY = useSpring(mouseY, springConfig);
+  // Spring physics for Star A
+  const starAX = useSpring(useMotionValue(0), { stiffness: 140, damping: 22 });
+  const starAY = useSpring(useMotionValue(0), { stiffness: 140, damping: 22 });
 
-  // Particles array
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const particleIdRef = useRef(0);
+  // Spring physics for Star B
+  const starBX = useSpring(useMotionValue(0), { stiffness: 110, damping: 18 });
+  const starBY = useSpring(useMotionValue(0), { stiffness: 110, damping: 18 });
+
+  // Spring physics for Star C
+  const starCX = useSpring(useMotionValue(0), { stiffness: 170, damping: 26 });
+  const starCY = useSpring(useMotionValue(0), { stiffness: 170, damping: 26 });
+
+  // Trailing ring for global center lag
+  const centerSpringConfig = { stiffness: 220, damping: 28 };
+  const trailingCenterX = useSpring(mouseX, centerSpringConfig);
+  const trailingCenterY = useSpring(mouseY, centerSpringConfig);
+
+  // Rotation angle for hover spinning
+  const [angle, setAngle] = useState(0);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(hover: hover)');
@@ -38,46 +37,9 @@ export const CustomCursor: React.FC = () => {
     setIsVisible(true);
 
     const moveMouse = (e: MouseEvent) => {
-      const x = e.clientX;
-      const y = e.clientY;
-      mouseX.set(x);
-      mouseY.set(y);
-
-      // Generate a new particle on movement with a small probability to throttle rate
-      if (Math.random() < 0.35) {
-        const id = particleIdRef.current++;
-        const color = PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)];
-        const size = Math.random() * 3 + 2; // 2px to 5px
-        const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 0.8 + 0.2;
-        
-        const newParticle: Particle = {
-          id,
-          x,
-          y,
-          color,
-          size,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
-        };
-
-        setParticles((prev) => [...prev, newParticle].slice(-25)); // Keep max 25 particles
-      }
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
     };
-
-    // Update particle positions and shrink them
-    const updateParticles = setInterval(() => {
-      setParticles((prev) =>
-        prev
-          .map((p) => ({
-            ...p,
-            x: p.x + p.vx,
-            y: p.y + p.vy,
-            size: Math.max(p.size - 0.08, 0),
-          }))
-          .filter((p) => p.size > 0)
-      );
-    }, 16);
 
     const handleMouseDown = () => setClicked(true);
     const handleMouseUp = () => setClicked(false);
@@ -114,7 +76,6 @@ export const CustomCursor: React.FC = () => {
     document.head.appendChild(style);
 
     return () => {
-      clearInterval(updateParticles);
       window.removeEventListener('mousemove', moveMouse);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
@@ -124,72 +85,185 @@ export const CustomCursor: React.FC = () => {
     };
   }, [mouseX, mouseY]);
 
+  // Orbit rotation animation when hovered
+  useEffect(() => {
+    let animFrameId: number;
+    const tick = () => {
+      setAngle((prev) => (prev + (hovered ? 2.2 : 0.4)) % 360);
+      animFrameId = requestAnimationFrame(tick);
+    };
+    animFrameId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(animFrameId);
+  }, [hovered]);
+
+  // Update target offsets of the companion stars
+  useEffect(() => {
+    const rad = (angle * Math.PI) / 180;
+    
+    // Scale factor for offsets
+    const scale = hovered ? 1.6 : clicked ? 0.75 : 1.0;
+    
+    // Star offsets under rotation
+    const baseOffsets = [
+      { x: 22, y: -12 },
+      { x: -16, y: 20 },
+      { x: -18, y: -18 },
+    ];
+
+    // Rotate and scale offsets
+    const rotatedOffsets = baseOffsets.map((offset) => {
+      const rx = (offset.x * Math.cos(rad) - offset.y * Math.sin(rad)) * scale;
+      const ry = (offset.x * Math.sin(rad) + offset.y * Math.cos(rad)) * scale;
+      return { x: rx, y: ry };
+    });
+
+    const mx = mouseX.get();
+    const my = mouseY.get();
+
+    starAX.set(mx + rotatedOffsets[0].x);
+    starAY.set(my + rotatedOffsets[0].y);
+
+    starBX.set(mx + rotatedOffsets[1].x);
+    starBY.set(my + rotatedOffsets[1].y);
+
+    starCX.set(mx + rotatedOffsets[2].x);
+    starCY.set(my + rotatedOffsets[2].y);
+
+  }, [angle, hovered, clicked, mouseX, mouseY, starAX, starAY, starBX, starBY, starCX, starCY]);
+
   if (!isVisible) return null;
+
+  const lineColor = hovered ? 'rgba(0, 245, 255, 0.4)' : 'rgba(255, 170, 0, 0.25)';
+  const starColor = hovered ? '#00f5ff' : '#ffaa00';
+  const glowShadow = hovered 
+    ? '0 0 10px rgba(0, 245, 255, 0.8), 0 0 18px rgba(0, 245, 255, 0.4)' 
+    : '0 0 8px rgba(255, 170, 0, 0.7), 0 0 15px rgba(255, 170, 0, 0.3)';
 
   return (
     <>
-      {/* 1. Stardust Particles Trail */}
-      {particles.map((p) => (
-        <div
-          key={p.id}
-          className="fixed rounded-full pointer-events-none z-[9998]"
-          style={{
-            left: p.x,
-            top: p.y,
-            width: p.size,
-            height: p.size,
-            backgroundColor: p.color,
-            boxShadow: `0 0 6px ${p.color}`,
-            transform: 'translate(-50%, -50%)',
-            opacity: p.size / 5, // Fade out as it gets smaller
-            transition: 'opacity 0.1s ease-out',
-          }}
+      {/* Viewport SVG drawing the constellation lines */}
+      <svg className="fixed inset-0 w-full h-full pointer-events-none z-[9998]">
+        {/* Lines from Center to Companion Stars */}
+        <motion.line
+          x1={trailingCenterX}
+          y1={trailingCenterY}
+          x2={starAX}
+          y2={starAY}
+          stroke={lineColor}
+          strokeWidth="1"
+          strokeDasharray={hovered ? "none" : "3,3"}
         />
-      ))}
+        <motion.line
+          x1={trailingCenterX}
+          y1={trailingCenterY}
+          x2={starBX}
+          y2={starBY}
+          stroke={lineColor}
+          strokeWidth="1"
+          strokeDasharray={hovered ? "none" : "3,3"}
+        />
+        <motion.line
+          x1={trailingCenterX}
+          y1={trailingCenterY}
+          x2={starCX}
+          y2={starCY}
+          stroke={lineColor}
+          strokeWidth="1"
+          strokeDasharray={hovered ? "none" : "3,3"}
+        />
 
-      {/* 2. Trailing Outer Ring */}
+        {/* Outer triangle lines connecting the stars to form the constellation bounds */}
+        <motion.line
+          x1={starAX}
+          y1={starAY}
+          x2={starBX}
+          y2={starBY}
+          stroke={lineColor}
+          strokeWidth="0.75"
+        />
+        <motion.line
+          x1={starBX}
+          y1={starBY}
+          x2={starCX}
+          y2={starCY}
+          stroke={lineColor}
+          strokeWidth="0.75"
+        />
+        <motion.line
+          x1={starCX}
+          y1={starCY}
+          x2={starAX}
+          y2={starAY}
+          stroke={lineColor}
+          strokeWidth="0.75"
+        />
+      </svg>
+
+      {/* Star Node Elements */}
+
+      {/* Star A */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full border pointer-events-none z-[9999]"
+        className="fixed rounded-full pointer-events-none z-[9999]"
         style={{
-          x: trailingX,
-          y: trailingY,
+          x: starAX,
+          y: starAY,
           translateX: '-50%',
           translateY: '-50%',
-          width: hovered ? 46 : 28,
-          height: hovered ? 46 : 28,
-          borderColor: hovered ? 'rgba(0, 245, 255, 0.8)' : 'rgba(255, 170, 0, 0.45)',
-          backgroundColor: hovered ? 'rgba(0, 245, 255, 0.08)' : 'rgba(0, 0, 0, 0)',
-          boxShadow: hovered 
-            ? '0 0 15px rgba(0, 245, 255, 0.45), inset 0 0 8px rgba(0, 245, 255, 0.2)' 
-            : '0 0 6px rgba(255, 170, 0, 0.12)',
-        }}
-        animate={{
-          scale: clicked ? 0.85 : 1,
-        }}
-        transition={{
-          type: 'spring',
-          stiffness: 350,
-          damping: 24,
+          width: 4,
+          height: 4,
+          backgroundColor: starColor,
+          boxShadow: glowShadow,
         }}
       />
 
-      {/* 3. Core center dot */}
+      {/* Star B */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full pointer-events-none z-[10000]"
+        className="fixed rounded-full pointer-events-none z-[9999]"
+        style={{
+          x: starBX,
+          y: starBY,
+          translateX: '-50%',
+          translateY: '-50%',
+          width: 3.5,
+          height: 3.5,
+          backgroundColor: starColor,
+          boxShadow: glowShadow,
+        }}
+      />
+
+      {/* Star C */}
+      <motion.div
+        className="fixed rounded-full pointer-events-none z-[9999]"
+        style={{
+          x: starCX,
+          y: starCY,
+          translateX: '-50%',
+          translateY: '-50%',
+          width: 4.5,
+          height: 4.5,
+          backgroundColor: starColor,
+          boxShadow: glowShadow,
+        }}
+      />
+
+      {/* Central Star Core (Alpha Star) */}
+      <motion.div
+        className="fixed rounded-full pointer-events-none z-[10000]"
         style={{
           x: mouseX,
           y: mouseY,
           translateX: '-50%',
           translateY: '-50%',
-          width: 6,
-          height: 6,
-          backgroundColor: hovered ? '#00f5ff' : '#ffaa00',
+          width: 7,
+          height: 7,
+          backgroundColor: '#ffffff',
+          border: `1.5px solid ${hovered ? '#00f5ff' : '#ffaa00'}`,
           boxShadow: hovered 
-            ? '0 0 12px #00f5ff, 0 0 20px #00f5ff' 
-            : '0 0 8px #ffaa00, 0 0 16px #ffaa00',
+            ? '0 0 14px #00f5ff, 0 0 25px #00f5ff' 
+            : '0 0 10px #ffaa00, 0 0 18px #ffaa00',
         }}
         animate={{
-          scale: clicked ? 1.8 : hovered ? 0.6 : 1,
+          scale: clicked ? 1.6 : hovered ? 0.75 : 1,
         }}
         transition={{
           type: 'spring',
