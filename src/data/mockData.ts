@@ -192,7 +192,20 @@ export const EVENTS: EventItem[] = [
     poster: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
     description: 'AWS Cloud Ignite was a flagship cloud computing awareness event organized by the AWS Cloud Club Ganpat University on 25th March 2026 at Seminar Hall 209, Ganpat University. The event was designed to introduce students to the fundamentals of cloud computing and the vast ecosystem of Amazon Web Services (AWS), while highlighting emerging industry trends and career opportunities in the cloud domain.',
     details: 'The program witnessed an overwhelming response from students, receiving more than 600 registrations. Due to venue limitations, approximately 200 students attended the event, demonstrating the growing interest in cloud technologies among the student community.\n\nThe event featured renowned AWS community leaders and cloud experts, including Nilesh Vaghela, Dimple Vaghela, and Aric Pandya, who shared valuable insights into AWS services, cloud architecture, industry best practices, certifications, and career pathways. Through engaging discussions and real-world examples, the speakers successfully connected academic concepts with practical industry applications, enabling students to gain a deeper understanding of modern cloud technologies.\n\nThe presence of distinguished university dignitaries and faculty members further enriched the event and encouraged students to actively participate in technology-driven learning initiatives. Interactive discussions, question-and-answer sessions, and the fun-filled “Only Wrong Answers” activity created an energetic and collaborative learning environment that kept participants engaged throughout the program.\n\nOverall, AWS Cloud Ignite served as an impactful platform for students to explore cloud computing, interact with industry experts, and gain valuable knowledge about AWS technologies. The event successfully achieved its objective of fostering cloud awareness, enhancing technical understanding, and inspiring students to pursue future opportunities in cloud computing and related technologies.',
-    speakers: ['Nilesh Vaghela', 'Dimple Vaghela', 'Aric Pandya'],
+    speakers: [
+      {
+        name: 'Nilesh Vaghela',
+        linkedin: 'https://www.linkedin.com/in/nilesh-vaghela?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
+      },
+      {
+        name: 'Dimple Vaghela',
+        linkedin: 'https://www.linkedin.com/in/dimple-vaghela-ba45447b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
+      },
+      {
+        name: 'Aric Pandya',
+        linkedin: 'https://linkedin.com/in/aricpandya'
+      }
+    ],
     itinerary: [
       { time: '10:00 AM - 10:30 AM', activity: 'Keynote & Launch' },
       { time: '10:30 AM - 12:00 PM', activity: 'EC2 & S3 Console Hands-On' },
