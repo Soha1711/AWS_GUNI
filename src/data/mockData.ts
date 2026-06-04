@@ -166,7 +166,7 @@ export const EVENTS: EventItem[] = [
     venue: 'Online Event (Meetup Live)',
     type: 'speaker',
     status: 'past',
-    poster: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80',
+    poster: '/gallery/Poster2.png',
     description: 'An online technical session illustrating the future of Generative AI, featuring industry use cases, building agents, and real-world tools using AWS Bedrock.',
     details: 'The "Gen AI on AWS" session was organized to introduce students to the rapidly evolving field of Generative Artificial Intelligence and its integration with cloud technologies through AWS. The event witnessed enthusiastic participation from students, reflecting their growing interest in AI, Machine Learning, and cloud computing.\n\nThe session was delivered by Mr. Ashwin Raiyani, who provided valuable industry insights and practical knowledge on topics such as the AWS Generative AI Stack, Amazon Bedrock, Foundation Models as a Service (FMaaS), and chatbot architecture using API Gateway integration. Through real-world examples and use cases, participants gained a clear understanding of how Generative AI solutions are developed and deployed in modern organizations.\n\nThe event served as a platform to bridge the gap between academic concepts and industry applications, helping students explore emerging technologies, career opportunities, certifications, and project-based learning in the AI and cloud domains. The interactive discussions and Q&A session further enhanced engagement, creating an enriching learning experience for all attendees.\n\nOverall, the "Gen AI on AWS" event successfully expanded students\' knowledge of Generative AI, increased awareness of AWS-powered AI solutions, and inspired participants to pursue further learning and innovation in the field of Artificial Intelligence and Cloud Computing.',
     speakers: [
@@ -189,7 +189,7 @@ export const EVENTS: EventItem[] = [
     venue: '209 Seminar Hall, New Building, Ganpat University, Mehsana',
     type: 'workshop',
     status: 'past',
-    poster: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
+    poster: '/gallery/Poster1.png',
     description: 'AWS Cloud Ignite was a flagship cloud computing awareness event organized by the AWS Cloud Club Ganpat University on 25th March 2026 at Seminar Hall 209, Ganpat University. The event was designed to introduce students to the fundamentals of cloud computing and the vast ecosystem of Amazon Web Services (AWS), while highlighting emerging industry trends and career opportunities in the cloud domain.',
     details: 'The program witnessed an overwhelming response from students, receiving more than 600 registrations. Due to venue limitations, approximately 200 students attended the event, demonstrating the growing interest in cloud technologies among the student community.\n\nThe event featured renowned AWS community leaders and cloud experts, including Nilesh Vaghela, Dimple Vaghela, and Aric Pandya, who shared valuable insights into AWS services, cloud architecture, industry best practices, certifications, and career pathways. Through engaging discussions and real-world examples, the speakers successfully connected academic concepts with practical industry applications, enabling students to gain a deeper understanding of modern cloud technologies.\n\nThe presence of distinguished university dignitaries and faculty members further enriched the event and encouraged students to actively participate in technology-driven learning initiatives. Interactive discussions, question-and-answer sessions, and the fun-filled “Only Wrong Answers” activity created an energetic and collaborative learning environment that kept participants engaged throughout the program.\n\nOverall, AWS Cloud Ignite served as an impactful platform for students to explore cloud computing, interact with industry experts, and gain valuable knowledge about AWS technologies. The event successfully achieved its objective of fostering cloud awareness, enhancing technical understanding, and inspiring students to pursue future opportunities in cloud computing and related technologies.',
     speakers: [
@@ -238,7 +238,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Keynote by Mr. Ashwin Raiyani',
     category: 'speaker',
     image: '/gallery/speaker2.png',
-    date: 'March 2026'
+    date: 'May 2026'
   },
   {
     id: 'gal-6',
