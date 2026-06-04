@@ -517,7 +517,7 @@ export const Team: React.FC = () => {
               >
                 <motion.img
                   variants={imageVariants}
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+                  src="/gallery/Aric.png"
                   alt="Aric Pandya"
                   className="w-full h-full object-cover origin-center"
                 />
