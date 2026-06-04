@@ -66,7 +66,7 @@ const teamMembers: TeamMember[] = [
     name: 'Dhruv Mehta',
     role: 'PR Executive',
     tagline: 'Fostering digital community building and outreach campaigns.',
-    photo: 'gallery/',
+    photo: 'gallery/Dhruv.png',
     linkedin: 'https://linkedin.com/in/dhruvmehta18',
     team: 'PR Team'
   },
@@ -76,7 +76,7 @@ const teamMembers: TeamMember[] = [
     name: 'Mayank Taranekar',
     role: 'Media Lead',
     tagline: 'Directing the community highlights and professional photography coverage.',
-    photo: 'gallery/',
+    photo: 'gallery/Mayank.png',
     linkedin: 'https://linkedin.com/in/taranekar',
     team: 'Media Team'
   },
@@ -85,7 +85,7 @@ const teamMembers: TeamMember[] = [
     name: 'Aditya Pandya',
     role: 'Video Editor',
     tagline: 'Editing dynamic video content and community boot camp showcases.',
-    photo: 'gallery/',
+    photo: 'gallery/Aditya.png',
     linkedin: 'https://linkedin.com/in/aditya-pandya-bb1b1032b',
     team: 'Media Team'
   },
@@ -113,7 +113,7 @@ const teamMembers: TeamMember[] = [
     name: 'Anshu Singh',
     role: 'Graphic Designer',
     tagline: 'Designing visual interfaces, assets, and sleek event promotions.',
-    photo: '/gallery/',
+    photo: '/gallery/Anshu.png',
     linkedin: 'https://linkedin.com/in/anshu-singh-583651384',
     team: 'Creative Team'
   },
@@ -455,7 +455,7 @@ export const Team: React.FC = () => {
               >
                 <motion.img
                   variants={imageVariants}
-                  src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80"
+                  src="/gallery/Harshil.png"
                   alt="Harshil Maniyar"
                   className="w-full h-full object-cover origin-center"
                 />
