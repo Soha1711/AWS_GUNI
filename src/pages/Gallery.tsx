@@ -14,7 +14,7 @@ const containerVariants = {
       staggerChildren: 0.05
     }
   }
-};
+} as const;
 
 const cardVariants = {
   hidden: { opacity: 0, y: 25, scale: 0.95 },
@@ -33,7 +33,7 @@ const cardVariants = {
     scale: 0.9, 
     transition: { duration: 0.2 } 
   }
-};
+} as const;
 
 export const Gallery: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<'all' | 'workshop' | 'hackathon' | 'speaker' | 'community'>('all');

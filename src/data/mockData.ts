@@ -19,7 +19,7 @@ export interface EventItem {
   poster: string;
   description: string;
   details: string;
-  speakers?: string[];
+  speakers?: (string | { name: string; linkedin?: string })[];
   itinerary?: { time: string; activity: string }[];
   registrationUrl?: string;
 }
@@ -168,8 +168,13 @@ export const EVENTS: EventItem[] = [
     status: 'past',
     poster: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80',
     description: 'An online technical session illustrating the future of Generative AI, featuring industry use cases, building agents, and real-world tools using AWS Bedrock.',
-    details: 'This online webinar was highly focused on Generative AI. Over 225+ student attendees gathered online to listen to Mr. Ashwin Raiyani break down the mechanics of Large Language Models (LLMs), foundational models on Amazon Bedrock, and building modern agentic apps.',
-    speakers: ['Mr. Ashwin Raiyani (Expert AI Speaker)'],
+    details: 'The "Gen AI on AWS" session was organized to introduce students to the rapidly evolving field of Generative Artificial Intelligence and its integration with cloud technologies through AWS. The event witnessed enthusiastic participation from students, reflecting their growing interest in AI, Machine Learning, and cloud computing.\n\nThe session was delivered by Mr. Ashwin Raiyani, who provided valuable industry insights and practical knowledge on topics such as the AWS Generative AI Stack, Amazon Bedrock, Foundation Models as a Service (FMaaS), and chatbot architecture using API Gateway integration. Through real-world examples and use cases, participants gained a clear understanding of how Generative AI solutions are developed and deployed in modern organizations.\n\nThe event served as a platform to bridge the gap between academic concepts and industry applications, helping students explore emerging technologies, career opportunities, certifications, and project-based learning in the AI and cloud domains. The interactive discussions and Q&A session further enhanced engagement, creating an enriching learning experience for all attendees.\n\nOverall, the "Gen AI on AWS" event successfully expanded students\' knowledge of Generative AI, increased awareness of AWS-powered AI solutions, and inspired participants to pursue further learning and innovation in the field of Artificial Intelligence and Cloud Computing.',
+    speakers: [
+      {
+        name: 'Mr. Ashwin Raiyani (Expert AI Speaker)',
+        linkedin: 'https://www.linkedin.com/in/ashwinraiyani?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
+      }
+    ],
     itinerary: [
       { time: '04:00 PM - 04:15 PM', activity: 'Introduction to GenAI' },
       { time: '04:15 PM - 05:00 PM', activity: 'AWS Bedrock Service Walkthrough' },
