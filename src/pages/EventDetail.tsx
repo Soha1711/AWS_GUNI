@@ -143,6 +143,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                   const isObj = typeof speaker === 'object';
                   const name = isObj ? speaker.name : speaker;
                   const linkedin = isObj ? speaker.linkedin : undefined;
+                  const designation = (isObj && speaker.designation) ? speaker.designation : 'AWS Certified Cloud Builder';
                   const initial = name ? name.split(' ')[0][0] : 'S';
 
                   return (
@@ -153,7 +154,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                         </div>
                         <div>
                           <h4 className="text-white font-bold text-sm font-heading">{name}</h4>
-                          <p className="text-[10px] text-slate-500 uppercase mt-0.5">AWS Certified Cloud Builder</p>
+                          <p className="text-[10px] text-slate-500 uppercase mt-0.5">{designation}</p>
                         </div>
                       </div>
                       {linkedin && (

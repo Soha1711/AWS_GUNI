@@ -19,7 +19,7 @@ export interface EventItem {
   poster: string;
   description: string;
   details: string;
-  speakers?: (string | { name: string; linkedin?: string })[];
+  speakers?: (string | { name: string; linkedin?: string; designation?: string })[];
   itinerary?: { time: string; activity: string }[];
   registrationUrl?: string;
 }
@@ -195,14 +195,17 @@ export const EVENTS: EventItem[] = [
     speakers: [
       {
         name: 'Nilesh Vaghela',
+        designation: 'AWS Community Hero',
         linkedin: 'https://www.linkedin.com/in/nilesh-vaghela?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
       },
       {
         name: 'Dimple Vaghela',
+        designation: 'AWS Community Hero, AWS User Group Leader',
         linkedin: 'https://www.linkedin.com/in/dimple-vaghela-ba45447b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
       },
       {
         name: 'Aric Pandya',
+        designation: 'AWS Community Builder (Security)',
         linkedin: 'https://linkedin.com/in/aricpandya'
       }
     ],
