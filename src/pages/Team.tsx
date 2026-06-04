@@ -331,14 +331,18 @@ export const Team: React.FC = () => {
           <div className="flex-1 h-[1px] bg-gradient-to-r from-[#00f5ff]/20 to-transparent" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          whileHover="hover"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={cardVariants('rgba(6, 182, 212, 0.35)', 'rgba(6, 182, 212, 0.25)')}
-          className="w-full max-w-md cursor-pointer"
+        <div 
+          className="w-full max-w-md animate-team-float"
+          style={{ animationDelay: '0s', animationDuration: '7s' }}
         >
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            whileHover="hover"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={cardVariants('rgba(6, 182, 212, 0.35)', 'rgba(6, 182, 212, 0.25)')}
+            className="w-full h-full cursor-pointer"
+          >
           {/* Glassmorphic Card Container */}
           <div 
             className="p-8 flex flex-col items-start text-left transition-all duration-300 relative overflow-hidden group h-full radar-sweep-indicator"
@@ -399,7 +403,8 @@ export const Team: React.FC = () => {
               </a>
             </div>
           </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Club Captain and Adviser Section */}
@@ -414,14 +419,18 @@ export const Team: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-3xl justify-start">
           {/* Card 1: Club Captain */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            whileHover="hover"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={cardVariants('rgba(255, 170, 0, 0.35)', 'rgba(255, 170, 0, 0.25)')}
-            className="w-full cursor-pointer h-full"
+          <div 
+            className="w-full h-full animate-team-float"
+            style={{ animationDelay: '0.2s', animationDuration: '7.5s' }}
           >
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              whileHover="hover"
+              viewport={{ once: true, amount: 0.15 }}
+              variants={cardVariants('rgba(255, 170, 0, 0.35)', 'rgba(255, 170, 0, 0.25)')}
+              className="w-full h-full cursor-pointer"
+            >
             {/* Glassmorphic Card Container */}
             <div 
               className="p-8 flex flex-col items-start text-left transition-all duration-300 relative overflow-hidden group h-full radar-sweep-indicator"
@@ -483,15 +492,20 @@ export const Team: React.FC = () => {
               </div>
             </div>
           </motion.div>
+        </div>
 
-          {/* Card 2: Club Adviser */}
+        {/* Card 2: Club Adviser */}
+        <div 
+          className="w-full h-full animate-team-float"
+          style={{ animationDelay: '0.4s', animationDuration: '8s' }}
+        >
           <motion.div
             initial="hidden"
             whileInView="visible"
             whileHover="hover"
             viewport={{ once: true, amount: 0.15 }}
             variants={cardVariants('rgba(6, 182, 212, 0.35)', 'rgba(6, 182, 212, 0.25)')}
-            className="w-full cursor-pointer h-full"
+            className="w-full h-full cursor-pointer"
           >
             {/* Glassmorphic Card Container */}
             <div 
@@ -555,7 +569,8 @@ export const Team: React.FC = () => {
             </div>
           </motion.div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Sub-Teams Showcase Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
@@ -584,16 +599,23 @@ export const Team: React.FC = () => {
 
               {/* Grid Layout (Desktop: 4, Laptop: 3, Tablet: 2, Mobile: 1) */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                {members.map((member) => (
-                  <motion.div
+                {members.map((member, memberIdx) => (
+                  <div
                     key={member.id}
-                    initial="hidden"
-                    whileInView="visible"
-                    whileHover="hover"
-                    viewport={{ once: true, amount: 0.15 }}
-                    variants={cardVariants(style.glowColor, style.borderColor)}
-                    className="h-full cursor-pointer"
+                    className="animate-team-float h-full"
+                    style={{
+                      animationDelay: `${memberIdx * 0.15}s`,
+                      animationDuration: `${6.5 + (memberIdx % 3) * 0.75}s`
+                    }}
                   >
+                    <motion.div
+                      initial="hidden"
+                      whileInView="visible"
+                      whileHover="hover"
+                      viewport={{ once: true, amount: 0.15 }}
+                      variants={cardVariants(style.glowColor, style.borderColor)}
+                      className="h-full cursor-pointer"
+                    >
                     {/* Glassmorphic Card Container */}
                     <div 
                       className="p-6 h-full flex flex-col justify-between transition-all duration-300 relative overflow-hidden group"
@@ -660,7 +682,8 @@ export const Team: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                    </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
