@@ -1,30 +1,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Eye, Target, Award, Key, Network, ShieldCheck 
+  Eye, Target, Rocket, Users, Lightbulb 
 } from 'lucide-react';
 
 
 const BENEFITS = [
   {
-    title: 'AWS Academy Learning Sandbox',
-    desc: 'Access real AWS resources without personal credit card billing. Build labs and experiments inside secure sandbox modules.',
-    icon: Award
+    title: '🚀 Learn Industry-Relevant Cloud & AI Skills',
+    desc: 'Gain hands-on experience with AWS, Cloud Computing, Generative AI, DevOps, and emerging technologies through workshops, bootcamps, and technical sessions.',
+    icon: Rocket
   },
   {
-    title: 'Discount Voucher Access',
-    desc: 'Eligible active members receive vouchers for substantial discounts on AWS Certification exams (Cloud Practitioner, Solutions Architect).',
-    icon: Key
+    title: '🤝 Connect with Experts and Like-Minded Peers',
+    desc: 'Network with AWS professionals, community leaders, mentors, and students who share a passion for technology and innovation.',
+    icon: Users
   },
   {
-    title: 'Exclusive Hackathons & Prizes',
-    desc: 'Compete in annual cloud hackathons like SpaceHack with exclusive mentoring and cash/credits pools.',
-    icon: Network
+    title: '🎯 Build Your Career and Certifications',
+    desc: 'Get guidance on AWS certifications, career pathways, internships, and industry best practices to strengthen your professional profile.',
+    icon: Target
   },
   {
-    title: 'Global Career Opportunities',
-    desc: 'Get connected with AWS User Groups, alumni networks, and industry recruiters seeking certified cloud developers.',
-    icon: ShieldCheck
+    title: '💡 Lead, Innovate, and Create Impact',
+    desc: 'Participate in events, hackathons, projects, and leadership opportunities that help you develop problem-solving, teamwork, and community-building skills.',
+    icon: Lightbulb
   }
 ];
 
@@ -181,7 +181,7 @@ export const About: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
             <h2 className="text-3xl font-bold text-white font-heading">
-              Why Join the GUNI Builder Hub?
+              Why Join the Guni Student Builder Group?
             </h2>
             <p className="text-slate-400 font-sans">
               Accelerate your engineering journey. As a certified group backed by AWS Academy and Ganpat University, we offer privileges designed for career launches.
