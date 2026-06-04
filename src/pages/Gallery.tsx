@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useMemo, useCallback } from 'react';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { Tag, Calendar, Eye, Compass } from 'lucide-react';
 import { GALLERY_ITEMS } from '../data/mockData';
 import type { GalleryItem } from '../data/mockData';
 import { Lightbox } from '../components/ui/Lightbox';
 
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -16,7 +16,7 @@ const containerVariants = {
   }
 } as const;
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 25, scale: 0.95 },
   show: { 
     opacity: 1, 
@@ -42,16 +42,21 @@ export const Gallery: React.FC = () => {
   const categories = [
     { id: 'all', name: 'All Photos' },
     { id: 'workshop', name: 'Workshops' },
+    { id: 'hackathon', name: 'Hackathons' },
     { id: 'speaker', name: 'Speakers' },
     { id: 'community', name: 'Community' }
-  ];
+  ] as const;
 
-  const filteredItems = GALLERY_ITEMS.filter((item) => {
-    return activeCategory === 'all' || item.category === activeCategory;
-  });
+  const filteredItems = useMemo(
+    () =>
+      GALLERY_ITEMS.filter((item) => {
+        return activeCategory === 'all' || item.category === activeCategory;
+      }),
+    [activeCategory]
+  );
 
   // Navigation helpers for Lightbox slider
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     if (!lightboxItem) return;
     const currentIndex = filteredItems.findIndex(i => i.id === lightboxItem.id);
     if (currentIndex > 0) {
@@ -60,9 +65,9 @@ export const Gallery: React.FC = () => {
       // Loop to last
       setLightboxItem(filteredItems[filteredItems.length - 1]);
     }
-  };
+  }, [filteredItems, lightboxItem]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (!lightboxItem) return;
     const currentIndex = filteredItems.findIndex(i => i.id === lightboxItem.id);
     if (currentIndex < filteredItems.length - 1) {
@@ -71,7 +76,7 @@ export const Gallery: React.FC = () => {
       // Loop to first
       setLightboxItem(filteredItems[0]);
     }
-  };
+  }, [filteredItems, lightboxItem]);
 
   return (
     <div className="relative pt-24 pb-16 font-sans">
@@ -95,7 +100,7 @@ export const Gallery: React.FC = () => {
           {categories.map((cat) => (
             <button
               key={cat.id}
-              onClick={() => setActiveCategory(cat.id as any)}
+              onClick={() => setActiveCategory(cat.id)}
               className={`px-5 py-3 rounded-xl border text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all cursor-pointer ${
                 activeCategory === cat.id
                   ? 'bg-[#ff9900]/10 border-[#ff9900] text-[#ff9900] shadow-[0_0_12px_rgba(255,153,0,0.12)]'
@@ -115,7 +120,7 @@ export const Gallery: React.FC = () => {
             <Compass className="w-12 h-12 text-[#ff9900] mx-auto animate-spin-slow" />
             <h3 className="text-lg font-bold text-white font-heading">No Media Located</h3>
             <p className="text-xs text-slate-400 font-sans">
-              We haven't uploaded images matching this category category yet. Check back soon!
+              We haven&apos;t uploaded images matching this category yet. Check back soon!
             </p>
           </div>
         ) : (

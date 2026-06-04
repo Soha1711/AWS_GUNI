@@ -20,7 +20,7 @@ const teamMembers: TeamMember[] = [
     name: 'Yashas Raj R.',
     role: 'Project Lead',
     tagline: 'Leading the development and research of the Pneumonia Detection System.',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+    photo: '/gallery/Yashas.png',
     linkedin: 'https://linkedin.com/in/yashas-raj-116037325',
     team: 'Developer Team'
   },
@@ -29,7 +29,7 @@ const teamMembers: TeamMember[] = [
     name: 'Soha Jethva',
     role: 'Backend Developer',
     tagline: 'Designing robust database models and scalable cloud infrastructure workflows.',
-    photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80',
+    photo: '/gallery/SohaJethva.png',
     linkedin: 'https://linkedin.com/in/soha-jethva',
     team: 'Developer Team'
   },
@@ -39,7 +39,7 @@ const teamMembers: TeamMember[] = [
     name: 'Hetvi Dedania',
     role: 'PR Lead',
     tagline: 'Connecting our technical builders with industry leaders and campus events.',
-    photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80',
+    photo: 'gallery/Hetvi.png',
     linkedin: 'https://linkedin.com/in/hetvi-dedania-788574383',
     team: 'PR Team'
   },
@@ -48,7 +48,7 @@ const teamMembers: TeamMember[] = [
     name: 'Anshika Tiwari',
     role: 'PR Coordinator',
     tagline: 'Building student engagement and public communication pathways.',
-    photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+    photo: 'gallery/Anshika.png',
     linkedin: 'https://linkedin.com/in/anshika-tiwari-171970337',
     team: 'PR Team'
   },
@@ -57,7 +57,7 @@ const teamMembers: TeamMember[] = [
     name: 'Hiya Vipulkumar Patel',
     role: 'Outreach Manager',
     tagline: 'Promoting peer-to-peer cloud learning initiatives across Ganpat University.',
-    photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80',
+    photo: 'gallery/Hiya.png',
     linkedin: 'https://linkedin.com/in/hiya-patel-bbb196379',
     team: 'PR Team'
   },
@@ -66,7 +66,7 @@ const teamMembers: TeamMember[] = [
     name: 'Dhruv Mehta',
     role: 'PR Executive',
     tagline: 'Fostering digital community building and outreach campaigns.',
-    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+    photo: 'gallery/',
     linkedin: 'https://linkedin.com/in/dhruvmehta18',
     team: 'PR Team'
   },
@@ -76,7 +76,7 @@ const teamMembers: TeamMember[] = [
     name: 'Mayank Taranekar',
     role: 'Media Lead',
     tagline: 'Directing the community highlights and professional photography coverage.',
-    photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80',
+    photo: 'gallery/',
     linkedin: 'https://linkedin.com/in/taranekar',
     team: 'Media Team'
   },
@@ -85,7 +85,7 @@ const teamMembers: TeamMember[] = [
     name: 'Aditya Pandya',
     role: 'Video Editor',
     tagline: 'Editing dynamic video content and community boot camp showcases.',
-    photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
+    photo: 'gallery/',
     linkedin: 'https://linkedin.com/in/aditya-pandya-bb1b1032b',
     team: 'Media Team'
   },
@@ -94,7 +94,7 @@ const teamMembers: TeamMember[] = [
     name: 'Shanvi Sinha',
     role: 'Media Specialist',
     tagline: 'Managing creative event documentation and real-time capture.',
-    photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+    photo: 'gallery/Shanvi.png',
     linkedin: 'https://linkedin.com/in/shanvi-sinha-745b5431a',
     team: 'Media Team'
   },
@@ -104,7 +104,7 @@ const teamMembers: TeamMember[] = [
     name: 'Aadyasha Swar',
     role: 'Creative Lead',
     tagline: 'Curating modern UI aesthetics and community visual styles.',
-    photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80',
+    photo: '/gallery/Adhyasha.png',
     linkedin: 'https://linkedin.com/in/aadyasha-swar-7575b0347',
     team: 'Creative Team'
   },
@@ -113,7 +113,7 @@ const teamMembers: TeamMember[] = [
     name: 'Anshu Singh',
     role: 'Graphic Designer',
     tagline: 'Designing visual interfaces, assets, and sleek event promotions.',
-    photo: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80',
+    photo: '/gallery/',
     linkedin: 'https://linkedin.com/in/anshu-singh-583651384',
     team: 'Creative Team'
   },
@@ -122,7 +122,7 @@ const teamMembers: TeamMember[] = [
     name: 'Heer Patel',
     role: 'UI Designer',
     tagline: 'Crafting responsive user experiences for our web platforms.',
-    photo: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=400&q=80',
+    photo: '/gallery/Heer.png',
     linkedin: 'https://linkedin.com/in/heer501',
     team: 'Creative Team'
   },
@@ -132,7 +132,7 @@ const teamMembers: TeamMember[] = [
     name: 'Diksha Jayeshkumar Patel',
     role: 'Operations Head',
     tagline: 'Coordinating high-impact offline cloud events and speaker workshops.',
-    photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80',
+    photo: '/gallery/Diksha.png',
     linkedin: 'https://linkedin.com/in/diksha-patel0019',
     team: 'Event Management Team'
   },
@@ -141,7 +141,7 @@ const teamMembers: TeamMember[] = [
     name: 'Varun Vishwakarma',
     role: 'Logistics Lead',
     tagline: 'Managing on-site operations, registrations, and venue layouts.',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+    photo: '/gallery/Varun.png',
     linkedin: 'https://linkedin.com/in/varun-vishwakarma-b563731b2',
     team: 'Event Management Team'
   },
@@ -150,7 +150,7 @@ const teamMembers: TeamMember[] = [
     name: 'Ashish Mourya',
     role: 'Event Executive',
     tagline: 'Supervising student participant flows and sandbox logistics.',
-    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+    photo: '/gallery/Ashish.png',
     linkedin: 'https://linkedin.com/in/ashish-mourya-706954376',
     team: 'Event Management Team'
   },
@@ -159,7 +159,7 @@ const teamMembers: TeamMember[] = [
     name: 'Prajapati Aryan Rakeshbhai',
     role: 'Support Lead',
     tagline: 'Providing general on-site organization and query support.',
-    photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80',
+    photo: '/gallery/Aryan.png',
     linkedin: 'https://linkedin.com/in/aryan-prajapati-2946vish2211',
     team: 'Event Management Team'
   },
@@ -169,7 +169,7 @@ const teamMembers: TeamMember[] = [
     name: 'Patel Vansh Gautambhai',
     role: 'Documentation Lead',
     tagline: 'Authoring community project blueprints, agendas, and logs.',
-    photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
+    photo: '/gallery/Vansh.png',
     linkedin: 'https://linkedin.com/in/vansh-patel-2055aa347',
     team: 'Documentation Team'
   },
@@ -178,7 +178,7 @@ const teamMembers: TeamMember[] = [
     name: 'Krina Koshti',
     role: 'Content Writer',
     tagline: 'Drafting clear technical descriptions, emails, and announcements.',
-    photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80',
+    photo: '/gallery/Krina.png',
     linkedin: 'https://linkedin.com/in/krina-koshti-41429b365',
     team: 'Documentation Team'
   },
@@ -188,7 +188,7 @@ const teamMembers: TeamMember[] = [
     name: 'Pan Ranit Ramkrishna',
     role: 'Cloud Architect',
     tagline: 'Deploying secure AWS serverless backend services and API gateways.',
-    photo: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80',
+    photo: '/gallery/Ranit.png',
     linkedin: 'https://linkedin.com/in/ranit-pan-493b3837a',
     team: 'Technical Team'
   },
@@ -197,7 +197,7 @@ const teamMembers: TeamMember[] = [
     name: 'Man Patel',
     role: 'DevOps Engineer',
     tagline: 'Automating standard CI/CD deployment pipelines using AWS CodePipeline.',
-    photo: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80',
+    photo: '/gallery/Man.png',
     linkedin: 'https://linkedin.com/in/mann-patel-0300b5308',
     team: 'Technical Team'
   }
@@ -363,7 +363,7 @@ export const Team: React.FC = () => {
             >
               <motion.img
                 variants={imageVariants}
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80"
+                src="/gallery/Pravesh.png"
                 alt="Pravesh Patel"
                 className="w-full h-full object-cover origin-center"
               />
