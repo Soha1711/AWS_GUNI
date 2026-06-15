@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { 
-  ArrowRight, 
-  Users, Calendar, ChevronRight, MessageSquare 
+  ArrowRight, Users, Calendar, ChevronRight, MessageSquare 
 } from 'lucide-react';
 import { EVENTS } from '../data/mockData';
 import { Logo } from '../components/ui/Logo';
@@ -13,58 +12,22 @@ import { useMeetupData } from '../utils/meetup';
 
 
 
+const MARQUEE_ITEMS = [
+  { title: "Cloud Practitioner Essentials Bootcamp", category: "Workshop", image: "/gallery/workshop1.png" },
+  { title: "Hands-on EC2 & S3 Sandbox Labs", category: "Lab Session", image: "/gallery/workshop2.png" },
+  { title: "Serverless GenAI Keynote with AWS Bedrock", category: "Expert Talk", image: "/gallery/speaker1.png" },
+  { title: "Interactive Q&A Session", category: "Q&A", image: "/gallery/speaker2.png" },
+  { title: "AWS Student Builder Group Kickoff", category: "Community", image: "/gallery/community1.jpeg" },
+  { title: "Community Icebreakers & Trivia Winners", category: "Trivia", image: "/gallery/community2.png" }
+];
 
 // Typewriter effect custom hook
-const useTypewriter = (text: string, speed: number = 25, delay: number = 0, startTrigger: boolean = true) => {
-  const [displayText, setDisplayText] = useState('');
-  const [isDone, setIsDone] = useState(false);
-
-  useEffect(() => {
-    if (!startTrigger) return;
-    
-    let timer: any;
-    let i = 0;
-    
-    const startTyping = () => {
-      timer = setInterval(() => {
-        if (i < text.length) {
-          const char = text.charAt(i);
-          setDisplayText((prev) => prev + char);
-          i++;
-        } else {
-          clearInterval(timer);
-          setIsDone(true);
-        }
-      }, speed);
-    };
-
-    const delayTimeout = setTimeout(startTyping, delay);
-
-    return () => {
-      clearTimeout(delayTimeout);
-      clearInterval(timer);
-    };
-  }, [text, speed, delay, startTrigger]);
-
-  return { displayText, isDone };
-};
-
 export const Home: React.FC = () => {
   const { memberCount, pastEvents, isLive } = useMeetupData();
   const [stats, setStats] = useState({ members: 0, events: 0 });
   
   const statsRef = useRef(null);
   const isStatsInView = useInView(statsRef, { once: true, amount: 0.3 });
-
-  // Typewriter effects for Hero section
-  const { displayText: title1Text, isDone: title1Done } = useTypewriter("AWS Student Builder Group", 15, 100, true);
-  const { displayText: title2Text, isDone: title2Done } = useTypewriter("Ganpat University", 15, 0, title1Done);
-  const { displayText: paraText, isDone: paraDone } = useTypewriter(
-    `"Amaze, amaze, amaze! Fueling standard cloud infrastructures with Astrophage speed." Build cloud-native solutions, study serverless architectures, and light up the tech universe together.`,
-    6,
-    0,
-    title2Done
-  );
 
   useEffect(() => {
     if (isStatsInView) {
@@ -77,7 +40,7 @@ export const Home: React.FC = () => {
         step++;
         setStats({
           members: Math.min(Math.round((memberCount / steps) * step), memberCount),
-          events: Math.min(Math.round((2 / steps) * step), 2)
+          events: Math.min(Math.round((3 / steps) * step), 3)
         });
 
         if (step >= steps) {
@@ -107,8 +70,8 @@ export const Home: React.FC = () => {
       {/* 1. HERO SECTION */}
       <section className="relative min-h-[92svh] flex items-center justify-center overflow-hidden px-4">
         {/* Glow overlay */}
-        <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] rounded-full bg-[#00f5ff]/5 blur-[120px] pointer-events-none animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] rounded-full bg-[#ffaa00]/5 blur-[120px] pointer-events-none animate-pulse" />
+        <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] rounded-full bg-[#a855f7]/5 blur-[120px] pointer-events-none animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] rounded-full bg-[#d946ef]/5 blur-[120px] pointer-events-none animate-pulse" />
 
         <div className="max-w-5xl mx-auto text-center z-10 space-y-8">
           <motion.div
@@ -122,66 +85,98 @@ export const Home: React.FC = () => {
 
 
           <motion.h1
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 150 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.1] font-heading min-h-[5.5rem] sm:min-h-[7.5rem]"
+            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.1] font-heading"
           >
-            {title1Text}
-            {!title1Done && <span className="text-[#ffaa00] ml-1 animate-pulse select-none">█</span>}
+            AWS Student Builder Group
             <br />
-            <span className="bg-gradient-to-r from-[#ffaa00] via-amber-400 to-[#00f5ff] bg-clip-text text-transparent text-glow">
-              {title2Text}
+            <span className="bg-gradient-to-r from-[#a855f7] via-purple-400 to-[#d946ef] bg-clip-text text-transparent text-glow">
+              Ganpat University
             </span>
-            {title1Done && !title2Done && <span className="text-[#00f5ff] ml-1 animate-pulse select-none">█</span>}
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 150 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 font-sans leading-relaxed min-h-[4.5rem] md:min-h-[3.5rem]"
+            transition={{ duration: 1.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 font-sans leading-relaxed"
           >
-            {paraText}
-            {title2Done && !paraDone && <span className="text-[#00f5ff] ml-1 animate-pulse select-none">█</span>}
+            A platform to learn, build, and innovate with the power of AWS Cloud.Connecting students with hands-on learning, innovation, and real-world opportunities.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 150 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ duration: 1.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
           >
             <a
               href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold uppercase tracking-wider text-sm text-black bg-[#ffaa00] hover:bg-amber-400 shadow-lg shadow-[#ffaa00]/20 hover:shadow-[#ffaa00]/40 transition-all text-center"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full font-bold uppercase tracking-wider text-sm text-white bg-[#a855f7] hover:bg-purple-600 shadow-lg shadow-[#a855f7]/20 hover:shadow-[#a855f7]/40 transition-all text-center"
             >
               Join Community
             </a>
             <Link
               to="/events"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold uppercase tracking-wider text-sm text-white bg-white/5 border border-white/10 hover:border-[#00f5ff] hover:text-[#00f5ff] hover:bg-white/10 transition-all text-center flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full font-bold uppercase tracking-wider text-sm text-white bg-white/5 border border-white/10 hover:border-[#a855f7] hover:text-[#a855f7] hover:bg-white/10 transition-all text-center flex items-center justify-center gap-2"
             >
               Explore Events
-              <ArrowRight className="w-4 h-4 text-[#00f5ff]" />
+              <ArrowRight className="w-4 h-4 text-[#a855f7]" />
             </Link>
           </motion.div>
         </div>
       </section>
 
+      {/* SCROLLING MARQUEE (SIGNAL RAIL) */}
+      <section className="py-6 border-y border-white/5 bg-[#040408]/60 overflow-hidden relative group/marquee select-none">
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
+        
+        <div className="animate-marquee gap-6 flex">
+          {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, index) => (
+            <div 
+              key={index} 
+              className="flex-shrink-0 w-[280px] sm:w-[320px] glass p-3 rounded-2xl border border-white/5 flex flex-col gap-3 group/item hover:border-[#a855f7]/30 transition-all duration-300"
+            >
+              <div className="h-40 w-full overflow-hidden rounded-xl bg-slate-900 relative">
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  className="w-full h-full object-cover group-hover/item:scale-105 transition-transform duration-500 opacity-90"
+                />
+                <span className="absolute top-2 left-2 px-2.5 py-0.5 text-[9px] font-bold tracking-wider uppercase bg-[#a855f7] text-white rounded-full">
+                  {item.category}
+                </span>
+              </div>
+              <div>
+                <h4 className="text-white font-heading text-sm font-semibold tracking-wide truncate group-hover/item:text-[#d946ef] transition-colors duration-300">
+                  {item.title}
+                </h4>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+
+
+
+
       {/* 4. STATISTICS COUNTER SECTION */}
-      <section ref={statsRef} className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
-        <div className="grid grid-cols-2 gap-8 max-w-3xl mx-auto">
-          <div className="glass p-6 rounded-2xl border border-white/5 text-center shadow-lg hover:border-blue-500/20 transition-all relative">
+      <section ref={statsRef} className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          <div className="glass p-6 rounded-2xl border border-white/5 text-center shadow-lg hover:border-[#a855f7]/20 transition-all relative">
             {isLive && (
               <span className="absolute top-3 right-3 flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
             )}
-            <div className="text-3xl sm:text-5xl font-extrabold text-cyan-400 font-mono mb-2">
+            <div className="text-3xl sm:text-5xl font-extrabold text-[#a855f7] font-mono mb-2">
               {stats.members}+
             </div>
             <div className="text-xs uppercase tracking-widest text-slate-400 font-sans font-medium flex items-center justify-center gap-1.5">
@@ -190,8 +185,8 @@ export const Home: React.FC = () => {
             </div>
           </div>
           
-          <div className="glass p-6 rounded-2xl border border-white/5 text-center shadow-lg hover:border-[#ff9900]/20 transition-all">
-            <div className="text-3xl sm:text-5xl font-extrabold text-[#ff9900] font-mono mb-2">
+          <div className="glass p-6 rounded-2xl border border-white/5 text-center shadow-lg hover:border-[#a855f7]/20 transition-all">
+            <div className="text-3xl sm:text-5xl font-extrabold text-[#a855f7] font-mono mb-2">
               {stats.events}
             </div>
             <div className="text-xs uppercase tracking-widest text-slate-400 font-sans font-medium">
@@ -271,10 +266,10 @@ export const Home: React.FC = () => {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-xl font-bold text-white font-heading">
-                    No Upcoming Events Planned
+                    No Upcoming Events
                   </h3>
                   <p className="text-sm text-slate-400 font-sans leading-relaxed">
-                    We are currently planning our next cohort of hands-on cloud labs and speaker webinars. Join our Meetup Hub to be notified instantly as soon as new schedules release!
+                    Join our Meetup Hub to be notified instantly as soon as new schedules release!
                   </p>
                 </div>
                 <div>
@@ -297,9 +292,6 @@ export const Home: React.FC = () => {
                     <h3 className="text-2xl font-bold text-white font-heading">
                       Recent Cloud Gatherings
                     </h3>
-                    <p className="text-sm text-slate-400 font-sans max-w-lg mx-auto">
-                      Check out attendance metrics and summaries of our recent campus sessions and webinars.
-                    </p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -364,6 +356,8 @@ export const Home: React.FC = () => {
           )}
         </div>
       </section>
+
+
 
 
 

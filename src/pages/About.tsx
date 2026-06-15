@@ -1,49 +1,62 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Eye, Target, Rocket, Users, Lightbulb 
+  Compass, Eye, Target, Award, Key, Network, ShieldCheck, 
+  MapPin, CheckCircle, GraduationCap, Server, Code, Zap 
 } from 'lucide-react';
 
-
-const BENEFITS = [
+const TIMELINE = [
   {
-    title: '🚀 Learn Industry-Relevant Cloud & AI Skills',
-    desc: 'Gain hands-on experience with AWS, Cloud Computing, Generative AI, DevOps, and emerging technologies through workshops, bootcamps, and technical sessions.',
-    icon: Rocket
+    step: 'Phase 01',
+    title: 'Cloud Foundations & Academy Sandbox',
+    duration: 'Months 1-2',
+    icon: GraduationCap,
+    desc: 'Understanding cloud models (IaaS, PaaS, SaaS), setting up AWS IAM, working with simple EC2 instances, S3 storage buckets, and understanding security policies.'
   },
   {
-    title: '🤝 Connect with Experts and Like-Minded Peers',
-    desc: 'Network with AWS professionals, community leaders, mentors, and students who share a passion for technology and innovation.',
-    icon: Users
+    step: 'Phase 02',
+    title: 'Architecture & Scalable Systems',
+    duration: 'Months 3-4',
+    icon: Server,
+    desc: 'Deploying highly-available systems. Configuring auto-scaling groups, application load balancers, database replication, and monitoring setups using AWS CloudWatch.'
   },
   {
-    title: '🎯 Build Your Career and Certifications',
-    desc: 'Get guidance on AWS certifications, career pathways, internships, and industry best practices to strengthen your professional profile.',
-    icon: Target
+    step: 'Phase 03',
+    title: 'Serverless Deployments & DevOps',
+    duration: 'Months 5-6',
+    icon: Code,
+    desc: 'Transitioning to event-driven serverless architectures. Writing Lambda functions, integrating API Gateway, orchestrating DynamoDB tables, and automating pipeline builds.'
   },
   {
-    title: '💡 Lead, Innovate, and Create Impact',
-    desc: 'Participate in events, hackathons, projects, and leadership opportunities that help you develop problem-solving, teamwork, and community-building skills.',
-    icon: Lightbulb
+    step: 'Phase 04',
+    title: 'GenAI Integrations & Specialist Tracks',
+    duration: 'Months 7+',
+    icon: Zap,
+    desc: 'Harnessing advanced intelligence. Deploying LLM pipelines using AWS Bedrock, model fine-tuning with SageMaker, or diving deep into security and governance scopes.'
   }
 ];
 
-const OBJECTIVES = [
-  { id: '01', text: 'Promote AWS and Cloud Computing Awareness' },
-  { id: '02', text: 'Provide Hands-On Technical Learning' },
-  { id: '03', text: 'Support AWS Certification Preparation' },
-  { id: '04', text: 'Encourage Innovation and Project Development' },
-  { id: '05', text: 'Bridge Industry and Academia' },
-  { id: '06', text: 'Develop Leadership and Professional Skills' },
-  { id: '07', text: 'Build a Strong Technical Community' },
-  { id: '08', text: 'Promote Emerging Technologies (Cloud, DevOps, AI/ML, Cybersecurity, Generative AI)' },
-  { id: '09', text: 'Enhance Career Readiness and Employability' },
-  { id: '10', text: 'Establish Ganpat University as a Technology and Cloud Innovation Hub' },
-  { id: '11', text: 'Foster Research and Innovation Culture' },
-  { id: '12', text: 'Encourage Participation in Hackathons and Technical Competitions' },
-  { id: '13', text: 'Strengthen Industry Collaboration and Networking Opportunities' },
-  { id: '14', text: 'Support Peer-to-Peer Learning and Knowledge Sharing' },
-  { id: '15', text: 'Empower Students to Become Future Technology Leaders' }
+const BENEFITS = [
+  {
+    title: 'AWS Academy Learning Sandbox',
+    desc: 'Access real AWS resources without personal credit card billing. Build labs and experiments inside secure sandbox modules.',
+    icon: Award
+  },
+  {
+    title: 'Discount Voucher Access',
+    desc: 'Eligible active members receive vouchers for substantial discounts on AWS Certification exams (Cloud Practitioner, Solutions Architect).',
+    icon: Key
+  },
+  {
+    title: 'Exclusive Hackathons & Prizes',
+    desc: 'Compete in annual cloud hackathons like SpaceHack with exclusive mentoring and cash/credits pools.',
+    icon: Network
+  },
+  {
+    title: 'Global Career Opportunities',
+    desc: 'Get connected with AWS User Groups, alumni networks, and industry recruiters seeking certified cloud developers.',
+    icon: ShieldCheck
+  }
 ];
 
 export const About: React.FC = () => {
@@ -71,109 +84,63 @@ export const About: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="max-w-3xl mx-auto text-slate-400 text-base sm:text-lg"
         >
-          Learn who we are, our core drivers, and how we help students morph from cloud novices into AWS Certified Builders.
+          Learn who we are, our core drivers, and the timeline students traverse to morph from cloud novices into AWS Certified Builders.
         </motion.p>
       </section>
 
-      {/* Mission & Vision Section */}
+      {/* Mission, Vision, and Objectives Cards */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Mission */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="glass-card-orange p-8 rounded-2xl border border-[#ffaa00]/25 flex flex-col justify-between shadow-xl"
-          >
+          <div className="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between shadow-xl">
             <div className="space-y-4">
               <div className="w-12 h-12 rounded-xl bg-[#ffaa00]/10 flex items-center justify-center text-[#ffaa00]">
-                <Target className="w-6 h-6 animate-pulse" />
+                <Compass className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold text-white font-heading">Our Mission</h3>
-              <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-sans">
-                The AWS Student Builder Group at Ganpat University is committed to promoting cloud computing, Generative AI, DevOps, and emerging AWS technologies among students from all academic disciplines. Through hands-on workshops, technical sessions, certification guidance, industry engagement, and collaborative projects, the group aims to bridge the gap between academic learning and industry expectations while nurturing innovation, leadership, and professional excellence.
+              <h3 className="text-xl font-bold text-white font-heading">Our Mission</h3>
+              <p className="text-sm text-slate-400 leading-relaxed font-sans">
+                To democratize cloud learning by integrating high-quality AWS resources with peer-to-peer mentoring. We aim to equip every student with practical engineering capabilities required by modern industry teams.
               </p>
             </div>
-          </motion.div>
+          </div>
 
           {/* Vision */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="glass-card-blue p-8 rounded-2xl border border-cyan-500/25 flex flex-col justify-between shadow-xl"
-          >
+          <div className="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between shadow-xl">
             <div className="space-y-4">
               <div className="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400">
                 <Eye className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold text-white font-heading">Our Vision</h3>
-              <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-sans">
-                To establish a thriving cloud and emerging technologies ecosystem at Ganpat University through the AWS Student Builder Group (AWS SBG), empowering students with industry-relevant skills, fostering innovation, and developing future technology leaders capable of creating impactful solutions using cloud computing and modern technologies.
+              <h3 className="text-xl font-bold text-white font-heading">Our Vision</h3>
+              <p className="text-sm text-slate-400 leading-relaxed font-sans">
+                To build a premier, self-sustaining university cloud developer community that serves as a talent nexus for AWS and the global technology market, aligning Ganpat University with state-of-the-art cloud paradigms.
               </p>
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
 
-      {/* Key Objectives Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <motion.h2 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl sm:text-4xl font-bold text-white font-heading tracking-tight"
-          >
-            Key Objectives
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-slate-400 font-sans"
-          >
-            Our core pillars driving technology adoption, skill-building, and academic excellence at GUNI.
-          </motion.p>
+          {/* Objectives */}
+          <div className="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between shadow-xl">
+            <div className="space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-[#00f5ff]/10 flex items-center justify-center text-[#00f5ff]">
+                <Target className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-white font-heading">Key Objectives</h3>
+              <ul className="text-sm text-slate-400 space-y-2 font-sans">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#00f5ff] shrink-0 mt-0.5" />
+                  <span>Execute weekly hands-on labs on AWS sandboxes.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#00f5ff] shrink-0 mt-0.5" />
+                  <span>Mentor members for AWS Certifications.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#00f5ff] shrink-0 mt-0.5" />
+                  <span>Collaborate on cloud-native solutions.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.05
-              }
-            }
-          }}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {OBJECTIVES.map((obj, idx) => (
-            <motion.div
-              key={idx}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100 } }
-              }}
-              className="glass p-6 rounded-2xl border border-white/5 flex gap-4 hover:border-cyan-500/40 hover:bg-white/[0.02] transition-all duration-300 hover:scale-[1.02] group"
-            >
-              <div className="font-mono text-base font-bold text-cyan-400 bg-cyan-500/10 w-10 h-10 rounded-xl flex items-center justify-center border border-cyan-500/20 shrink-0 group-hover:bg-[#ffaa00]/10 group-hover:text-[#ffaa00] group-hover:border-[#ffaa00]/20 transition-colors duration-300">
-                {obj.id}
-              </div>
-              <div className="flex items-center">
-                <p className="text-sm font-medium text-slate-200 leading-relaxed font-sans group-hover:text-white transition-colors duration-300">
-                  {obj.text}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
       </section>
 
       {/* Benefits Section */}
@@ -181,7 +148,7 @@ export const About: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
             <h2 className="text-3xl font-bold text-white font-heading">
-              Why Join the Guni Student Builder Group?
+              Why Join the GNU Builder Hub?
             </h2>
             <p className="text-slate-400 font-sans">
               Accelerate your engineering journey. As a certified group backed by AWS Academy and Ganpat University, we offer privileges designed for career launches.
@@ -208,6 +175,90 @@ export const About: React.FC = () => {
         </div>
       </section>
 
+      {/* Learning Path Timeline */}
+      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <h2 className="text-3xl font-bold text-white font-heading">
+            Student Builder Learning Path
+          </h2>
+          <p className="text-slate-400 font-sans">
+            How we guide you step-by-step from local local-host directories straight to cloud-native cluster infrastructures.
+          </p>
+        </div>
+
+        {/* Chronological timeline layout */}
+        <div className="relative border-l border-white/10 max-w-4xl mx-auto pl-6 sm:pl-10 space-y-12">
+          {TIMELINE.map((item, idx) => {
+            const IconComponent = item.icon;
+            return (
+              <div key={idx} className="relative group">
+                {/* Timeline connector circle node */}
+                <div className="absolute -left-[38px] sm:-left-[54px] top-0 w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-[#020205] border border-[#00f5ff] flex items-center justify-center text-[#00f5ff] shadow-[0_0_8px_#00f5ff]/40 group-hover:scale-110 transition-transform">
+                  <IconComponent className="w-3 sm:w-4 h-3 sm:h-4" />
+                </div>
+
+                <div className="glass p-6 rounded-2xl border border-white/5 space-y-3 hover:border-cyan-400/30 transition-all">
+                  <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                    <span className="text-[10px] font-mono font-bold tracking-wider text-[#ffaa00] uppercase">
+                      {item.step}
+                    </span>
+                    <span className="text-xs font-mono text-slate-500">
+                      {item.duration}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-lg font-bold text-white font-heading">
+                    {item.title}
+                  </h3>
+                  
+                  <p className="text-sm text-slate-400 leading-relaxed font-sans">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Community Impact Section */}
+      <section className="py-20 relative bg-gradient-to-b from-[#060814]/45 to-transparent border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="glass p-8 md:p-12 rounded-3xl border border-white/10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+            <div className="space-y-4 max-w-xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono">
+                <MapPin className="w-3.5 h-3.5" />
+                Ganpat University Tech Ecosystem
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white font-heading">
+                AWS Community Impact
+              </h3>
+              <p className="text-sm md:text-base text-slate-400 leading-relaxed font-sans">
+                Our collaborative footprint stretches across the computer science and information technology disciplines at GNU. By offering hands-on technical labs, we enable student builders to develop project resumes that stand out.
+              </p>
+            </div>
+            
+            <div className="w-full md:w-auto shrink-0 grid grid-cols-2 gap-4 sm:gap-6">
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 text-center min-w-[120px]">
+                <div className="text-xl sm:text-2xl font-bold text-[#ffaa00] font-mono">10,000+</div>
+                <div className="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Sandbox Labs run</div>
+              </div>
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 text-center min-w-[120px]">
+                <div className="text-xl sm:text-2xl font-bold text-cyan-400 font-mono">12+</div>
+                <div className="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Open Source repos</div>
+              </div>
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 text-center min-w-[120px]">
+                <div className="text-xl sm:text-2xl font-bold text-[#ffaa00] font-mono">100%</div>
+                <div className="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Free Sandbox labs</div>
+              </div>
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 text-center min-w-[120px]">
+                <div className="text-xl sm:text-2xl font-bold text-cyan-300 font-mono">5+</div>
+                <div className="text-[10px] text-slate-500 uppercase tracking-widest mt-1">AWS Experts hosting</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

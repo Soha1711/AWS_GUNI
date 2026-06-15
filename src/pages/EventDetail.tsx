@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeft, Calendar, MapPin, Tag, Users, CheckCircle2, 
-  ShieldAlert, Award, Send 
+  Clock, ShieldAlert, Award, Send 
 } from 'lucide-react';
 import type { EventItem } from '../data/mockData';
-import { MeetupIcon, LinkedinIcon } from '../components/ui/SocialIcons';
 
 
 interface EventDetailProps {
@@ -29,7 +28,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
         <ShieldAlert className="w-16 h-16 text-red-500 mx-auto" />
         <h2 className="text-2xl font-bold text-white font-heading">Event Node Not Found</h2>
         <p className="text-slate-400">The event node requested could not be resolved in the AWS GUNI space data matrix.</p>
-        <Link to="/events" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#ff9900] text-black font-bold uppercase text-xs rounded-xl">
+        <Link to="/events" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#a855f7] text-white font-bold uppercase text-xs rounded-full hover:bg-purple-600 transition-colors shadow-lg shadow-[#a855f7]/25">
           <ArrowLeft className="w-4 h-4" /> Back to Orbit Events
         </Link>
       </div>
@@ -53,7 +52,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
       <div className="mb-8">
         <Link 
           to="/events" 
-          className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-[#ff9900] transition-colors uppercase tracking-wider font-semibold"
+          className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-[#a855f7] transition-colors uppercase tracking-wider font-semibold"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Orbit list
         </Link>
@@ -75,7 +74,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
             {/* Status Badges */}
             <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-black bg-[#ff9900] shadow-[0_0_15px_rgba(255,153,0,0.3)]">
+                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-[#a855f7] shadow-[0_0_15px_rgba(168,85,247,0.3)]">
                   <Calendar className="w-3.5 h-3.5" />
                   {event.date}
                 </span>
@@ -104,7 +103,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
             
             <div className="flex flex-wrap items-center gap-6 text-sm text-slate-400 border-y border-white/5 py-4 font-sans">
               <span className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-[#ff9900] shrink-0" />
+                <MapPin className="w-4 h-4 text-[#a855f7] shrink-0" />
                 {event.venue}
               </span>
               {event.speakers && (
@@ -113,20 +112,12 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                   {event.speakers.length} Speaker(s)
                 </span>
               )}
-              {(event as any).attendeeCount !== undefined && (
-                <span className="flex items-center gap-1.5">
-                  <Users className="w-4 h-4 text-emerald-400 shrink-0" />
-                  {(event as any).attendeeCount} Members Joined
-                </span>
-              )}
             </div>
 
             <div className="space-y-4 font-sans leading-relaxed text-slate-300">
               <h3 className="text-white font-bold text-lg font-heading">Event Overview</h3>
               <p>{event.description}</p>
-              {event.details.split('\n').filter(p => p.trim() !== '').map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
+              <p>{event.details}</p>
             </div>
           </div>
 
@@ -134,23 +125,23 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
           {event.speakers && event.speakers.length > 0 && (
             <div className="glass rounded-2xl p-6 sm:p-8 border border-white/5 space-y-6">
               <h3 className="text-white font-bold text-lg font-heading flex items-center gap-2">
-                <Users className="w-5 h-5 text-[#ff9900]" />
+                <Users className="w-5 h-5 text-[#a855f7]" />
                 Event Speakers & Instructors
               </h3>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {event.speakers.map((speaker, idx) => {
-                  const isObj = typeof speaker === 'object';
-                  const name = isObj ? speaker.name : speaker;
-                  const linkedin = isObj ? speaker.linkedin : undefined;
-                  const designation = (isObj && speaker.designation) ? speaker.designation : 'AWS Certified Cloud Builder';
-                  const initial = name ? name.split(' ')[0][0] : 'S';
+                  const isObject = typeof speaker !== 'string';
+                  const name = isObject ? (speaker as any).name : speaker;
+                  const designation = isObject ? ((speaker as any).designation || 'AWS Certified Cloud Builder') : 'AWS Certified Cloud Builder';
+                  const linkedin = isObject ? (speaker as any).linkedin : undefined;
+                  const initials = name.split(' ')[0]?.[0] || 'S';
 
                   return (
                     <div key={idx} className="p-4 bg-slate-900/60 border border-white/5 rounded-xl flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-[#ff9900]/10 border border-[#ff9900]/30 flex items-center justify-center font-bold text-[#ff9900] shrink-0">
-                          {initial}
+                        <div className="w-10 h-10 rounded-full bg-[#a855f7]/10 border border-[#a855f7]/30 flex items-center justify-center font-bold text-[#a855f7]">
+                          {initials}
                         </div>
                         <div>
                           <h4 className="text-white font-bold text-sm font-heading">{name}</h4>
@@ -158,14 +149,15 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                         </div>
                       </div>
                       {linkedin && (
-                        <a 
-                          href={linkedin} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="w-8 h-8 rounded-lg bg-[#0077b5]/10 border border-[#0077b5]/20 flex items-center justify-center text-[#0077b5] hover:bg-[#0077b5] hover:text-white transition-all duration-300 cursor-pointer shrink-0"
-                          title="LinkedIn Profile"
+                        <a
+                          href={linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 rounded-lg border border-white/10 hover:border-[#a855f7] hover:text-[#a855f7] text-slate-400 bg-white/5 hover:bg-[#a855f7]/10 transition-all duration-300"
                         >
-                          <LinkedinIcon className="w-4 h-4" />
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                          </svg>
                         </a>
                       )}
                     </div>
@@ -175,6 +167,31 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
             </div>
           )}
 
+          {/* Event Itinerary Timeline */}
+          {event.itinerary && event.itinerary.length > 0 && (
+            <div className="glass rounded-2xl p-6 sm:p-8 border border-white/5 space-y-6">
+              <h3 className="text-white font-bold text-lg font-heading flex items-center gap-2">
+                <Clock className="w-5 h-5 text-blue-400" />
+                Schedule Timeline
+              </h3>
+              
+              <div className="relative border-l border-white/10 pl-5 space-y-8 font-sans">
+                {event.itinerary.map((item, idx) => (
+                  <div key={idx} className="relative group">
+                    <div className="absolute -left-[27px] top-1 w-3.5 h-3.5 rounded-full bg-[#050714] border border-[#a855f7]" />
+                    <div className="space-y-1">
+                      <span className="text-[10px] font-mono text-[#a855f7] tracking-wider font-semibold">
+                        {item.time}
+                      </span>
+                      <h4 className="text-sm font-bold text-white leading-tight">
+                        {item.activity}
+                      </h4>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
         </div>
 
@@ -187,9 +204,9 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
-                  className="glass rounded-2xl p-6 border border-[#ff9900]/30 shadow-2xl relative overflow-hidden space-y-6"
+                  className="glass rounded-2xl p-6 border border-[#a855f7]/30 shadow-2xl relative overflow-hidden space-y-6"
                 >
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#ff9900]/5 rounded-full blur-2xl pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#a855f7]/5 rounded-full blur-2xl pointer-events-none" />
                   
                   <div className="space-y-2">
                     <h3 className="text-xl font-bold text-white font-heading">
@@ -200,21 +217,6 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                     </p>
                   </div>
 
-                  <div className="pb-2 border-b border-white/10">
-                    <a
-                      href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs text-white bg-[#c084fc] hover:bg-purple-600 shadow-md shadow-[#c084fc]/15 hover:scale-101 transition-all flex items-center justify-center gap-2 cursor-pointer"
-                    >
-                      <MeetupIcon className="w-4 h-4" />
-                      RSVP via Meetup
-                    </a>
-                    <div className="text-center my-3 text-[10px] text-slate-500 uppercase tracking-widest font-mono">
-                      or register locally below
-                    </div>
-                  </div>
-
                   <form onSubmit={handleRegister} className="space-y-4 text-sm font-sans">
                     <div className="space-y-1">
                       <label className="text-xs text-slate-400 uppercase font-mono tracking-wider">Full Name</label>
@@ -223,7 +225,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                         placeholder="e.g. Aryan Patel"
-                        className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#ff9900]/60 transition-all"
+                        className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#a855f7]/60 transition-all"
                         required
                       />
                     </div>
@@ -235,7 +237,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="e.g. yourname@ganpatuniversity.ac.in"
-                        className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#ff9900]/60 transition-all"
+                        className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#a855f7]/60 transition-all"
                         required
                       />
                     </div>
@@ -247,7 +249,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                         value={formData.enrollment}
                         onChange={(e) => setFormData({ ...formData, enrollment: e.target.value })}
                         placeholder="e.g. 21012011001"
-                        className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#ff9900]/60 transition-all"
+                        className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#a855f7]/60 transition-all"
                         required
                       />
                     </div>
@@ -258,7 +260,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                         <select
                           value={formData.department}
                           onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                          className="w-full px-3 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white focus:border-[#ff9900]/60 transition-all select-none"
+                          className="w-full px-3 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white focus:border-[#a855f7]/60 transition-all select-none"
                         >
                           <option value="CSE">CSE</option>
                           <option value="IT">IT</option>
@@ -271,7 +273,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                         <select
                           value={formData.year}
                           onChange={(e) => setFormData({ ...formData, year: e.target.value })}
-                          className="w-full px-3 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white focus:border-[#ff9900]/60 transition-all select-none"
+                          className="w-full px-3 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white focus:border-[#a855f7]/60 transition-all select-none"
                         >
                           <option value="1st Year">1st Year</option>
                           <option value="2nd Year">2nd Year</option>
@@ -283,7 +285,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
 
                     <button
                       type="submit"
-                      className="w-full py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs text-black bg-[#ff9900] hover:bg-amber-500 shadow-md shadow-[#ff9900]/15 hover:scale-101 transition-all flex items-center justify-center gap-2 cursor-pointer mt-4"
+                      className="w-full py-3.5 rounded-full font-bold uppercase tracking-wider text-xs text-white bg-[#a855f7] hover:bg-purple-600 shadow-md shadow-[#a855f7]/25 hover:scale-101 transition-all flex items-center justify-center gap-2 cursor-pointer mt-4"
                     >
                       <Send className="w-3.5 h-3.5" />
                       Submit Application
@@ -301,17 +303,17 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                   <div className="space-y-2">
                     <h3 className="text-xl font-bold text-white font-heading">Registration Secured</h3>
                     <p className="text-xs text-slate-400 font-sans leading-relaxed">
-                      Congratulations {formData.fullName}! Your registration for <span className="text-[#ff9900] font-semibold">{event.name}</span> has been securely written. Check your college inbox at <span className="text-blue-400">{formData.email}</span> for details.
+                      Congratulations {formData.fullName}! Your registration for <span className="text-[#a855f7] font-semibold">{event.name}</span> has been securely written. Check your college inbox at <span className="text-blue-400">{formData.email}</span> for details.
                     </p>
                   </div>
                   
                   <div className="p-4 bg-emerald-500/5 border border-emerald-500/10 rounded-xl text-[11px] font-mono text-emerald-400 uppercase">
-                    GUNI SBG Hub Ticket #{(Math.random() * 89999 + 10000).toFixed(0)}
+                    GNU SBG Hub Ticket #{(Math.random() * 89999 + 10000).toFixed(0)}
                   </div>
                   
                   <Link
                     to="/events"
-                    className="w-full block py-2.5 border border-white/10 hover:border-blue-400 text-white hover:bg-white/5 rounded-xl font-bold uppercase tracking-wider text-xs transition-all"
+                    className="w-full block py-2.5 border border-white/10 hover:border-purple-400 text-white hover:bg-white/5 rounded-full font-bold uppercase tracking-wider text-xs transition-all"
                   >
                     View other events
                   </Link>
@@ -325,6 +327,17 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                   <p className="text-xs text-slate-400 font-sans leading-relaxed">
                     This technical event has concluded. Study circles, presentations, and resources generated during this event are available for members in our community repository.
                   </p>
+                </div>
+                
+                <div className="pt-2 space-y-2">
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full text-center block py-3 border border-white/10 hover:border-[#a855f7] text-slate-300 hover:text-white rounded-full text-xs uppercase tracking-wider transition-all"
+                  >
+                    Access Cloud Resources
+                  </a>
                 </div>
               </div>
             )}

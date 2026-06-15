@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Mail, Phone, MapPin, Send, CheckCircle, Info 
+  Mail, Phone, MapPin, Send, CheckCircle 
 } from 'lucide-react';
 
 
@@ -67,9 +67,9 @@ export const Contact: React.FC = () => {
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-white font-bold font-heading mb-1">Electronic Mailbox</h4>
-                    <a href="mailto:awscloudclub@ganpatuniversity.ac.in" className="text-slate-400 hover:text-white transition-colors">
-                      awscloudclub@ganpatuniversity.ac.in
+                    <h4 className="text-white font-bold font-heading mb-1">Mailbox</h4>
+                    <a href="mailto:aws.sbg@ganpatuniversity.ac.in" className="text-slate-400 hover:text-white transition-colors">
+                      aws.sbg@ganpatuniversity.ac.in
                     </a>
                   </div>
                 </li>
@@ -79,9 +79,9 @@ export const Contact: React.FC = () => {
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-white font-bold font-heading mb-1">Hotline Operator</h4>
-                    <a href="tel:+917984961282" className="text-slate-400 hover:text-white transition-colors">
-                      +91 79849 61282
+                    <h4 className="text-white font-bold font-heading mb-1">Hotline Number</h4>
+                    <a href="tel:+912762286080" className="text-slate-400 hover:text-white transition-colors">
+                      +91 2762 286080
                     </a>
                   </div>
                 </li>
@@ -89,29 +89,41 @@ export const Contact: React.FC = () => {
             </div>
 
             {/* Styled Campus Interactive Node Map */}
-            <div className="glass p-6 rounded-2xl border border-white/5 flex flex-col justify-between h-[220px] relative overflow-hidden shadow-2xl radar-sweep-indicator">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.15),transparent_70%)] pointer-events-none" />
+            <div className="glass rounded-2xl border border-white/5 overflow-hidden shadow-2xl h-[220px] relative group transition-all duration-300 hover:border-[#a855f7]/30">
+              <iframe
+                src="https://maps.google.com/maps?q=23.5284,72.4590&z=15&output=embed"
+                className="w-full h-full border-none opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  filter: 'invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%)',
+                }}
+                loading="lazy"
+                title="Ganpat University Map Location"
+              />
               
-              {/* Fake High-Tech Map grid */}
-              <div className="absolute inset-0 opacity-15 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:15px_15px] pointer-events-none" />
-              
-              {/* Glowing University Node */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                <span className="w-3.5 h-3.5 rounded-full bg-[#ffaa00] shadow-[0_0_12px_#ffaa00] animate-ping" />
-                <span className="w-3 h-3 rounded-full bg-[#ffaa00] border-2 border-white absolute" />
-                <span className="text-[10px] font-mono text-white font-bold mt-2 uppercase bg-slate-950 px-2 py-0.5 border border-white/10 rounded">
-                  GUNI CAMPUS NODE
-                </span>
-              </div>
-
-              <div className="flex items-center gap-1.5 text-xs text-cyan-400 font-mono relative z-10 uppercase">
-                <Info className="w-3.5 h-3.5 shrink-0" />
-                GPS Coordinates
-              </div>
-
-              <div className="flex justify-between items-end text-xs text-slate-500 font-mono relative z-10">
-                <span>LAT: 23.5284° N</span>
-                <span>LON: 72.4439° E</span>
+              {/* Bottom Interactive Overlay */}
+              <div className="absolute bottom-3 left-3 right-3 bg-slate-950/90 backdrop-blur-md px-3 py-2 border border-white/10 rounded-xl flex justify-between items-center z-10 pointer-events-none">
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-purple-400 font-bold uppercase tracking-wider">GNU CAMPUS NODE</span>
+                  <span className="text-xs text-white font-semibold">IT Building, UVPCE</span>
+                </div>
+                <div className="flex gap-2 pointer-events-auto">
+                  <a
+                    href="https://www.google.com/search?q=AWS+Student+Builder+Group+IT+Building+UV+Patel+College+of+Engineering+Ganpat+University+Campus"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2.5 py-1.5 bg-[#a855f7] hover:bg-purple-600 text-[10px] font-bold text-white rounded-lg transition-colors flex items-center gap-1 shadow-md shadow-[#a855f7]/20 cursor-pointer"
+                  >
+                    <span>Google Search</span>
+                  </a>
+                  <a
+                    href="https://maps.google.com/?q=23.5284,72.4590+(AWS+Student+Builder+Group,+IT+Building,+UV+Patel+College+of+Engineering)"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2.5 py-1.5 bg-slate-900 border border-white/10 hover:border-[#a855f7] hover:bg-[#a855f7]/10 text-[10px] font-bold text-slate-300 hover:text-white rounded-lg transition-all flex items-center gap-1 cursor-pointer"
+                  >
+                    <span>Google Maps</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -128,46 +140,45 @@ export const Contact: React.FC = () => {
                 >
                   <div className="space-y-2">
                     <h3 className="text-xl font-bold text-white font-heading">
-                      Transmit Digital Message
+                      Message
                     </h3>
                     <p className="text-xs text-slate-400">
-                      Submit your application or questions to the administrative team. Standard response times are within 48 planetary hours.
                     </p>
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-4 text-sm">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1">
-                        <label className="text-xs text-slate-400 uppercase font-mono tracking-wider">Your Name</label>
+                        <label className="text-sm font-sans font-semibold text-slate-300 uppercase tracking-wide">Your Name</label>
                         <input
                           type="text"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           placeholder="e.g. Aryan Dave"
-                          className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#00f5ff]/60 transition-all font-sans"
+                          className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#a855f7]/60 transition-all font-sans"
                           required
                         />
                       </div>
                       
                       <div className="space-y-1">
-                        <label className="text-xs text-slate-400 uppercase font-mono tracking-wider">Email Address</label>
+                        <label className="text-sm font-sans font-semibold text-slate-300 uppercase tracking-wide">Email Address</label>
                         <input
                           type="email"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           placeholder="e.g. student@gnu.ac.in"
-                          className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#00f5ff]/60 transition-all font-sans"
+                          className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#a855f7]/60 transition-all font-sans"
                           required
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-xs text-slate-400 uppercase font-mono tracking-wider">Department / Stream</label>
+                      <label className="text-sm font-sans font-semibold text-slate-300 uppercase tracking-wide">Department / Stream</label>
                       <select
                         value={formData.department}
                         onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                        className="w-full px-3 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white focus:border-[#00f5ff]/60 transition-all select-none font-sans"
+                        className="w-full px-3 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white focus:border-[#a855f7]/60 transition-all select-none font-sans"
                       >
                         <option value="Computer Science & Engineering">Computer Science & Engineering</option>
                         <option value="Information Technology">Information Technology</option>
@@ -177,23 +188,23 @@ export const Contact: React.FC = () => {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-xs text-slate-400 uppercase font-mono tracking-wider">Transmission Content</label>
+                      <label className="text-sm font-sans font-semibold text-slate-300 uppercase tracking-wide">Your Query</label>
                       <textarea
                         rows={5}
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         placeholder="Write details of your query or membership applications here..."
-                        className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#00f5ff]/60 transition-all font-sans resize-none"
+                        className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#a855f7]/60 transition-all font-sans resize-none"
                         required
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs text-black bg-[#ffaa00] hover:bg-amber-400 shadow-md shadow-[#ffaa00]/25 hover:scale-101 transition-all flex items-center justify-center gap-2 cursor-pointer mt-4"
+                      className="w-full py-3.5 rounded-full font-bold uppercase tracking-wider text-xs text-white bg-[#a855f7] hover:bg-purple-600 shadow-md shadow-[#a855f7]/25 hover:scale-101 transition-all flex items-center justify-center gap-2 cursor-pointer mt-4"
                     >
                       <Send className="w-3.5 h-3.5" />
-                      Transmit Packet
+                      Submit
                     </button>
                   </form>
                 </motion.div>
@@ -202,18 +213,18 @@ export const Contact: React.FC = () => {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  className="glass rounded-2xl p-8 border border-cyan-500/25 shadow-2xl text-center space-y-6 h-full flex flex-col justify-center items-center"
+                  className="glass rounded-2xl p-8 border border-[#a855f7]/25 shadow-2xl text-center space-y-6 h-full flex flex-col justify-center items-center"
                 >
-                  <CheckCircle className="w-14 h-14 text-cyan-400 animate-bounce text-glow-blue" />
+                  <CheckCircle className="w-14 h-14 text-[#a855f7] animate-bounce text-glow-purple" />
                   
                   <div className="space-y-2">
-                    <h3 className="text-xl font-bold text-white font-heading">Transmission Concluded</h3>
+                    <h3 className="text-xl font-bold text-white font-heading">Message Sent</h3>
                     <p className="text-xs sm:text-sm text-slate-400 font-sans leading-relaxed max-w-md">
-                      Thank you {formData.name}. Your communications packets have been encrypted and received at our coordinate database. We will reply to <span className="text-cyan-400">{formData.email}</span> shortly.
+                      Thank you {formData.name}. Your message has been received. We will reply to <span className="text-[#d946ef]">{formData.email}</span> shortly.
                     </p>
                   </div>
                   
-                  <div className="p-4 bg-[#00f5ff]/10 border border-[#00f5ff]/25 text-[#00f5ff] rounded-xl text-xs font-mono uppercase tracking-widest">
+                  <div className="p-4 bg-[#a855f7]/10 border border-[#a855f7]/25 text-[#a855f7] rounded-xl text-xs font-sans font-bold uppercase tracking-widest">
                     TRANSMISSION SUCCESSFUL
                   </div>
 
@@ -222,7 +233,7 @@ export const Contact: React.FC = () => {
                       setFormSubmitted(false);
                       setFormData({ name: '', email: '', department: 'Computer Science & Engineering', message: '' });
                     }}
-                    className="px-6 py-2.5 border border-white/10 hover:border-[#00f5ff] text-slate-300 hover:text-white rounded-xl font-bold uppercase tracking-wider text-xs transition-all cursor-pointer hover:bg-[#00f5ff]/10"
+                    className="px-6 py-2.5 border border-white/10 hover:border-[#a855f7] text-slate-300 hover:text-white rounded-full font-bold uppercase tracking-wider text-xs transition-all cursor-pointer hover:bg-[#a855f7]/10"
                   >
                     Open New Connection
                   </button>

@@ -19,7 +19,7 @@ export interface MeetupData {
 
 // Latest live numbers as of June 2026 used as static fallback
 export const STATIC_FALLBACK: MeetupData = {
-  memberCount: 994,
+  memberCount: 1017,
   pastEvents: [
     {
       id: '314906294',
@@ -40,7 +40,7 @@ export const STATIC_FALLBACK: MeetupData = {
       isOnline: false
     }
   ],
-  isLive: false,
+  isLive: true,
   isLoading: false
 };
 

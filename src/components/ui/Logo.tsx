@@ -16,7 +16,7 @@ export const Logo: React.FC<LogoProps> = ({
     <div className={`relative flex items-center justify-center ${className}`}>
       {/* Optional ambient backing glow */}
       {glow && (
-        <div className="absolute inset-0 bg-[#00f5ff]/15 rounded-full blur-[8px] pointer-events-none scale-120 animate-pulse" />
+        <div className="absolute inset-0 bg-[#a855f7]/20 rounded-full blur-[8px] pointer-events-none scale-120 animate-pulse" />
       )}
       <svg
         width={size}
@@ -24,7 +24,7 @@ export const Logo: React.FC<LogoProps> = ({
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="relative z-10 text-[#00f5ff] hover:text-white transition-colors duration-300"
+        className="relative z-10 text-[#a855f7] hover:text-[#d946ef] transition-colors duration-300"
         {...props}
       >
         <path

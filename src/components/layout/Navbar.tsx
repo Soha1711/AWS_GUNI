@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Compass } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from '../ui/Logo';
 
@@ -52,10 +52,10 @@ export const Navbar: React.FC = () => {
               <Logo size={28} className="group-hover:scale-105 transition-transform duration-300" />
 
               <div className="flex flex-col">
-                <span className="text-white font-bold text-sm sm:text-base font-heading tracking-wide group-hover:text-[#00f5ff] transition-colors duration-300">
+                <span className="text-white font-bold text-sm sm:text-base font-heading tracking-wide group-hover:text-[#a855f7] transition-colors duration-300">
                   AWS Student Builder Group
                 </span>
-                <span className="text-[10px] text-cyan-400 font-mono tracking-widest uppercase">
+                <span className="text-[10px] text-purple-400 font-mono tracking-widest uppercase">
                   Ganpat University
                 </span>
               </div>
@@ -72,15 +72,15 @@ export const Navbar: React.FC = () => {
                       to={link.path}
                       className={`relative text-sm font-medium tracking-wide uppercase transition-colors duration-350 ${
                         isActive
-                          ? 'text-[#00f5ff] text-glow-blue'
-                          : 'text-slate-300 hover:text-[#00f5ff]'
+                          ? 'text-[#a855f7] text-glow'
+                          : 'text-slate-300 hover:text-[#a855f7]'
                       }`}
                     >
                       {link.name}
                       {isActive && (
                         <motion.span
                           layoutId="activeNavLine"
-                          className="absolute -bottom-1.5 left-0 right-0 h-0.5 bg-[#00f5ff] rounded-full shadow-[0_0_8px_#00f5ff]"
+                          className="absolute -bottom-1.5 left-0 right-0 h-0.5 bg-[#a855f7] rounded-full shadow-[0_0_8px_rgba(168,85,247,0.8)]"
                           transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -94,9 +94,9 @@ export const Navbar: React.FC = () => {
                 href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4.5 py-2 text-xs font-bold uppercase tracking-wider text-black bg-[#ffaa00] hover:bg-amber-400 rounded-lg shadow-lg shadow-[#ffaa00]/25 hover:shadow-[#ffaa00]/45 transition-all duration-300"
+                className="inline-flex items-center gap-1.5 px-4.5 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#a855f7] hover:bg-purple-600 rounded-full shadow-lg shadow-[#a855f7]/25 hover:shadow-[#a855f7]/45 transition-all duration-300"
               >
-                <Compass className="w-3.5 h-3.5" />
+        
                 Join Hub
               </a>
             </div>
@@ -132,10 +132,10 @@ export const Navbar: React.FC = () => {
                   <Link
                     key={link.name}
                     to={link.path}
-                    className={`block px-4 py-3 rounded-xl text-base font-semibold tracking-wider uppercase transition-all ${
+                    className={`block px-4 py-3 rounded-full text-base font-semibold tracking-wider uppercase transition-all ${
                       isActive
-                        ? 'text-black bg-[#00f5ff] shadow-md shadow-[0_0_12px_rgba(6,182,212,0.3)]'
-                        : 'text-slate-300 hover:text-[#00f5ff] hover:bg-white/5'
+                        ? 'text-white bg-[#a855f7] shadow-md shadow-[0_0_12px_rgba(168,85,247,0.3)]'
+                        : 'text-slate-300 hover:text-[#a855f7] hover:bg-white/5'
                     }`}
                   >
                     {link.name}
@@ -147,7 +147,7 @@ export const Navbar: React.FC = () => {
                   href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full text-center block py-3.5 text-sm font-bold uppercase tracking-wider text-black bg-[#ffaa00] hover:bg-amber-400 rounded-xl shadow-lg shadow-[#ffaa00]/25"
+                  className="w-full text-center block py-3.5 text-sm font-bold uppercase tracking-wider text-white bg-[#a855f7] hover:bg-purple-600 rounded-full shadow-lg shadow-[#a855f7]/25"
                 >
                   Join Community
                 </a>
