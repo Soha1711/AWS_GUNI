@@ -87,7 +87,7 @@ export const Home: React.FC = () => {
           <motion.h1
             initial={{ opacity: 0, y: 150 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 2.0, ease: [0.2, 2, 0.6, 1] }}
             className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.1] font-heading"
           >
             AWS Student Builder Group
@@ -103,7 +103,7 @@ export const Home: React.FC = () => {
             transition={{ duration: 1.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 font-sans leading-relaxed"
           >
-            A platform to learn, build, and innovate with the power of AWS Cloud.Connecting students with hands-on learning, innovation, and real-world opportunities.
+            A platform to learn, build, and innovate with the power of AWS Cloud. Connecting students with hands-on learning, innovation, and real-world opportunities.
           </motion.p>
 
           <motion.div
@@ -197,7 +197,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 5. UPCOMING EVENTS PREVIEW */}
-      <section className="py-20 relative bg-[#060814]/45 border-t border-white/5">
+      <section className="py-20 bg-[#060814]/45 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-4">
             <div className="text-center space-y-3">

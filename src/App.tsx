@@ -7,9 +7,7 @@ import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { ConstellationBackground } from './components/ui/ConstellationBackground';
 import { StarryLoading } from './components/ui/StarryLoading';
-import { Rocky } from './components/ui/Rocky';
 import { SonarClickEffect } from './components/ui/SonarClickEffect';
-import { CustomCursor } from './components/ui/CustomCursor';
 
 // Pages
 import { Home } from './pages/Home';
@@ -58,12 +56,6 @@ const AppContent: React.FC = () => {
 
       {/* Interactive global click sonar sweeping waves */}
       <SonarClickEffect />
-
-      {/* Futuristic custom trailing cursor */}
-      <CustomCursor />
-
-      {/* Floating Eridian Companion (Rocky) */}
-      <Rocky />
 
       {/* Sticky navigation header */}
       <Navbar />

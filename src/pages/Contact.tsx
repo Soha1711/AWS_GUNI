@@ -35,7 +35,7 @@ export const Contact: React.FC = () => {
           Connect With SBG Hub
         </h1>
         <p className="max-w-2xl mx-auto text-slate-400 text-sm sm:text-base">
-          Send queries regarding study group admissions, collaboration pitches, certification sponsorship credentials, or event bookings.
+          
         </p>
       </section>
 
@@ -79,9 +79,9 @@ export const Contact: React.FC = () => {
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-white font-bold font-heading mb-1">Hotline Number</h4>
+                    <h4 className="text-white font-bold font-heading mb-1">Contact Number</h4>
                     <a href="tel:+912762286080" className="text-slate-400 hover:text-white transition-colors">
-                      +91 2762 286080
+                      +91 27622 86080
                     </a>
                   </div>
                 </li>
@@ -91,7 +91,7 @@ export const Contact: React.FC = () => {
             {/* Styled Campus Interactive Node Map */}
             <div className="glass rounded-2xl border border-white/5 overflow-hidden shadow-2xl h-[220px] relative group transition-all duration-300 hover:border-[#a855f7]/30">
               <iframe
-                src="https://maps.google.com/maps?q=23.5284,72.4590&z=15&output=embed"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=72.4540%2C23.5234%2C72.4640%2C23.5334&layer=mapnik&marker=23.5284%2C72.4590"
                 className="w-full h-full border-none opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
                   filter: 'invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%)',
@@ -111,9 +111,10 @@ export const Contact: React.FC = () => {
                     href="https://www.google.com/search?q=AWS+Student+Builder+Group+IT+Building+UV+Patel+College+of+Engineering+Ganpat+University+Campus"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-2.5 py-1.5 bg-[#a855f7] hover:bg-purple-600 text-[10px] font-bold text-white rounded-lg transition-colors flex items-center gap-1 shadow-md shadow-[#a855f7]/20 cursor-pointer"
+                    className="px-2.5 py-1.5 bg-[#a855f7] hover:bg-purple-600 text-[10px] font-bold text-white rounded-lg transition-colors flex items-center gap-1 shadow-md shadow-[#a855f7]/20 cursor-pointer animate-pulse"
+                    title="Open on Google Search (Workspace-safe, won't show permission blocked error)"
                   >
-                    <span>Google Search</span>
+                    <span>Google Maps Search</span>
                   </a>
                   <a
                     href="https://maps.google.com/?q=23.5284,72.4590+(AWS+Student+Builder+Group,+IT+Building,+UV+Patel+College+of+Engineering)"
@@ -121,7 +122,7 @@ export const Contact: React.FC = () => {
                     rel="noopener noreferrer"
                     className="px-2.5 py-1.5 bg-slate-900 border border-white/10 hover:border-[#a855f7] hover:bg-[#a855f7]/10 text-[10px] font-bold text-slate-300 hover:text-white rounded-lg transition-all flex items-center gap-1 cursor-pointer"
                   >
-                    <span>Google Maps</span>
+                    <span>Direct Link</span>
                   </a>
                 </div>
               </div>
@@ -140,7 +141,7 @@ export const Contact: React.FC = () => {
                 >
                   <div className="space-y-2">
                     <h3 className="text-xl font-bold text-white font-heading">
-                      Message
+                      Sender Details
                     </h3>
                     <p className="text-xs text-slate-400">
                     </p>
