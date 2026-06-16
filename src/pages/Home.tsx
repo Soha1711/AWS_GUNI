@@ -222,9 +222,9 @@ export const Home: React.FC = () => {
                     <img
                       src={event.poster}
                       alt={event.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#020205] to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-black/60 to-transparent" />
                     <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10px] font-bold tracking-wider uppercase text-black bg-[#ffaa00] shadow-[0_0_10px_#ffaa00]/40">
                       <Calendar className="w-3.5 h-3.5" />
                       {event.date}
@@ -301,9 +301,9 @@ export const Home: React.FC = () => {
                           <img
                             src={event.poster}
                             alt={event.name}
-                            className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 opacity-75"
+                            className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#020205] to-transparent" />
+                          <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-black/60 to-transparent" />
                           <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase text-black bg-[#ffaa00] shadow-[0_0_8px_rgba(255,170,0,0.3)]">
                             <Calendar className="w-3 h-3" />
                             {event.date}

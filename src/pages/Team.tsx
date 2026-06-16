@@ -18,7 +18,7 @@ const teamMembers: TeamMember[] = [
   {
     id: 'advisor-aric',
     name: 'Aric Pandya',
-    role: 'Adviser member',
+    role: 'SBG Adviser',
     tagline: 'Guiding student cloud builders through advanced architectural principles, cloud roadmaps, and career development initiatives.',
     photo: '/gallery/Aric.png',
     linkedin: 'https://linkedin.com/in/aricpandya',
@@ -258,10 +258,10 @@ const TEAM_STYLES: Record<string, { glowColor: string; borderColor: string; acce
     badgeBg: 'rgba(168, 85, 247, 0.12)'
   },
   'Adviser': {
-    glowColor: 'rgba(168, 85, 247, 0.3)',
-    borderColor: 'rgba(168, 85, 247, 0.25)',
-    accentText: '#a855f7',
-    badgeBg: 'rgba(168, 85, 247, 0.12)'
+    glowColor: 'rgba(255, 170, 0, 0.3)',
+    borderColor: 'rgba(255, 170, 0, 0.25)',
+    accentText: '#ffaa00',
+    badgeBg: 'rgba(255, 170, 0, 0.12)'
   }
 };
 
@@ -480,22 +480,105 @@ export const Team: React.FC = () => {
         </div>
       </section>
 
+      {/* SBG Adviser Section */}
+      {(() => {
+        const adviser = teamMembers.find(m => m.team === 'Adviser');
+        if (!adviser) return null;
+        return (
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 flex flex-col items-stretch">
+            <div className="flex items-center gap-4 mb-8 w-full">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading tracking-tight flex items-center gap-3">
+                <span className="w-1.5 h-7 rounded-full bg-[#ffaa00] text-glow" />
+                SBG Adviser
+              </h2>
+              <div className="flex-1 h-[1px] bg-gradient-to-r from-[#ffaa00]/20 to-transparent" />
+            </div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              whileHover="hover"
+              viewport={{ once: true, amount: 0.15 }}
+              variants={cardVariants('rgba(255, 170, 0, 0.35)', 'rgba(255, 170, 0, 0.25)')}
+              className="w-full max-w-md cursor-pointer mx-auto"
+            >
+              <div 
+                className="p-8 flex flex-col items-start text-left transition-all duration-300 relative overflow-hidden group h-full radar-sweep-indicator"
+                style={{
+                  borderRadius: "24px",
+                  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(10, 11, 20, 0.55) 30%, rgba(4, 5, 10, 0.8) 100%)",
+                  backdropFilter: "blur(24px)",
+                  WebkitBackdropFilter: "blur(24px)",
+                  border: "1px solid rgba(255, 170, 0, 0.25)",
+                  boxShadow: "0 12px 40px 0 rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.12)"
+                }}
+              >
+                {/* Ambient gold light glow behind card */}
+                <div 
+                  className="absolute -right-16 -top-16 w-32 h-32 rounded-full blur-[80px] opacity-25 pointer-events-none transition-all duration-500 group-hover:scale-150 group-hover:opacity-45"
+                  style={{ background: "#ffaa00" }}
+                />
+
+                {/* Profile Photo frame */}
+                <div 
+                  className="w-32 h-32 rounded-full overflow-hidden border-3 mb-6 relative bg-slate-900 shadow-md transition-all duration-300 border-[#ffaa00]/30 group-hover:border-[#ffaa00]/70"
+                >
+                  <motion.img
+                    variants={imageVariants}
+                    src={adviser.photo}
+                    alt={adviser.name}
+                    className="w-full h-full object-cover origin-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#020205]/40 to-transparent pointer-events-none" />
+                </div>
+
+                {/* Full Name & Role */}
+                <h3 className="text-2xl font-bold text-white font-heading leading-snug mb-1 tracking-tight">
+                  {adviser.name}
+                </h3>
+
+                <span 
+                  className="text-xs font-mono font-bold uppercase tracking-wider mb-4 block text-[#ffaa00] px-3 py-1 bg-[#ffaa00]/10 rounded-full"
+                >
+                  {adviser.role}
+                </span>
+
+                {/* Tagline */}
+                <p className="text-slate-300 text-sm leading-relaxed mb-6 max-w-sm font-sans font-medium">
+                  {adviser.tagline}
+                </p>
+
+                {/* Social Action buttons */}
+                <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/5 w-full justify-start">
+                  <a
+                    href={adviser.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl border border-white/5 hover:border-[#ffaa00] hover:text-[#ffaa00] text-slate-400 bg-white/5 hover:bg-[#ffaa00]/10 transition-all duration-300 cursor-pointer"
+                    title={`${adviser.name}'s LinkedIn`}
+                  >
+                    <LinkedinIcon className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </section>
+        );
+      })()}
+
       {/* Team Crew Showcase Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <div className="flex items-center gap-4 mb-10 w-full">
           <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading tracking-tight flex items-center gap-3">
             <span className="w-1.5 h-7 rounded-full bg-[#a855f7] text-glow" />
-            Team Members
+            SBG Team Members
           </h2>
-          <span className="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full text-[#a855f7] bg-[#a855f7]/10">
-            {teamMembers.length} Members
-          </span>
           <div className="flex-1 h-[1px] bg-gradient-to-r from-[#a855f7]/20 to-transparent" />
         </div>
 
         {/* Grid Layout (Desktop: 4, Laptop: 3, Tablet: 2, Mobile: 1) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {teamMembers.map((member) => {
+          {teamMembers.filter(m => m.team !== 'Adviser').map((member) => {
             const style = TEAM_STYLES[member.team] || {
               glowColor: 'rgba(6, 182, 212, 0.3)',
               borderColor: 'rgba(6, 182, 212, 0.25)',
@@ -559,8 +642,15 @@ export const Team: React.FC = () => {
                       {member.team}
                     </span>
 
-                    {/* Team Member Role Description */}
-                    <span className="text-xs text-slate-400 block mb-4">
+                    {/* Team Member Role — Capsule badge */}
+                    <span
+                      className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium mb-4 border"
+                      style={{
+                        color: style.accentText,
+                        borderColor: style.borderColor,
+                        backgroundColor: style.badgeBg,
+                      }}
+                    >
                       {member.role}
                     </span>
 

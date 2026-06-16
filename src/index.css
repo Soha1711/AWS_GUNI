@@ -1,25 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@600;700;800&display=swap');
 
 @import "tailwindcss";
 
 :root {
-  --font-sans: 'Space Grotesk', sans-serif;
-  --font-heading: 'Cormorant Garamond', serif;
-  --font-mono: 'Share Tech Mono', 'Courier New', Courier, monospace;
+  /* ── 4-Font System ── */
+  --font-sans:    'Inter', system-ui, sans-serif;
+  --font-heading: 'Sora', sans-serif;
+  --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+  --font-accent:  'Cormorant Garamond', serif;
+
+  /* ── Scaled-down Type Scale ── */
+  --text-xs:   0.6875rem; /* 11px — tiny chips/tags */
+  --text-sm:   0.8125rem; /* 13px — captions, secondary */
+  --text-base: 0.9375rem; /* 15px — body default */
+  --text-lg:   1rem;      /* 16px — card body */
+  --text-xl:   1.125rem;  /* 18px — sub-headings */
+  --text-2xl:  1.25rem;   /* 20px — card titles */
+  --text-3xl:  1.5rem;    /* 24px — section titles */
+  --text-4xl:  1.875rem;  /* 30px — page headings */
+  --text-5xl:  2.5rem;    /* 40px — hero headings */
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #030303; /* Deep Void Black */
+  background-color: #030303;
   color: #e2e8f0;
   font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.65;
   overflow-x: hidden;
   scrollbar-width: thin;
-  scrollbar-color: #a855f7 #030303; /* Purple / Void Black */
+  scrollbar-color: #a855f7 #030303;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.625;
+}
+
+/* ── Global typography utilities ── */
+.font-heading  { font-family: var(--font-heading) !important; }
+.font-sans     { font-family: var(--font-sans)    !important; }
+.font-mono     { font-family: var(--font-mono)    !important; }
+.font-accent   { font-family: var(--font-accent)  !important; }
+
+/* Heading defaults — Sora only applies font-family; sizes stay Tailwind-controlled */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: #f1f5f9;
+}
+
+/* Body text — Inter */
+p { font-family: var(--font-sans); line-height: 1.7; }
+
+/* Mono labels — JetBrains Mono */
+code, kbd, .mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
 }
 
 /* Contrast & Readability Enhancements for space-void theme */

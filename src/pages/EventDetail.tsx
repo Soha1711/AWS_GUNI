@@ -28,7 +28,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
         <ShieldAlert className="w-16 h-16 text-red-500 mx-auto" />
         <h2 className="text-2xl font-bold text-white font-heading">Event Node Not Found</h2>
         <p className="text-slate-400">The event node requested could not be resolved in the AWS GUNI space data matrix.</p>
-        <Link to="/events" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#a855f7] text-white font-bold uppercase text-xs rounded-full hover:bg-purple-600 transition-colors shadow-lg shadow-[#a855f7]/25">
+        <Link to="/events" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#a855f7] text-white font-bold uppercase text-xs rounded-full hover:bg-purple-600 transition-colors shadow-lg shadow-[#a855f7]/75">
           <ArrowLeft className="w-4 h-4" /> Back to Orbit Events
         </Link>
       </div>
@@ -67,14 +67,14 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
             <img
               src={event.poster}
               alt={event.name}
-              className="w-full h-full object-cover opacity-75"
+              className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050714] via-[#050714]/30 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/70 to-transparent" />
             
             {/* Status Badges */}
             <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-[#a855f7] shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-[#a855f7] shadow-[0_0_15px_rgba(168,85,247,0.1)]">
                   <Calendar className="w-3.5 h-3.5" />
                   {event.date}
                 </span>

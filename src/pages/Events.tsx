@@ -102,9 +102,9 @@ export const Events: React.FC = () => {
                       <img
                         src={event.poster}
                         alt={event.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-75"
+                        className="w-full h-full object-cover group-hover:scale-100 transition-transform duration-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#050714] to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-black/60 to-transparent" />
                       
                       {/* Tag badges */}
                       <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase text-white bg-[#a855f7] shadow-[0_0_8px_rgba(168,85,247,0.3)]">
