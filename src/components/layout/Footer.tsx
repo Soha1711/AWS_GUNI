@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
               </div>
             </Link>
             
-            <p className="text-sm text-slate-400 leading-relaxed font-sans pr-4 pt-1">
+            <p className="text-base sm:text-lg text-slate-400 leading-relaxed font-sans pr-4 pt-1">
               A platform to learn, build, and innovate with the power of AWS Cloud. Connecting students with hands-on learning, innovation, and real-world opportunities.
             </p>
 

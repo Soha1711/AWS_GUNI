@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 // Layout and Common UI Components
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
-import { ConstellationBackground } from './components/ui/ConstellationBackground';
 import { StarryLoading } from './components/ui/StarryLoading';
 import { SonarClickEffect } from './components/ui/SonarClickEffect';
 
@@ -51,9 +50,6 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative text-slate-100 selection:bg-[#ff9900]/30 selection:text-[#ff9900]">
-      {/* Dynamic interactive star constellation background */}
-      <ConstellationBackground />
-
       {/* Interactive global click sonar sweeping waves */}
       <SonarClickEffect />
 

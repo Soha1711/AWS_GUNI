@@ -6,7 +6,11 @@ import {
 } from 'lucide-react';
 import { EVENTS } from '../data/mockData';
 import { Logo } from '../components/ui/Logo';
+import SoftAurora from '../components/ui/SoftAurora';
+import TextType from '../components/ui/TextType';
+import ScrambledText from '../components/ui/ScrambledText';
 import { useMeetupData } from '../utils/meetup';
+import DotField from '../components/ui/DotField';
 
 
 
@@ -68,11 +72,40 @@ export const Home: React.FC = () => {
   return (
     <div className="relative pt-16 font-sans">
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[92svh] flex items-center justify-center overflow-hidden px-4">
-        {/* Glow overlay */}
-        <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] rounded-full bg-[#a855f7]/5 blur-[120px] pointer-events-none animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] rounded-full bg-[#d946ef]/5 blur-[120px] pointer-events-none animate-pulse" />
+      <section className="relative min-h-[92svh] flex items-center justify-center px-4">
 
+        {/* DotField interactive dot background — breaks out of max-w container to fill full viewport */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '100vw',
+          height: '100%',
+          zIndex: 0,
+        }}>
+          <DotField
+            dotRadius={2}
+            dotSpacing={20}
+            bulgeStrength={80}
+            glowRadius={200}
+            sparkle={false}
+            waveAmplitude={0}
+            gradientFrom="rgba(168, 85, 247, 0.7)"
+            gradientTo="rgba(217, 70, 239, 0.5)"
+            glowColor="#1a0d2e"
+          />
+        </div>
+
+        {/* Vignette — fades dot field into page bg at edges */}
+        <div
+          className="absolute pointer-events-none"
+          style={{ zIndex: 1, top: 0, left: '50%', transform: 'translateX(-50%)', width: '100vw', height: '100%', background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 35%, #030303 100%)' }}
+        />
+
+        {/* Glow blobs */}
+        <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] rounded-full bg-[#a855f7]/5 blur-[120px] pointer-events-none animate-pulse" style={{ zIndex: 1 }} />
+        <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] rounded-full bg-[#d946ef]/5 blur-[120px] pointer-events-none animate-pulse" style={{ zIndex: 1 }} />
         <div className="max-w-5xl mx-auto text-center z-10 space-y-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -87,24 +120,38 @@ export const Home: React.FC = () => {
           <motion.h1
             initial={{ opacity: 0, y: 150 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2.0, ease: [0.2, 2, 0.6, 1] }}
-            className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.1] font-heading"
+            transition={{ duration: 1.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-heading tracking-tight leading-[1.1] pb-2 text-glow"
           >
-            AWS Student Builder Group
-            <br />
-            <span className="bg-gradient-to-r from-[#a855f7] via-purple-400 to-[#d946ef] bg-clip-text text-transparent text-glow">
-              Ganpat University
-            </span>
+            <TextType 
+              text="AWS Student Builder Group Ganpat University"
+              typingSpeed={75}
+              pauseDuration={1500}
+              showCursor={false}
+              cursorCharacter="|"
+              deletingSpeed={60}
+              variableSpeedEnabled={true}
+              variableSpeedMin={50}
+              loop={false}
+            />
           </motion.h1>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 150 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 font-sans leading-relaxed"
+            className="max-w-2xl mx-auto text-base sm:text-lg lg:text-xl text-gray-300 font-medium font-body leading-relaxed mb-10 tracking-wide"
           >
-            A platform to learn, build, and innovate with the power of AWS Cloud. Connecting students with hands-on learning, innovation, and real-world opportunities.
-          </motion.p>
+            <ScrambledText
+              className="text-center"
+              radius={50}
+              duration={0.9}
+              speed={0.4}
+              scrambleChars=".:"
+            >
+              A platform to learn, build, and innovate with the power of AWS Cloud. Connecting students with hands-on learning, innovation, and real-world opportunities.
+            </ScrambledText>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 150 }}
@@ -284,17 +331,36 @@ export const Home: React.FC = () => {
                   </a>
                 </div>
               </div>
+            </div>
+          )}
+        </div>
+      </section>
 
-              {/* Past events highlights */}
-              {pastEventsList.length > 0 && (
-                <div className="space-y-8">
-                  <div className="text-center space-y-2">
-                    <h3 className="text-2xl font-bold text-white font-heading">
-                      Recent Cloud Gatherings
-                    </h3>
-                  </div>
+      {/* AURORA SEPARATOR */}
+      <section className="h-[250px] sm:h-[350px] relative border-t border-white/5 bg-black">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-full z-0 overflow-hidden">
+          <SoftAurora 
+            color1="#a855f7" 
+            color2="#00f5ff"
+            speed={0.4}
+            brightness={1.0}
+            bandSpread={1.5}
+            noiseAmplitude={1.2}
+          />
+        </div>
+      </section>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* 6. PAST EVENTS HIGHLIGHTS */}
+      {pastEventsList.length > 0 && upcomingEvents.length === 0 && (
+        <section className="py-20 bg-[#060814]/45 border-b border-white/5">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div className="text-center space-y-2">
+              <h3 className="text-2xl font-bold text-white font-heading">
+                Recent Cloud Gatherings
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {pastEventsList.map((event) => (
                       <div key={event.id} className="glass rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col group h-full">
                         <div className="relative h-48 overflow-hidden bg-black shrink-0">
@@ -349,14 +415,10 @@ export const Home: React.FC = () => {
                         </div>
                       </div>
                     ))}
-                  </div>
-                </div>
-              )}
             </div>
-          )}
-        </div>
-      </section>
-
+          </div>
+        </section>
+      )}
 
 
 

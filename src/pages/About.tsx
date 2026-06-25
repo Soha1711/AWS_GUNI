@@ -4,6 +4,7 @@ import {
   Compass, Eye, Target, Award, Key, Network, ShieldCheck, 
   MapPin, CheckCircle, GraduationCap, Server, Code, Zap 
 } from 'lucide-react';
+import { MagicBentoCard, MagicBentoGrid } from '../components/ui/MagicBentoCard';
 
 const TIMELINE = [
   {
@@ -90,9 +91,9 @@ export const About: React.FC = () => {
 
       {/* Mission, Vision, and Objectives Cards */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <MagicBentoGrid className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Mission */}
-          <div className="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between shadow-xl">
+          <MagicBentoCard className="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between shadow-xl">
             <div className="space-y-4">
               <div className="w-12 h-12 rounded-xl bg-[#ffaa00]/10 flex items-center justify-center text-[#ffaa00]">
                 <Compass className="w-6 h-6" />
@@ -102,10 +103,10 @@ export const About: React.FC = () => {
                 To democratize cloud learning by integrating high-quality AWS resources with peer-to-peer mentoring. We aim to equip every student with practical engineering capabilities required by modern industry teams.
               </p>
             </div>
-          </div>
+          </MagicBentoCard>
 
           {/* Vision */}
-          <div className="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between shadow-xl">
+          <MagicBentoCard className="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between shadow-xl">
             <div className="space-y-4">
               <div className="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400">
                 <Eye className="w-6 h-6" />
@@ -115,10 +116,10 @@ export const About: React.FC = () => {
                 To build a premier, self-sustaining university cloud developer community that serves as a talent nexus for AWS and the global technology market, aligning Ganpat University with state-of-the-art cloud paradigms.
               </p>
             </div>
-          </div>
+          </MagicBentoCard>
 
           {/* Objectives */}
-          <div className="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between shadow-xl">
+          <MagicBentoCard className="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between shadow-xl">
             <div className="space-y-4">
               <div className="w-12 h-12 rounded-xl bg-[#00f5ff]/10 flex items-center justify-center text-[#00f5ff]">
                 <Target className="w-6 h-6" />
@@ -139,8 +140,8 @@ export const About: React.FC = () => {
                 </li>
               </ul>
             </div>
-          </div>
-        </div>
+          </MagicBentoCard>
+        </MagicBentoGrid>
       </section>
 
       {/* Benefits Section */}
@@ -155,9 +156,9 @@ export const About: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <MagicBentoGrid className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {BENEFITS.map((benefit, idx) => (
-              <div key={idx} className="glass p-6 rounded-2xl border border-white/10 flex gap-4 hover:border-[#00f5ff]/40 transition-all">
+              <MagicBentoCard key={idx} className="glass p-6 rounded-2xl border border-white/10 flex gap-4 hover:border-[#00f5ff]/40 transition-all">
                 <div className="w-12 h-12 rounded-xl bg-[#ffaa00]/10 flex items-center justify-center text-[#ffaa00] shrink-0">
                   <benefit.icon className="w-5 h-5" />
                 </div>
@@ -169,9 +170,9 @@ export const About: React.FC = () => {
                     {benefit.desc}
                   </p>
                 </div>
-              </div>
+              </MagicBentoCard>
             ))}
-          </div>
+          </MagicBentoGrid>
         </div>
       </section>
 

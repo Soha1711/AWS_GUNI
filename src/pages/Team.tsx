@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { LinkedinIcon } from '../components/ui/SocialIcons';
+import TiltedCard from '../components/ui/TiltedCard';
+import Strands from '../components/ui/Strands';
 
 interface TeamMember {
   id: string;
@@ -10,6 +12,7 @@ interface TeamMember {
   photo: string;
   linkedin: string;
   team: string;
+  github?: string;
 }
 
 // Complete data list for all 21 members in the single sequence (Advisor + 20 sub-team members)
@@ -268,23 +271,13 @@ const TEAM_STYLES: Record<string, { glowColor: string; borderColor: string; acce
 
 export const Team: React.FC = () => {
   // Framer Motion variants for member card rendering
-  const cardVariants = (glowColor: string, borderColor: string) => ({
+  const cardVariants = () => ({
     hidden: { opacity: 0, y: 40 },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: { 
         duration: 0.6, 
-        ease: [0.16, 1, 0.3, 1] as const
-      }
-    },
-    hover: { 
-      y: -10, 
-      scale: 1.03,
-      boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 35px ${glowColor}`,
-      borderColor: borderColor,
-      transition: { 
-        duration: 0.35, 
         ease: [0.16, 1, 0.3, 1] as const
       }
     }
@@ -303,17 +296,40 @@ export const Team: React.FC = () => {
   };
 
   return (
-    <div className="relative pt-24 pb-16 font-sans min-h-[90vh] overflow-hidden">
+    <div className="relative pt-24 pb-16 font-sans min-h-[90vh]">
       {/* Background ambient space glow */}
       <div className="absolute top-1/4 left-1/10 w-[300px] h-[300px] bg-[#a855f7]/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/10 w-[300px] h-[300px] bg-[#d946ef]/5 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Main Section Header */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 space-y-4">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 space-y-4 relative z-10">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white font-heading tracking-tight">
           Our Team
         </h1>
       </section>
+
+      {/* Strands visual */}
+      <div className="w-[100vw] h-[300px] relative left-1/2 -translate-x-1/2 -mt-20 mb-16 z-0" style={{ pointerEvents: 'none' }}>
+        <Strands
+          colors={["#F97316", "#7C3AED", "#06B6D4"]}
+          count={3}
+          speed={0.5}
+          amplitude={1}
+          waviness={1}
+          thickness={0.7}
+          glow={2.6}
+          taper={0}
+          spread={1}
+          intensity={0.6}
+          saturation={1.5}
+          opacity={1}
+          scale={1.5}
+          glass={false}
+          refraction={1}
+          dispersion={1}
+          glassSize={1}
+        />
+      </div>
 
       {/* Faculty Coordinator Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 flex flex-col items-stretch">
@@ -328,71 +344,80 @@ export const Team: React.FC = () => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          whileHover="hover"
           viewport={{ once: true, amount: 0.15 }}
-          variants={cardVariants('rgba(168, 85, 247, 0.35)', 'rgba(168, 85, 247, 0.25)')}
+          variants={cardVariants()}
           className="w-full max-w-md cursor-pointer mx-auto"
         >
-          {/* Glassmorphic Card Container */}
-          <div 
-            className="p-8 flex flex-col items-start text-left transition-all duration-300 relative overflow-hidden group h-full radar-sweep-indicator"
-            style={{
-              borderRadius: "24px",
-              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(10, 11, 20, 0.55) 30%, rgba(4, 5, 10, 0.8) 100%)",
-              backdropFilter: "blur(24px)",
-              WebkitBackdropFilter: "blur(24px)",
-              border: "1px solid rgba(168, 85, 247, 0.25)",
-              boxShadow: "0 12px 40px 0 rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.12)"
-            }}
+          <TiltedCard
+            containerHeight="100%"
+            containerWidth="100%"
+            imageHeight="100%"
+            imageWidth="100%"
+            rotateAmplitude={8}
+            scaleOnHover={1.03}
+            showMobileWarning={false}
+            showTooltip={false}
           >
-            {/* Ambient teal light glow behind card */}
+            {/* Glassmorphic Card Container */}
             <div 
-              className="absolute -right-16 -top-16 w-32 h-32 rounded-full blur-[80px] opacity-25 pointer-events-none transition-all duration-500 group-hover:scale-150 group-hover:opacity-45"
-              style={{ background: "#a855f7" }}
-            />
-
-            {/* Profile Photo frame */}
-            <div 
-              className="w-32 h-32 rounded-full overflow-hidden border-3 mb-6 relative bg-slate-900 shadow-md transition-all duration-300 border-[#a855f7]/30 group-hover:border-[#a855f7]/70"
+              className="p-8 flex flex-col items-start text-left transition-all duration-300 relative overflow-hidden group h-full radar-sweep-indicator"
+              style={{
+                borderRadius: "24px",
+                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(10, 11, 20, 0.55) 30%, rgba(4, 5, 10, 0.8) 100%)",
+                backdropFilter: "blur(24px)",
+                WebkitBackdropFilter: "blur(24px)",
+                border: "1px solid rgba(168, 85, 247, 0.25)",
+                boxShadow: "0 12px 40px 0 rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.12)"
+              }}
             >
-              <motion.img
-                variants={imageVariants}
-                src="/gallery/Pravesh.png"
-                alt="Pravesh Patel"
-                className="w-full h-full object-cover origin-center"
+              {/* Ambient teal light glow behind card */}
+              <div 
+                className="absolute -right-16 -top-16 w-32 h-32 rounded-full blur-[80px] opacity-25 pointer-events-none transition-all duration-500 group-hover:scale-150 group-hover:opacity-45"
+                style={{ background: "#a855f7" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020205]/40 to-transparent pointer-events-none" />
-            </div>
 
-            {/* Full Name & Role */}
-            <h3 className="text-2xl font-bold text-white font-heading leading-snug mb-1 tracking-tight">
-              Pravesh Patel
-            </h3>
-
-            <span 
-              className="text-xs font-mono font-bold uppercase tracking-wider mb-4 block text-[#a855f7] px-3 py-1 bg-[#a855f7]/10 rounded-full"
-            >
-              SBG Faculty Coordinator
-            </span>
-
-            {/* Tagline */}
-            <p className="text-slate-300 text-sm leading-relaxed mb-6 max-w-sm font-sans font-medium">
-              Championing academic cloud innovation and bridging the gap between classroom theory and industry standard cloud architecture.
-            </p>
-
-            {/* Social Action buttons */}
-            <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/5 w-full justify-start">
-              <a
-                href="https://linkedin.com/in/pravesh-patel-43573a10"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl border border-white/5 hover:border-[#a855f7] hover:text-[#a855f7] text-slate-400 bg-white/5 hover:bg-[#a855f7]/10 transition-all duration-300 cursor-pointer"
-                title="Pravesh Patel's LinkedIn"
+              {/* Profile Photo frame */}
+              <div 
+                className="w-32 h-32 rounded-full overflow-hidden border-3 mb-6 relative bg-slate-900 shadow-md transition-all duration-300 border-[#a855f7]/30 group-hover:border-[#a855f7]/70"
               >
-                <LinkedinIcon className="w-4 h-4" />
-              </a>
+                <img
+                  src="/gallery/Pravesh.png"
+                  alt="Pravesh Patel"
+                  className="w-full h-full object-cover origin-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020205]/40 to-transparent pointer-events-none" />
+              </div>
+
+              {/* Full Name & Role */}
+              <h3 className="text-2xl font-bold text-white font-heading leading-snug mb-1 tracking-tight">
+                Pravesh Patel
+              </h3>
+
+              <span 
+                className="text-xs font-mono font-bold uppercase tracking-wider mb-4 block text-[#a855f7] px-3 py-1 bg-[#a855f7]/10 rounded-full"
+              >
+                SBG Faculty Coordinator
+              </span>
+
+              {/* Tagline */}
+              <p className="text-slate-300 text-sm leading-relaxed mb-6 max-w-sm font-sans font-medium">
+                Championing academic cloud innovation and bridging the gap between classroom theory and industry standard cloud architecture.
+              </p>
+
+              {/* Social Action buttons */}
+              <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/5 w-full justify-start">
+                <a
+                  href="https://linkedin.com/in/pravesh-patel-43573a10"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-xl border border-white/5 hover:border-[#a855f7] hover:text-[#a855f7] text-slate-400 bg-white/5 hover:bg-[#a855f7]/10 transition-all duration-300 cursor-pointer"
+                  title="Pravesh Patel's LinkedIn"
+                >
+                  <LinkedinIcon className="w-4 h-4" />
+                </a>
+              </div>
             </div>
-          </div>
+          </TiltedCard>
         </motion.div>
       </section>
 
@@ -411,71 +436,80 @@ export const Team: React.FC = () => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            whileHover="hover"
             viewport={{ once: true, amount: 0.15 }}
-            variants={cardVariants('rgba(217, 70, 239, 0.35)', 'rgba(217, 70, 239, 0.25)')}
+            variants={cardVariants()}
             className="w-full cursor-pointer h-full"
           >
-            {/* Glassmorphic Card Container */}
-            <div 
-              className="p-8 flex flex-col items-start text-left transition-all duration-300 relative overflow-hidden group h-full radar-sweep-indicator"
-              style={{
-                borderRadius: "24px",
-                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(10, 11, 20, 0.55) 30%, rgba(4, 5, 10, 0.8) 100%)",
-                backdropFilter: "blur(24px)",
-                WebkitBackdropFilter: "blur(24px)",
-                border: "1px solid rgba(217, 70, 239, 0.25)",
-                boxShadow: "0 12px 40px 0 rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.12)"
-              }}
+            <TiltedCard
+              containerHeight="100%"
+              containerWidth="100%"
+              imageHeight="100%"
+              imageWidth="100%"
+              rotateAmplitude={8}
+              scaleOnHover={1.03}
+              showMobileWarning={false}
+              showTooltip={false}
             >
-              {/* Ambient gold light glow behind card */}
+              {/* Glassmorphic Card Container */}
               <div 
-                className="absolute -right-16 -top-16 w-32 h-32 rounded-full blur-[80px] opacity-25 pointer-events-none transition-all duration-500 group-hover:scale-150 group-hover:opacity-45"
-                style={{ background: "#d946ef" }}
-              />
-
-              {/* Profile Photo frame */}
-              <div 
-                className="w-32 h-32 rounded-full overflow-hidden border-3 mb-6 relative bg-slate-900 shadow-md transition-all duration-300 border-[#d946ef]/30 group-hover:border-[#d946ef]/70"
+                className="p-8 flex flex-col items-start text-left transition-all duration-300 relative overflow-hidden group h-full radar-sweep-indicator"
+                style={{
+                  borderRadius: "24px",
+                  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(10, 11, 20, 0.55) 30%, rgba(4, 5, 10, 0.8) 100%)",
+                  backdropFilter: "blur(24px)",
+                  WebkitBackdropFilter: "blur(24px)",
+                  border: "1px solid rgba(217, 70, 239, 0.25)",
+                  boxShadow: "0 12px 40px 0 rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.12)"
+                }}
               >
-                <motion.img
-                  variants={imageVariants}
-                  src="/gallery/Harshil.png"
-                  alt="Harshil Maniyar"
-                  className="w-full h-full object-cover origin-center"
+                {/* Ambient gold light glow behind card */}
+                <div 
+                  className="absolute -right-16 -top-16 w-32 h-32 rounded-full blur-[80px] opacity-25 pointer-events-none transition-all duration-500 group-hover:scale-150 group-hover:opacity-45"
+                  style={{ background: "#d946ef" }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020205]/40 to-transparent pointer-events-none" />
-              </div>
 
-              {/* Full Name & Role */}
-              <h3 className="text-2xl font-bold text-white font-heading leading-snug mb-1 tracking-tight">
-                Harshil Maniyar
-              </h3>
-
-              <span 
-                className="text-xs font-mono font-bold uppercase tracking-wider mb-4 block text-[#d946ef] px-3 py-1 bg-[#d946ef]/10 rounded-full"
-              >
-                SBG Leader
-              </span>
-
-              {/* Tagline */}
-              <p className="text-slate-300 text-sm leading-relaxed mb-6 max-w-sm font-sans font-medium">
-                Guiding the AWS Student Builder Group at Ganpat University to inspire next-generation cloud builders and technical innovators.
-              </p>
-
-              {/* Social Action buttons */}
-              <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/5 w-full justify-start">
-                <a
-                  href="https://linkedin.com/in/harshil-maniyar-7a20b832a"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl border border-white/5 hover:border-[#d946ef] hover:text-[#d946ef] text-slate-400 bg-white/5 hover:bg-[#d946ef]/10 transition-all duration-300 cursor-pointer"
-                  title="Harshil Maniyar's LinkedIn"
+                {/* Profile Photo frame */}
+                <div 
+                  className="w-32 h-32 rounded-full overflow-hidden border-3 mb-6 relative bg-slate-900 shadow-md transition-all duration-300 border-[#d946ef]/30 group-hover:border-[#d946ef]/70"
                 >
-                  <LinkedinIcon className="w-4 h-4" />
-                </a>
+                  <img
+                    src="/gallery/Harshil.png"
+                    alt="Harshil Maniyar"
+                    className="w-full h-full object-cover origin-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#020205]/40 to-transparent pointer-events-none" />
+                </div>
+
+                {/* Full Name & Role */}
+                <h3 className="text-2xl font-bold text-white font-heading leading-snug mb-1 tracking-tight">
+                  Harshil Maniyar
+                </h3>
+
+                <span 
+                  className="text-xs font-mono font-bold uppercase tracking-wider mb-4 block text-[#d946ef] px-3 py-1 bg-[#d946ef]/10 rounded-full"
+                >
+                  SBG Leader
+                </span>
+
+                {/* Tagline */}
+                <p className="text-slate-300 text-sm leading-relaxed mb-6 max-w-sm font-sans font-medium">
+                  Guiding the AWS Student Builder Group at Ganpat University to inspire next-generation cloud builders and technical innovators.
+                </p>
+
+                {/* Social Action buttons */}
+                <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/5 w-full justify-start">
+                  <a
+                    href="https://linkedin.com/in/harshil-maniyar-7a20b832a"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl border border-white/5 hover:border-[#d946ef] hover:text-[#d946ef] text-slate-400 bg-white/5 hover:bg-[#d946ef]/10 transition-all duration-300 cursor-pointer"
+                    title="Harshil Maniyar's LinkedIn"
+                  >
+                    <LinkedinIcon className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
-            </div>
+            </TiltedCard>
           </motion.div>
         </div>
       </section>
@@ -497,70 +531,79 @@ export const Team: React.FC = () => {
             <motion.div
               initial="hidden"
               whileInView="visible"
-              whileHover="hover"
               viewport={{ once: true, amount: 0.15 }}
-              variants={cardVariants('rgba(255, 170, 0, 0.35)', 'rgba(255, 170, 0, 0.25)')}
+              variants={cardVariants()}
               className="w-full max-w-md cursor-pointer mx-auto"
             >
-              <div 
-                className="p-8 flex flex-col items-start text-left transition-all duration-300 relative overflow-hidden group h-full radar-sweep-indicator"
-                style={{
-                  borderRadius: "24px",
-                  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(10, 11, 20, 0.55) 30%, rgba(4, 5, 10, 0.8) 100%)",
-                  backdropFilter: "blur(24px)",
-                  WebkitBackdropFilter: "blur(24px)",
-                  border: "1px solid rgba(255, 170, 0, 0.25)",
-                  boxShadow: "0 12px 40px 0 rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.12)"
-                }}
+              <TiltedCard
+                containerHeight="100%"
+                containerWidth="100%"
+                imageHeight="100%"
+                imageWidth="100%"
+                rotateAmplitude={8}
+                scaleOnHover={1.03}
+                showMobileWarning={false}
+                showTooltip={false}
               >
-                {/* Ambient gold light glow behind card */}
                 <div 
-                  className="absolute -right-16 -top-16 w-32 h-32 rounded-full blur-[80px] opacity-25 pointer-events-none transition-all duration-500 group-hover:scale-150 group-hover:opacity-45"
-                  style={{ background: "#ffaa00" }}
-                />
-
-                {/* Profile Photo frame */}
-                <div 
-                  className="w-32 h-32 rounded-full overflow-hidden border-3 mb-6 relative bg-slate-900 shadow-md transition-all duration-300 border-[#ffaa00]/30 group-hover:border-[#ffaa00]/70"
+                  className="p-8 flex flex-col items-start text-left transition-all duration-300 relative overflow-hidden group h-full radar-sweep-indicator"
+                  style={{
+                    borderRadius: "24px",
+                    background: "linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(10, 11, 20, 0.55) 30%, rgba(4, 5, 10, 0.8) 100%)",
+                    backdropFilter: "blur(24px)",
+                    WebkitBackdropFilter: "blur(24px)",
+                    border: "1px solid rgba(255, 170, 0, 0.25)",
+                    boxShadow: "0 12px 40px 0 rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.12)"
+                  }}
                 >
-                  <motion.img
-                    variants={imageVariants}
-                    src={adviser.photo}
-                    alt={adviser.name}
-                    className="w-full h-full object-cover origin-center"
+                  {/* Ambient gold light glow behind card */}
+                  <div 
+                    className="absolute -right-16 -top-16 w-32 h-32 rounded-full blur-[80px] opacity-25 pointer-events-none transition-all duration-500 group-hover:scale-150 group-hover:opacity-45"
+                    style={{ background: "#ffaa00" }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#020205]/40 to-transparent pointer-events-none" />
-                </div>
 
-                {/* Full Name & Role */}
-                <h3 className="text-2xl font-bold text-white font-heading leading-snug mb-1 tracking-tight">
-                  {adviser.name}
-                </h3>
-
-                <span 
-                  className="text-xs font-mono font-bold uppercase tracking-wider mb-4 block text-[#ffaa00] px-3 py-1 bg-[#ffaa00]/10 rounded-full"
-                >
-                  {adviser.role}
-                </span>
-
-                {/* Tagline */}
-                <p className="text-slate-300 text-sm leading-relaxed mb-6 max-w-sm font-sans font-medium">
-                  {adviser.tagline}
-                </p>
-
-                {/* Social Action buttons */}
-                <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/5 w-full justify-start">
-                  <a
-                    href={adviser.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2.5 rounded-xl border border-white/5 hover:border-[#ffaa00] hover:text-[#ffaa00] text-slate-400 bg-white/5 hover:bg-[#ffaa00]/10 transition-all duration-300 cursor-pointer"
-                    title={`${adviser.name}'s LinkedIn`}
+                  {/* Profile Photo frame */}
+                  <div 
+                    className="w-32 h-32 rounded-full overflow-hidden border-3 mb-6 relative bg-slate-900 shadow-md transition-all duration-300 border-[#ffaa00]/30 group-hover:border-[#ffaa00]/70"
                   >
-                    <LinkedinIcon className="w-4 h-4" />
-                  </a>
+                    <img
+                      src={adviser.photo}
+                      alt={adviser.name}
+                      className="w-full h-full object-cover origin-center"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#020205]/40 to-transparent pointer-events-none" />
+                  </div>
+
+                  {/* Full Name & Role */}
+                  <h3 className="text-2xl font-bold text-white font-heading leading-snug mb-1 tracking-tight">
+                    {adviser.name}
+                  </h3>
+
+                  <span 
+                    className="text-xs font-mono font-bold uppercase tracking-wider mb-4 block text-[#ffaa00] px-3 py-1 bg-[#ffaa00]/10 rounded-full"
+                  >
+                    {adviser.role}
+                  </span>
+
+                  {/* Tagline */}
+                  <p className="text-slate-300 text-sm leading-relaxed mb-6 max-w-sm font-sans font-medium">
+                    {adviser.tagline}
+                  </p>
+
+                  {/* Social Action buttons */}
+                  <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/5 w-full justify-start">
+                    <a
+                      href={adviser.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2.5 rounded-xl border border-white/5 hover:border-[#ffaa00] hover:text-[#ffaa00] text-slate-400 bg-white/5 hover:bg-[#ffaa00]/10 transition-all duration-300 cursor-pointer"
+                      title={`${adviser.name}'s LinkedIn`}
+                    >
+                      <LinkedinIcon className="w-4 h-4" />
+                    </a>
+                  </div>
                 </div>
-              </div>
+              </TiltedCard>
             </motion.div>
           </section>
         );
@@ -593,12 +636,22 @@ export const Team: React.FC = () => {
                 whileInView="visible"
                 whileHover="hover"
                 viewport={{ once: true, amount: 0.15 }}
-                variants={cardVariants(style.glowColor, style.borderColor)}
+                variants={cardVariants()}
                 className="h-full cursor-pointer"
               >
-                {/* Glassmorphic Card Container */}
-                <div 
-                  className="p-6 h-full flex flex-col justify-between transition-all duration-300 relative overflow-hidden group"
+                <TiltedCard
+                  containerHeight="100%"
+                  containerWidth="100%"
+                  imageHeight="100%"
+                  imageWidth="100%"
+                  rotateAmplitude={8}
+                  scaleOnHover={1.03}
+                  showMobileWarning={false}
+                  showTooltip={false}
+                >
+                  {/* Glassmorphic Card Container */}
+                  <div 
+                    className="p-6 h-full flex flex-col justify-between transition-all duration-300 relative overflow-hidden group radar-sweep-indicator"
                   style={{
                     borderRadius: "24px",
                     background: "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(10, 11, 20, 0.5) 30%, rgba(4, 5, 10, 0.8) 100%)",
@@ -674,7 +727,8 @@ export const Team: React.FC = () => {
                       </a>
                     </div>
                   </div>
-                </div>
+                  </div>
+                </TiltedCard>
               </motion.div>
             );
           })}
