@@ -8,9 +8,8 @@ import { EVENTS } from '../data/mockData';
 import { Logo } from '../components/ui/Logo';
 import SoftAurora from '../components/ui/SoftAurora';
 import TextType from '../components/ui/TextType';
-import ScrambledText from '../components/ui/ScrambledText';
 import { useMeetupData } from '../utils/meetup';
-import DotField from '../components/ui/DotField';
+import ShapeGrid from '../components/ui/ShapeGrid';
 
 
 
@@ -74,7 +73,7 @@ export const Home: React.FC = () => {
       {/* 1. HERO SECTION */}
       <section className="relative min-h-[92svh] flex items-center justify-center px-4">
 
-        {/* DotField interactive dot background — breaks out of max-w container to fill full viewport */}
+        {/* Cubes interactive background -- breaks out of max-w container to fill full viewport */}
         <div style={{
           position: 'absolute',
           top: 0,
@@ -83,17 +82,16 @@ export const Home: React.FC = () => {
           width: '100vw',
           height: '100%',
           zIndex: 0,
+          overflow: 'hidden'
         }}>
-          <DotField
-            dotRadius={2}
-            dotSpacing={20}
-            bulgeStrength={80}
-            glowRadius={200}
-            sparkle={false}
-            waveAmplitude={0}
-            gradientFrom="rgba(168, 85, 247, 0.7)"
-            gradientTo="rgba(217, 70, 239, 0.5)"
-            glowColor="#1a0d2e"
+          <ShapeGrid 
+            speed={0.54}
+            squareSize={40}
+            direction='diagonal'
+            borderColor="#403750"
+            hoverFillColor='#7C3AED'
+            shape='square'
+            hoverTrailAmount={1}
           />
         </div>
 
@@ -121,10 +119,10 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: 150 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-heading tracking-tight leading-[1.1] pb-2 text-glow"
+            className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-heading tracking-tight leading-[1.1] pb-2 text-glow whitespace-pre-wrap"
           >
             <TextType 
-              text="AWS Student Builder Group Ganpat University"
+              text={"AWS\nStudent Builder Group\nGanpat University"}
               typingSpeed={75}
               pauseDuration={1500}
               showCursor={false}
@@ -140,17 +138,9 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: 150 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl mx-auto text-base sm:text-lg lg:text-xl text-gray-300 font-medium font-body leading-relaxed mb-10 tracking-wide"
+            className="max-w-2xl mx-auto text-base sm:text-lg lg:text-xl text-gray-300 font-medium font-body leading-relaxed mb-10 tracking-wide text-center"
           >
-            <ScrambledText
-              className="text-center"
-              radius={50}
-              duration={0.9}
-              speed={0.4}
-              scrambleChars=".:"
-            >
-              A platform to learn, build, and innovate with the power of AWS Cloud. Connecting students with hands-on learning, innovation, and real-world opportunities.
-            </ScrambledText>
+            A platform to learn, build, and innovate with the power of AWS Cloud. Connecting students with hands-on learning, innovation, and real-world opportunities.
           </motion.div>
 
           <motion.div
@@ -339,13 +329,21 @@ export const Home: React.FC = () => {
       {/* AURORA SEPARATOR */}
       <section className="h-[250px] sm:h-[350px] relative border-t border-white/5 bg-black">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-full z-0 overflow-hidden">
-          <SoftAurora 
-            color1="#a855f7" 
-            color2="#00f5ff"
-            speed={0.4}
-            brightness={1.0}
-            bandSpread={1.5}
-            noiseAmplitude={1.2}
+          <SoftAurora
+            speed={0.8}
+            scale={3}
+            brightness={0.6}
+            color1="#7C3AED"
+            color2="#7C3AED"
+            noiseFrequency={2}
+            noiseAmplitude={1}
+            bandHeight={0.45}
+            bandSpread={1}
+            octaveDecay={0.1}
+            layerOffset={0}
+            colorSpeed={1.5}
+            enableMouseInteraction={false}
+            mouseInfluence={0.25}
           />
         </div>
       </section>

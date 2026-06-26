@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // Layout and Common UI Components
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
-import { StarryLoading } from './components/ui/StarryLoading';
+import { PixelLoader } from './components/ui/PixelLoader';
 import { SonarClickEffect } from './components/ui/SonarClickEffect';
 
 // Pages
@@ -86,7 +86,7 @@ export const App: React.FC = () => {
       
       <AnimatePresence mode="wait">
         {loading ? (
-          <StarryLoading key="loader" onComplete={() => setLoading(false)} />
+          <PixelLoader key="loader" onComplete={() => setLoading(false)} />
         ) : (
           <motion.div
             key="content"

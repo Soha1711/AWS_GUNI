@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from '../ui/Logo';
-import GooeyNav from '../ui/GooeyNav';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,10 +63,23 @@ export const Navbar: React.FC = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
-              <div className="flex items-center">
-                <GooeyNav 
-                  items={navLinks.map(link => ({ label: link.name, href: link.path }))} 
-                />
+              <div className="flex items-center gap-6">
+                {navLinks.map((link) => {
+                  const isActive = location.pathname === link.path;
+                  return (
+                    <Link
+                      key={link.name}
+                      to={link.path}
+                      className={`relative text-sm font-medium tracking-wide uppercase transition-colors duration-350 ${
+                        isActive
+                          ? 'text-[#a855f7] text-glow'
+                          : 'text-slate-300 hover:text-[#a855f7]'
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  );
+                })}
               </div>
 
               {/* Action Button */}

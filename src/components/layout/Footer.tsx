@@ -15,9 +15,9 @@ export const Footer: React.FC = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(217,70,239,0.06),transparent_50%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-12">
           {/* Brand Info Column */}
-          <div className="md:col-span-1.5 space-y-4">
+          <div className="md:col-span-1 space-y-4">
             <Link to="/" className="flex items-center gap-2.5 group">
               <Logo size={24} className="group-hover:scale-105 transition-transform duration-300" />
               <div className="flex flex-col">
@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
               </div>
             </Link>
             
-            <p className="text-base sm:text-lg text-slate-400 leading-relaxed font-sans pr-4 pt-1">
+            <p className="text-sm sm:text-base text-slate-400 leading-relaxed font-sans pr-4 pt-1">
               A platform to learn, build, and innovate with the power of AWS Cloud. Connecting students with hands-on learning, innovation, and real-world opportunities.
             </p>
 
@@ -85,7 +85,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Quick Links Column */}
-          <div className="space-y-4">
+          <div className="space-y-4 md:justify-self-center">
             <h4 className="text-white font-bold text-sm tracking-widest uppercase font-heading">
               Quick Navigation
             </h4>
@@ -102,7 +102,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/team" className="hover:text-[#a855f7] transition-colors">
-                  Meet the Team
+                  Our Team
                 </Link>
               </li>
               <li>
@@ -119,30 +119,6 @@ export const Footer: React.FC = () => {
                 <Link to="/contact" className="hover:text-[#a855f7] transition-colors">
                   Contact Support
                 </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Technical Domains Column */}
-          <div className="space-y-4">
-            <h4 className="text-white font-bold text-sm tracking-widest uppercase font-heading">
-              Builder Domains
-            </h4>
-            <ul className="space-y-2.5 text-sm font-sans">
-              <li className="hover:text-[#d946ef] transition-colors cursor-default">
-                Cloud Computing
-              </li>
-              <li className="hover:text-[#d946ef] transition-colors cursor-default">
-                Artificial Intelligence
-              </li>
-              <li className="hover:text-[#d946ef] transition-colors cursor-default">
-                Machine Learning
-              </li>
-              <li className="hover:text-[#d946ef] transition-colors cursor-default">
-                DevOps & Automation
-              </li>
-              <li className="hover:text-[#d946ef] transition-colors cursor-default">
-                Cybersecurity & Identity
               </li>
             </ul>
           </div>
