@@ -6,10 +6,11 @@ import {
 } from 'lucide-react';
 import { EVENTS } from '../data/mockData';
 import { Logo } from '../components/ui/Logo';
-import SoftAurora from '../components/ui/SoftAurora';
+import CircuitBentoGrid from '../components/ui/CircuitBentoGrid';
 import TextType from '../components/ui/TextType';
 import { useMeetupData } from '../utils/meetup';
 import ShapeGrid from '../components/ui/ShapeGrid';
+import { EventsSection } from '../components/ui/EventsSection';
 
 
 
@@ -205,7 +206,7 @@ export const Home: React.FC = () => {
 
       {/* 4. STATISTICS COUNTER SECTION */}
       <section ref={statsRef} className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 gap-8 max-w-sm mx-auto">
           <div className="glass p-6 rounded-2xl border border-white/5 text-center shadow-lg hover:border-[#a855f7]/20 transition-all relative">
             {isLive && (
               <span className="absolute top-3 right-3 flex h-2 w-2">
@@ -221,132 +222,14 @@ export const Home: React.FC = () => {
               {isLive && <span className="text-[10px] text-emerald-400 font-mono font-bold lowercase tracking-normal">(live)</span>}
             </div>
           </div>
-          
-          <div className="glass p-6 rounded-2xl border border-white/5 text-center shadow-lg hover:border-[#a855f7]/20 transition-all">
-            <div className="text-3xl sm:text-5xl font-extrabold text-[#a855f7] font-mono mb-2">
-              {stats.events}
-            </div>
-            <div className="text-xs uppercase tracking-widest text-slate-400 font-sans font-medium">
-              Events Conducted
-            </div>
-          </div>
         </div>
       </section>
 
       {/* 5. UPCOMING EVENTS PREVIEW */}
-      <section className="py-20 bg-[#060814]/45 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-4">
-            <div className="text-center space-y-3">
-              <h2 className="text-3xl sm:text-5xl font-bold text-white font-heading tracking-tight">
-                Upcoming & Past Events
-              </h2>
-            </div>
-            <Link
-              to="/events"
-              className="px-5 py-2.5 rounded-xl border border-white/10 hover:border-cyan-400 text-sm font-semibold uppercase tracking-wider transition-all bg-white/5 flex items-center gap-2"
-            >
-              All Events
-              <ArrowRight className="w-4 h-4 text-cyan-400" />
-            </Link>
-          </div>
+      <EventsSection events={upcomingEvents} />
 
-          {upcomingEvents.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {upcomingEvents.map((event) => (
-                <div key={event.id} className="glass rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col group">
-                  <div className="relative h-56 overflow-hidden bg-black shrink-0">
-                    <img
-                      src={event.poster}
-                      alt={event.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-black/60 to-transparent" />
-                    <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10px] font-bold tracking-wider uppercase text-black bg-[#ffaa00] shadow-[0_0_10px_#ffaa00]/40">
-                      <Calendar className="w-3.5 h-3.5" />
-                      {event.date}
-                    </span>
-                  </div>
-
-                  <div className="p-6 flex-1 flex flex-col justify-between gap-6">
-                    <div className="space-y-3">
-                      <h3 className="text-lg sm:text-xl font-bold text-white font-heading group-hover:text-[#00f5ff] transition-colors leading-snug">
-                        {event.name}
-                      </h3>
-                      <p className="text-sm text-slate-400 font-sans line-clamp-3">
-                        {event.description}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                      <span className="text-[11px] font-mono text-slate-500 truncate max-w-[200px]">
-                        {event.venue}
-                      </span>
-                      <Link
-                        to={`/events?id=${event.id}`}
-                        className="px-4.5 py-2 text-xs font-bold uppercase tracking-wider text-black bg-white group-hover:bg-[#00f5ff] rounded-lg transition-colors flex items-center gap-1 shrink-0"
-                      >
-                        Inspect
-                        <ChevronRight className="w-3.5 h-3.5" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="space-y-12">
-              {/* Fallback info when no upcoming events */}
-              <div className="glass rounded-2xl p-8 sm:p-12 border border-white/5 text-center max-w-xl mx-auto space-y-6">
-                <div className="w-14 h-14 rounded-full bg-[#00f5ff]/10 border border-[#00f5ff]/25 flex items-center justify-center mx-auto text-[#00f5ff]">
-                  <Calendar className="w-6 h-6 animate-pulse" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-white font-heading">
-                    No Upcoming Events
-                  </h3>
-                  <p className="text-sm text-slate-400 font-sans leading-relaxed">
-                    Join our Meetup Hub to be notified instantly as soon as new schedules release!
-                  </p>
-                </div>
-                <div>
-                  <a
-                    href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold uppercase tracking-wider text-xs text-black bg-[#ffaa00] hover:bg-amber-400 shadow-md shadow-[#ffaa00]/25 hover:scale-101 transition-all cursor-pointer font-sans"
-                  >
-                    Join Our Meetup Hub
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* AURORA SEPARATOR */}
-      <section className="h-[250px] sm:h-[350px] relative border-t border-white/5 bg-black">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-full z-0 overflow-hidden">
-          <SoftAurora
-            speed={0.8}
-            scale={3}
-            brightness={0.6}
-            color1="#7C3AED"
-            color2="#7C3AED"
-            noiseFrequency={2}
-            noiseAmplitude={1}
-            bandHeight={0.45}
-            bandSpread={1}
-            octaveDecay={0.1}
-            layerOffset={0}
-            colorSpeed={1.5}
-            enableMouseInteraction={false}
-            mouseInfluence={0.25}
-          />
-        </div>
-      </section>
+      {/* SCROLL-DRIVEN CIRCUIT BENTO GRID */}
+      <CircuitBentoGrid />
 
       {/* 6. PAST EVENTS HIGHLIGHTS */}
       {pastEventsList.length > 0 && upcomingEvents.length === 0 && (
