@@ -27,7 +27,7 @@ const MARQUEE_ITEMS = [
 
 // Typewriter effect custom hook
 export const Home: React.FC = () => {
-  const { memberCount, pastEvents, isLive } = useMeetupData();
+  const { memberCount, pastEvents, upcomingEvents: liveUpcomingEvents, isLive } = useMeetupData();
   const [stats, setStats] = useState({ members: 0, events: 0 });
   
   const statsRef = useRef(null);
@@ -58,11 +58,11 @@ export const Home: React.FC = () => {
 
   // Merge live attendee/rsvp count into static EVENTS data
   const mergedEvents = EVENTS.map(e => {
-    const meetupId = e.id === 'event-1' ? '314906294' : e.id === 'event-2' ? '313855270' : null;
-    const liveEvent = pastEvents.find((pe: any) => pe.id === meetupId);
+    const meetupId = e.id === 'event-1' ? '314906294' : (e.id === 'event-2' ? '313855270' : (e.id === 'event-upcoming-1' ? '315424216' : null));
+    const liveEvent = [...(pastEvents || []), ...(liveUpcomingEvents || [])].find((pe: any) => pe.id === meetupId);
     return {
       ...e,
-      attendeeCount: liveEvent ? liveEvent.going : (e.id === 'event-1' ? 221 : e.id === 'event-2' ? 675 : 0)
+      attendeeCount: liveEvent ? liveEvent.going : (e.id === 'event-1' ? 221 : e.id === 'event-2' ? 675 : (e.id === 'event-upcoming-1' ? 232 : 0))
     };
   });
 

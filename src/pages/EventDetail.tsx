@@ -199,7 +199,34 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
         <div className="lg:col-span-4 lg:sticky lg:top-24">
           <AnimatePresence mode="wait">
             {isUpcoming ? (
-              !formSubmitted ? (
+              event.registrationUrl ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  className="glass rounded-2xl p-6 border border-[#a855f7]/30 shadow-2xl relative overflow-hidden space-y-6 text-center"
+                >
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#a855f7]/5 rounded-full blur-2xl pointer-events-none" />
+                  
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-bold text-white font-heading">
+                      Join Event
+                    </h3>
+                    <p className="text-xs text-slate-400 font-sans leading-relaxed">
+                      This event is hosted on Meetup. Click below to RSVP and secure your spot in our community builder week.
+                    </p>
+                  </div>
+
+                  <a
+                    href={event.registrationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3.5 rounded-full text-black bg-[#ffaa00] hover:bg-amber-400 font-bold uppercase tracking-wider text-xs transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-[#ffaa00]/25"
+                  >
+                    RSVP on Meetup
+                  </a>
+                </motion.div>
+              ) : !formSubmitted ? (
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}

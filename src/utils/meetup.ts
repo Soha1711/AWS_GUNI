@@ -13,6 +13,7 @@ export interface MeetupEvent {
 export interface MeetupData {
   memberCount: number;
   pastEvents: MeetupEvent[];
+  upcomingEvents: MeetupEvent[];
   isLive: boolean;
   isLoading: boolean;
 }
@@ -20,6 +21,17 @@ export interface MeetupData {
 // Latest live numbers as of June 2026 used as static fallback
 export const STATIC_FALLBACK: MeetupData = {
   memberCount: 1017,
+  upcomingEvents: [
+    {
+      id: '315424216',
+      title: 'AWS Gujarat Students Builder Week 2026',
+      dateTime: '2026-07-05T21:00:00+05:30',
+      going: 232,
+      venue: 'Online Event (Meetup Live)',
+      description: 'Get ready for AWS Gujarat Students Builder Week 2026 — a 7-day virtual learning experience organized by the AWS Student Builder Group Leaders – Gujarat.',
+      isOnline: true
+    }
+  ],
   pastEvents: [
     {
       id: '314906294',
@@ -80,19 +92,23 @@ export async function fetchLiveMeetupData(): Promise<MeetupData> {
       const memberCount = group?.stats?.memberCounts?.all || STATIC_FALLBACK.memberCount;
       
       const pastEvents: MeetupEvent[] = [];
+      const upcomingEvents: MeetupEvent[] = [];
       apolloKeys.forEach(k => {
         if (k.startsWith('Event:')) {
           const event = apolloState[k];
+          const mappedEvent = {
+            id: event.id,
+            title: event.title,
+            dateTime: event.dateTime,
+            going: event.going?.totalCount || 0,
+            venue: event.venue?.name || (event.isOnline ? 'Online Event (Meetup Live)' : 'Ganpat University, Mehsana'),
+            description: event.description || '',
+            isOnline: !!event.isOnline
+          };
           if (event.status === 'PAST') {
-            pastEvents.push({
-              id: event.id,
-              title: event.title,
-              dateTime: event.dateTime,
-              going: event.going?.totalCount || 0,
-              venue: event.venue?.name || (event.isOnline ? 'Online Event (Meetup Live)' : 'Ganpat University, Mehsana'),
-              description: event.description || '',
-              isOnline: !!event.isOnline
-            });
+            pastEvents.push(mappedEvent);
+          } else {
+            upcomingEvents.push(mappedEvent);
           }
         }
       });
@@ -100,12 +116,16 @@ export async function fetchLiveMeetupData(): Promise<MeetupData> {
       // Sort past events by date descending
       pastEvents.sort((a, b) => new Date(b.dateTime).getTime() - new Date(a.dateTime).getTime());
       
+      // Sort upcoming events by date ascending
+      upcomingEvents.sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime());
+      
       // If we got events and member count, return them
-      if (pastEvents.length > 0) {
+      if (pastEvents.length > 0 || upcomingEvents.length > 0) {
         console.log('Successfully fetched live Meetup data from proxy', i);
         return {
           memberCount,
           pastEvents,
+          upcomingEvents,
           isLive: true,
           isLoading: false
         };
