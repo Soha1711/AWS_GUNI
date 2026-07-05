@@ -5,6 +5,7 @@ import {
   MapPin, CheckCircle, GraduationCap, Server, Code, Zap 
 } from 'lucide-react';
 import { MagicBentoCard } from '../components/ui/MagicBentoCard';
+import { ScrollText } from '../components/ui/ScrollReveal';
 
 const TIMELINE = [
   {
@@ -98,7 +99,7 @@ export const About: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-4xl sm:text-5xl font-extrabold text-white font-heading tracking-tight"
         >
-          Engineering the Cloud Horizon
+          <ScrollText text="Engineering the Cloud Horizon" />
         </motion.h1>
         
         <motion.p
@@ -107,7 +108,11 @@ export const About: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="max-w-3xl mx-auto text-slate-400 text-base sm:text-lg"
         >
-          Learn who we are, our core drivers, and the timeline students traverse to morph from cloud novices into AWS Certified Builders.
+          <ScrollText
+            text="Learn who we are, our core drivers, and the timeline students traverse to morph from cloud novices into AWS Certified Builders."
+            stagger={0.012}
+            delay={0.25}
+          />
         </motion.p>
       </section>
 
@@ -189,10 +194,13 @@ export const About: React.FC = () => {
             className="text-center max-w-3xl mx-auto mb-16 space-y-3"
           >
             <h2 className="text-3xl font-bold text-white font-heading">
-              Why Join the GNU Builder Hub?
+              <ScrollText text="Why Join the GNU Builder Hub?" />
             </h2>
             <p className="text-slate-400 font-sans">
-              Accelerate your engineering journey. As a certified group backed by AWS Academy and Ganpat University, we offer privileges designed for career launches.
+              <ScrollText
+                text="Accelerate your engineering journey. As a certified group backed by AWS Academy and Ganpat University, we offer privileges designed for career launches."
+                stagger={0.01}
+              />
             </p>
           </motion.div>
 
@@ -234,10 +242,13 @@ export const About: React.FC = () => {
           className="text-center max-w-3xl mx-auto mb-16 space-y-3"
         >
           <h2 className="text-3xl font-bold text-white font-heading">
-            Student Builder Learning Path
+            <ScrollText text="Student Builder Learning Path" />
           </h2>
           <p className="text-slate-400 font-sans">
-            How we guide you step-by-step from local local-host directories straight to cloud-native cluster infrastructures.
+            <ScrollText
+              text="How we guide you step-by-step from local local-host directories straight to cloud-native cluster infrastructures."
+              stagger={0.01}
+            />
           </p>
         </motion.div>
 
@@ -298,10 +309,13 @@ export const About: React.FC = () => {
                 Ganpat University Tech Ecosystem
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-white font-heading">
-                AWS Community Impact
+                <ScrollText text="AWS Community Impact" />
               </h3>
               <p className="text-sm md:text-base text-slate-400 leading-relaxed font-sans">
-                Our collaborative footprint stretches across the computer science and information technology disciplines at GNU. By offering hands-on technical labs, we enable student builders to develop project resumes that stand out.
+                <ScrollText
+                  text="Our collaborative footprint stretches across the computer science and information technology disciplines at GNU. By offering hands-on technical labs, we enable student builders to develop project resumes that stand out."
+                  stagger={0.01}
+                />
               </p>
             </div>
             

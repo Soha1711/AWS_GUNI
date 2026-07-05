@@ -11,6 +11,7 @@ import TextType from '../components/ui/TextType';
 import { useMeetupData } from '../utils/meetup';
 import ShapeGrid from '../components/ui/ShapeGrid';
 import { EventsSection } from '../components/ui/EventsSection';
+import { ScrollText } from '../components/ui/ScrollReveal';
 
 
 
@@ -141,7 +142,11 @@ export const Home: React.FC = () => {
             transition={{ duration: 1.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-2xl mx-auto text-base sm:text-lg lg:text-xl text-gray-300 font-medium font-body leading-relaxed mb-10 tracking-wide text-center"
           >
-            A platform to learn, build, and innovate with the power of AWS Cloud. Connecting students with hands-on learning, innovation, and real-world opportunities.
+            <ScrollText
+              text="A platform to learn, build, and innovate with the power of AWS Cloud. Connecting students with hands-on learning, innovation, and real-world opportunities."
+              delay={0.6}
+              stagger={0.015}
+            />
           </motion.div>
 
           <motion.div
@@ -237,7 +242,7 @@ export const Home: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             <div className="text-center space-y-2">
               <h3 className="text-2xl font-bold text-white font-heading">
-                Recent Cloud Gatherings
+                <ScrollText text="Recent Cloud Gatherings" />
               </h3>
             </div>
 
@@ -311,10 +316,13 @@ export const Home: React.FC = () => {
         <div className="max-w-4xl mx-auto text-center px-4 relative z-10 space-y-6">
           <MessageSquare className="w-12 h-12 text-[#00f5ff] mx-auto animate-bounce text-glow-blue" />
           <h2 className="text-3xl sm:text-5xl font-bold text-white font-heading">
-            Connect With Our Community
+            <ScrollText text="Connect With Our Community" />
           </h2>
           <p className="max-w-xl mx-auto text-slate-300 font-sans text-sm sm:text-base leading-relaxed">
-            Expand your cloud horizon. Join study circles, collaborate on open-source code repositories, get sponsored for certifications, and build real-world systems.
+            <ScrollText
+              text="Expand your cloud horizon. Join study circles, collaborate on open-source code repositories, get sponsored for certifications, and build real-world systems."
+              stagger={0.015}
+            />
           </p>
           <div className="pt-4">
             <a
