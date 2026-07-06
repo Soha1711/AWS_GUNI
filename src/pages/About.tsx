@@ -1,42 +1,13 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { 
   Compass, Eye, Target, Network, ShieldCheck, 
-  MapPin, CheckCircle, GraduationCap, Server, Code, Zap 
+  CheckCircle, GraduationCap, Code 
 } from 'lucide-react';
 import { MagicBentoCard } from '../components/ui/MagicBentoCard';
 import { ScrollText } from '../components/ui/ScrollReveal';
 
-const TIMELINE = [
-  {
-    step: 'Phase 01',
-    title: 'Cloud Foundations & Academy Sandbox',
-    duration: 'Months 1-2',
-    icon: GraduationCap,
-    desc: 'Understanding cloud models (IaaS, PaaS, SaaS), setting up AWS IAM, working with simple EC2 instances, S3 storage buckets, and understanding security policies.'
-  },
-  {
-    step: 'Phase 02',
-    title: 'Architecture & Scalable Systems',
-    duration: 'Months 3-4',
-    icon: Server,
-    desc: 'Deploying highly-available systems. Configuring auto-scaling groups, application load balancers, database replication, and monitoring setups using AWS CloudWatch.'
-  },
-  {
-    step: 'Phase 03',
-    title: 'Serverless Deployments & DevOps',
-    duration: 'Months 5-6',
-    icon: Code,
-    desc: 'Transitioning to event-driven serverless architectures. Writing Lambda functions, integrating API Gateway, orchestrating DynamoDB tables, and automating pipeline builds.'
-  },
-  {
-    step: 'Phase 04',
-    title: 'GenAI Integrations & Specialist Tracks',
-    duration: 'Months 7+',
-    icon: Zap,
-    desc: 'Harnessing advanced intelligence. Deploying LLM pipelines using AWS Bedrock, model fine-tuning with SageMaker, or diving deep into security and governance scopes.'
-  }
-];
+
 
 const BENEFITS = [
   {
@@ -84,6 +55,107 @@ const cardVariants = {
   }
 };
 
+const BenefitTimelineItem: React.FC<{
+  benefit: typeof BENEFITS[0];
+  idx: number;
+  isEven: boolean;
+  isLast: boolean;
+}> = ({ benefit, idx, isEven, isLast }) => {
+  const itemRef = useRef<HTMLDivElement>(null);
+  const IconComponent = benefit.icon;
+
+  const { scrollYProgress } = useScroll({
+    target: itemRef,
+    offset: ["start end", "end center"]
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  // Card transform animations driven by scroll position
+  const cardOpacity = useTransform(smoothProgress, [0.2, 0.55], [0, 1]);
+  const cardX = useTransform(smoothProgress, [0.2, 0.55], [isEven ? 40 : -40, 0]);
+  const cardY = useTransform(smoothProgress, [0.2, 0.55], [15, 0]);
+
+  // Circle node animations driven by scroll position
+  const nodeScale = useTransform(smoothProgress, [0.2, 0.55], [0.8, 1.15]);
+  const nodeBg = useTransform(smoothProgress, [0.2, 0.55], ['#0f172a', '#020205']);
+  const nodeBorder = useTransform(smoothProgress, [0.2, 0.55], ['rgba(255, 255, 255, 0.1)', '#00f5ff']);
+  const nodeGlowOpacity = useTransform(smoothProgress, [0.35, 0.55], [0, 0.6]);
+  const iconColor = useTransform(smoothProgress, [0.3, 0.55], ['#94a3b8', '#00f5ff']);
+
+  return (
+    <div 
+      ref={itemRef} 
+      className={`flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16 w-full relative py-12 ${
+        isEven ? 'md:flex-row-reverse' : ''
+      }`}
+    >
+      {/* Vertical trace background line segment */}
+      <div className={`absolute left-6 md:left-1/2 top-0 w-[2px] -translate-x-1/2 bg-white/5 pointer-events-none ${
+        isLast ? 'h-1/2' : 'bottom-0'
+      }`} />
+      
+      {/* Animated active progress line segment */}
+      <div className={`absolute left-6 md:left-1/2 top-0 w-[2px] -translate-x-1/2 overflow-hidden pointer-events-none ${
+        isLast ? 'h-1/2' : 'bottom-0'
+      }`}>
+        <motion.div 
+          className="w-full h-full bg-gradient-to-b from-[#ffaa00] via-[#00f5ff] to-cyan-400 origin-top"
+          style={{ scaleY: smoothProgress }}
+        />
+      </div>
+
+      {/* Empty space for alignment on desktop */}
+      <div className="hidden md:block w-[45%]" />
+
+      {/* Circle Node */}
+      <div className="absolute left-6 md:left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10">
+        <motion.div 
+          style={{ 
+            scale: nodeScale,
+            backgroundColor: nodeBg,
+            borderColor: nodeBorder
+          }}
+          className="w-10 h-10 rounded-full border-2 flex items-center justify-center text-slate-400 relative"
+        >
+          {/* Node Glow Effect when active */}
+          <motion.div 
+            style={{ opacity: nodeGlowOpacity }}
+            className="absolute inset-0 rounded-full bg-[#00f5ff]/25 blur-[6px] pointer-events-none"
+          />
+          <motion.div style={{ color: iconColor }} className="relative z-10 flex items-center justify-center">
+            <IconComponent className="w-5 h-5" />
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Card Content */}
+      <motion.div 
+        style={{ opacity: cardOpacity, x: cardX, y: cardY }}
+        className="w-full md:w-[45%] z-0"
+      >
+        <MagicBentoCard className="glass p-6 rounded-2xl border border-white/10 flex flex-col gap-3 hover:border-[#00f5ff]/40 transition-all h-full relative group">
+          <div className="absolute inset-0 bg-[#00f5ff]/5 opacity-0 group-hover:opacity-100 rounded-2xl blur-sm transition-opacity pointer-events-none" />
+          
+          <span className="text-[10px] font-mono font-bold tracking-wider text-[#ffaa00] uppercase">
+            Benefit 0{idx + 1}
+          </span>
+          <h3 className="text-xl font-bold text-white font-heading">
+            {benefit.title}
+          </h3>
+          <p className="text-sm text-slate-400 leading-relaxed font-sans">
+            {benefit.desc}
+          </p>
+        </MagicBentoCard>
+      </motion.div>
+    </div>
+  );
+};
+
 export const About: React.FC = () => {
   return (
     <div className="relative pt-24 pb-16 font-sans overflow-hidden">
@@ -99,7 +171,7 @@ export const About: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-4xl sm:text-5xl font-extrabold text-white font-heading tracking-tight"
         >
-          <ScrollText text="Engineering the Cloud Horizon" />
+          <ScrollText text="About Us" />
         </motion.h1>
         
         <motion.p
@@ -204,148 +276,29 @@ export const About: React.FC = () => {
             </p>
           </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
-            {BENEFITS.map((benefit, idx) => (
-              <motion.div key={idx} variants={cardVariants}>
-                <MagicBentoCard className="glass p-6 rounded-2xl border border-white/10 flex gap-4 hover:border-[#00f5ff]/40 transition-all h-full">
-                  <div className="w-12 h-12 rounded-xl bg-[#ffaa00]/10 flex items-center justify-center text-[#ffaa00] shrink-0">
-                    <benefit.icon className="w-5 h-5" />
-                  </div>
-                  <div className="space-y-1">
-                    <h3 className="text-lg font-bold text-white font-heading">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-sm text-slate-400 leading-relaxed font-sans">
-                      {benefit.desc}
-                    </p>
-                  </div>
-                </MagicBentoCard>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Learning Path Timeline */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16 space-y-3"
-        >
-          <h2 className="text-3xl font-bold text-white font-heading">
-            <ScrollText text="Student Builder Learning Path" />
-          </h2>
-          <p className="text-slate-400 font-sans">
-            <ScrollText
-              text="How we guide you step-by-step from local local-host directories straight to cloud-native cluster infrastructures."
-              stagger={0.01}
-            />
-          </p>
-        </motion.div>
-
-        {/* Chronological timeline layout */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="relative border-l border-white/10 max-w-4xl mx-auto pl-6 sm:pl-10 space-y-12"
-        >
-          {TIMELINE.map((item, idx) => {
-            const IconComponent = item.icon;
-            return (
-              <motion.div key={idx} variants={cardVariants} className="relative group">
-                {/* Timeline connector circle node */}
-                <div className="absolute -left-[38px] sm:-left-[54px] top-0 w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-[#020205] border border-[#00f5ff] flex items-center justify-center text-[#00f5ff] shadow-[0_0_8px_#00f5ff]/40 group-hover:scale-110 transition-transform">
-                  <IconComponent className="w-3 sm:w-4 h-3 sm:h-4" />
-                </div>
-
-                <div className="glass p-6 rounded-2xl border border-white/5 space-y-3 hover:border-cyan-400/30 transition-all">
-                  <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                    <span className="text-[10px] font-mono font-bold tracking-wider text-[#ffaa00] uppercase">
-                      {item.step}
-                    </span>
-                    <span className="text-xs font-mono text-slate-500">
-                      {item.duration}
-                    </span>
-                  </div>
-                  
-                  <h3 className="text-lg font-bold text-white font-heading">
-                    {item.title}
-                  </h3>
-                  
-                  <p className="text-sm text-slate-400 leading-relaxed font-sans">
-                    {item.desc}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-      </section>
-
-      {/* Community Impact Section */}
-      <section className="py-20 relative bg-gradient-to-b from-[#060814]/45 to-transparent border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="glass p-8 md:p-12 rounded-3xl border border-white/10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl"
-          >
-            <div className="space-y-4 max-w-xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono">
-                <MapPin className="w-3.5 h-3.5" />
-                Ganpat University Tech Ecosystem
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white font-heading">
-                <ScrollText text="AWS Community Impact" />
-              </h3>
-              <p className="text-sm md:text-base text-slate-400 leading-relaxed font-sans">
-                <ScrollText
-                  text="Our collaborative footprint stretches across the computer science and information technology disciplines at GNU. By offering hands-on technical labs, we enable student builders to develop project resumes that stand out."
-                  stagger={0.01}
-                />
-              </p>
+          <div className="relative max-w-5xl mx-auto pl-12 md:pl-0 mt-16">
+            <div className="relative">
+              {BENEFITS.map((benefit, idx) => {
+                const isEven = idx % 2 === 0;
+                const isLast = idx === BENEFITS.length - 1;
+                return (
+                  <BenefitTimelineItem 
+                    key={idx}
+                    benefit={benefit}
+                    idx={idx}
+                    isEven={isEven}
+                    isLast={isLast}
+                  />
+                );
+              })}
             </div>
-            
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="w-full md:w-auto shrink-0 grid grid-cols-2 gap-4 sm:gap-6"
-            >
-              <motion.div variants={cardVariants} className="p-4 rounded-2xl bg-white/5 border border-white/5 text-center min-w-[120px]">
-                <div className="text-xl sm:text-2xl font-bold text-[#ffaa00] font-mono">10,000+</div>
-                <div className="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Sandbox Labs run</div>
-              </motion.div>
-              <motion.div variants={cardVariants} className="p-4 rounded-2xl bg-white/5 border border-white/5 text-center min-w-[120px]">
-                <div className="text-xl sm:text-2xl font-bold text-cyan-400 font-mono">12+</div>
-                <div className="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Open Source repos</div>
-              </motion.div>
-              <motion.div variants={cardVariants} className="p-4 rounded-2xl bg-white/5 border border-white/5 text-center min-w-[120px]">
-                <div className="text-xl sm:text-2xl font-bold text-[#ffaa00] font-mono">100%</div>
-                <div className="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Free Sandbox labs</div>
-              </motion.div>
-              <motion.div variants={cardVariants} className="p-4 rounded-2xl bg-white/5 border border-white/5 text-center min-w-[120px]">
-                <div className="text-xl sm:text-2xl font-bold text-cyan-300 font-mono">5+</div>
-                <div className="text-[10px] text-slate-500 uppercase tracking-widest mt-1">AWS Experts hosting</div>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
+
+
+
+
     </div>
   );
 };

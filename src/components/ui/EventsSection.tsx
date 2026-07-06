@@ -21,6 +21,16 @@ interface EventsSectionProps {
 export const EventsSection: React.FC<EventsSectionProps> = ({ events }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   
+  const hasOngoing = events.some(e => e.status === 'ongoing');
+  const hasUpcoming = events.some(e => e.status === 'upcoming');
+  
+  let sectionTitle = "Upcoming & Past Events";
+  if (hasOngoing) {
+    sectionTitle = "Ongoing Event";
+  } else if (hasUpcoming) {
+    sectionTitle = "Upcoming Events";
+  }
+
   // 1. Scroll progress indicator bound to the section container
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -110,7 +120,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ events }) => {
             className="space-y-3"
           >
             <h2 className="text-3xl sm:text-5xl font-bold text-white font-heading tracking-tight">
-              Upcoming & Past Events
+              {sectionTitle}
             </h2>
           </motion.div>
           

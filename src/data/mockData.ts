@@ -15,7 +15,7 @@ export interface EventItem {
   date: string;
   venue: string;
   type: 'workshop' | 'hackathon' | 'speaker' | 'community';
-  status: 'upcoming' | 'past';
+  status: 'upcoming' | 'ongoing' | 'past';
   poster: string;
   description: string;
   details: string;
@@ -165,7 +165,7 @@ export const EVENTS: EventItem[] = [
     date: 'July 5 - 11, 2026',
     venue: 'Online Event (Meetup Live)',
     type: 'community',
-    status: 'upcoming',
+    status: 'ongoing',
     poster: '/gallery/gujarat_builder_week_poster.png',
     description: 'Get ready for AWS Gujarat Students Builder Week 2026 — a 7-day virtual learning experience organized by the AWS Student Builder Group Leaders – Gujarat.',
     details: 'Get ready for AWS Gujarat Students Builder Week 2026 — a 7-day virtual learning experience organized by the AWS Student Builder Group Leaders – Gujarat.\n\nWhat to expect:\n- 10+ Industry Experts & Community Leaders\n- 7 Days of Continuous Learning\n- Live Interactive Q&A Sessions\n- E-Certificates for Special Achievers\n- Hands-on AWS & Cloud Learning\n\n🗓️ Date: 5th – 11th July 2026\n📍 Mode: Online\n⏰ Time: To be announced\n🎟️ Registration is open on Meetup! Join us to learn, connect, and build with the AWS community.',
