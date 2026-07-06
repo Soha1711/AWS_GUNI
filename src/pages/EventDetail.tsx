@@ -35,7 +35,8 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
     );
   }
 
-  const isUpcoming = event.status === 'upcoming';
+  const isUpcoming = event.status === 'upcoming' || event.status === 'ongoing';
+  const isOngoing = event.status === 'ongoing';
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,9 +87,11 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
               </div>
 
               <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase border ${
-                isUpcoming 
-                  ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 animate-pulse' 
-                  : 'bg-slate-700/20 text-slate-400 border-slate-500/20'
+                isOngoing
+                  ? 'bg-amber-500/10 text-amber-400 border-amber-500/25 animate-pulse'
+                  : isUpcoming 
+                    ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 animate-pulse' 
+                    : 'bg-slate-700/20 text-slate-400 border-slate-500/20'
               }`}>
                 {event.status} Event
               </span>

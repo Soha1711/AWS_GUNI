@@ -13,7 +13,7 @@ export const Events: React.FC = () => {
   const queryParams = new URLSearchParams(location.search);
   const selectedEventId = queryParams.get('id');
 
-  const [activeStatus, setActiveStatus] = useState<'all' | 'upcoming' | 'past'>('all');
+  const [activeStatus, setActiveStatus] = useState<'all' | 'ongoing' | 'upcoming' | 'past'>('all');
 
   // If a specific event is selected, render the EventDetail page instead
   if (selectedEventId) {
@@ -46,7 +46,7 @@ export const Events: React.FC = () => {
         <div className="bg-[#080d24]/50 border border-white/5 p-4 rounded-2xl glass">
           {/* Status Tabs */}
           <div className="flex bg-slate-900/60 p-1.5 rounded-full border border-white/5">
-            {['all', 'upcoming', 'past'].map((status) => (
+            {['all', 'ongoing', 'upcoming', 'past'].map((status) => (
               <button
                 key={status}
                 onClick={() => setActiveStatus(status as any)}
@@ -81,6 +81,7 @@ export const Events: React.FC = () => {
             <AnimatePresence mode="popLayout">
               {filteredEvents.map((event) => {
                 const isUpcoming = event.status === 'upcoming';
+                const isOngoing = event.status === 'ongoing';
                 return (
                   <motion.div
                     layout
@@ -113,11 +114,22 @@ export const Events: React.FC = () => {
                       </span>
                       
                       <span className={`absolute top-4 right-4 inline-flex items-center gap-1 px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase border ${
-                        isUpcoming 
-                          ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' 
-                          : 'bg-slate-700/20 text-slate-400 border-slate-500/20'
+                        isOngoing
+                          ? 'bg-amber-500/10 text-amber-400 border-amber-500/25 animate-pulse'
+                          : isUpcoming 
+                            ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' 
+                            : 'bg-slate-700/20 text-slate-400 border-slate-500/20'
                       }`}>
-                        {isUpcoming ? <Hourglass className="w-3 h-3 animate-pulse" /> : <PlayCircle className="w-3 h-3" />}
+                        {isOngoing ? (
+                          <span className="relative flex h-1.5 w-1.5 mr-1">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-500"></span>
+                          </span>
+                        ) : isUpcoming ? (
+                          <Hourglass className="w-3 h-3 animate-pulse" />
+                        ) : (
+                          <PlayCircle className="w-3 h-3" />
+                        )}
                         {event.status}
                       </span>
                     </div>
