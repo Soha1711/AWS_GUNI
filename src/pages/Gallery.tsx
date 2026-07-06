@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useTransform, useMotionValueEvent, useMotionValue, useSpring } from 'framer-motion';
+import { motion, AnimatePresence, useTransform, useMotionValueEvent, useMotionValue, useSpring, animate } from 'framer-motion';
 import { Compass, Maximize2, Download } from 'lucide-react';
 import { GALLERY_ITEMS } from '../data/mockData';
 import type { GalleryItem } from '../data/mockData';
@@ -73,8 +73,22 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
   // Scale depth effect: smaller in the back, larger in the front
   const scale = useTransform(angle, (a: number) => {
     const cos = Math.cos((a * Math.PI) / 180);
-    return 0.65 + (cos + 1) * 0.3; // ranges from 0.65 to 1.25
+    return 0.6 + (cos + 1) * 0.2; // ranges from 0.6 to 1.0
   });
+
+  const activeScaleValue = useMotionValue(1);
+  useEffect(() => {
+    animate(activeScaleValue, isActive ? 1.45 : 1.0, {
+      type: "spring",
+      stiffness: 120,
+      damping: 15
+    });
+  }, [isActive, activeScaleValue]);
+
+  const combinedScale = useTransform(
+    [scale, activeScaleValue],
+    ([s, a]: any) => s * a
+  );
 
   // Layering
   const zIndex = useTransform(angle, (a: number) => {
@@ -91,7 +105,7 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
         x: translateX,
         y: translateY,
         opacity: opacity,
-        scale: scale,
+        scale: combinedScale,
         zIndex: zIndex,
         pointerEvents: 'auto'
       }}
