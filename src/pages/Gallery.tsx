@@ -1,15 +1,39 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
-import { Compass, Maximize2 } from 'lucide-react';
+import { motion, AnimatePresence, useTransform, useMotionValueEvent, useMotionValue, useSpring } from 'framer-motion';
+import { Compass, Maximize2, Download } from 'lucide-react';
 import { GALLERY_ITEMS } from '../data/mockData';
 import type { GalleryItem } from '../data/mockData';
 import { Lightbox } from '../components/ui/Lightbox';
+
+const handleDownload = async (imageUrl: string, title: string) => {
+  try {
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    const extension = imageUrl.split('.').pop() || 'jpg';
+    link.download = `${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.${extension}`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  } catch (error) {
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.target = '_blank';
+    link.download = title;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+};
 
 interface GalleryCardProps {
   item: GalleryItem;
   index: number;
   N: number;
-  scrollYProgress: any;
+  rotation: any;
   radiusX: number;
   radiusY: number;
   cardWidth: number;
@@ -22,7 +46,7 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
   item,
   index,
   N,
-  scrollYProgress,
+  rotation,
   radiusX,
   radiusY,
   cardWidth,
@@ -30,31 +54,30 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
   isActive,
   onClick
 }) => {
-  // Rotate 1.2 times (432 degrees) over the scroll track for a slower, premium spin
+  // Rotate based on index angle + rotation offset
   const angle = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [index * (360 / N), index * (360 / N) + 360 * 1.2]
+    rotation,
+    (r: number) => index * (360 / N) + r
   );
 
-  const rad = useTransform(angle, a => (a * Math.PI) / 180);
-  const translateX = useTransform(rad, r => Math.sin(r) * radiusX);
-  const translateY = useTransform(rad, r => Math.cos(r) * radiusY);
+  const rad = useTransform(angle, (a: number) => (a * Math.PI) / 180);
+  const translateX = useTransform(rad, (r: number) => Math.sin(r) * radiusX);
+  const translateY = useTransform(rad, (r: number) => Math.cos(r) * radiusY);
 
   // Cards in front are opaque, background cards fade out significantly to reduce clutter
-  const opacity = useTransform(angle, a => {
+  const opacity = useTransform(angle, (a: number) => {
     const cos = Math.cos((a * Math.PI) / 180);
     return 0.15 + (cos + 1) * 0.425; // ranges from 0.15 to 1.0
   });
 
   // Scale depth effect: smaller in the back, larger in the front
-  const scale = useTransform(angle, a => {
+  const scale = useTransform(angle, (a: number) => {
     const cos = Math.cos((a * Math.PI) / 180);
-    return 0.72 + (cos + 1) * 0.14; // ranges from 0.72 to 1.0
+    return 0.65 + (cos + 1) * 0.3; // ranges from 0.65 to 1.25
   });
 
   // Layering
-  const zIndex = useTransform(angle, a => {
+  const zIndex = useTransform(angle, (a: number) => {
     const cos = Math.cos((a * Math.PI) / 180);
     return Math.round((cos + 1) * 10);
   });
@@ -80,6 +103,18 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
       onClick={onClick}
     >
       <div className="relative w-full h-full overflow-hidden">
+        {/* Download button in GalleryCard */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            handleDownload(item.image, item.title);
+          }}
+          className="absolute top-2.5 left-2.5 p-1.5 rounded-full bg-black/60 border border-white/15 text-white hover:bg-[#ff9900] hover:text-black hover:scale-110 transition-all z-20 cursor-pointer opacity-0 group-hover:opacity-100"
+          title="Download image"
+        >
+          <Download className="w-3.5 h-3.5" />
+        </button>
+
         <img
           src={item.image}
           alt={item.title}
@@ -100,7 +135,7 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 8 }}
               transition={{ duration: 0.3 }}
-              className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent border-t border-white/5"
+              className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent"
             >
               <span className="text-[7.5px] font-mono text-[#a855f7] uppercase tracking-wider block">
                 {item.category}
@@ -132,10 +167,9 @@ export const Gallery: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  
+  const rawRotation = useMotionValue(0);
+  const rotation = useSpring(rawRotation, { damping: 25, stiffness: 120 });
 
   const filteredItems = GALLERY_ITEMS;
   const N = filteredItems.length;
@@ -147,12 +181,74 @@ export const Gallery: React.FC = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const totalDegrees = latest * 360 * 1.2;
+  // Update rotation based on scroll, touch swipe, or mouse drag gestures
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      rawRotation.set(rawRotation.get() + e.deltaY * -0.18);
+    };
+
+    let startY = 0;
+    let startRotation = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      startY = e.touches[0].clientY;
+      startRotation = rawRotation.get();
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const currentY = e.touches[0].clientY;
+      const deltaY = startY - currentY;
+      rawRotation.set(startRotation + deltaY * -0.6);
+    };
+
+    let isDragging = false;
+    let dragStartY = 0;
+    let dragStartRotation = 0;
+
+    const handleMouseDown = (e: MouseEvent) => {
+      isDragging = true;
+      dragStartY = e.clientY;
+      dragStartRotation = rawRotation.get();
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDragging) return;
+      const deltaY = dragStartY - e.clientY;
+      rawRotation.set(dragStartRotation + deltaY * -0.6);
+    };
+
+    const handleMouseUp = () => {
+      isDragging = false;
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('wheel', handleWheel, { passive: false });
+      container.addEventListener('touchstart', handleTouchStart, { passive: true });
+      container.addEventListener('touchmove', handleTouchMove, { passive: false });
+      container.addEventListener('mousedown', handleMouseDown);
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('wheel', handleWheel);
+        container.removeEventListener('touchstart', handleTouchStart);
+        container.removeEventListener('touchmove', handleTouchMove);
+        container.removeEventListener('mousedown', handleMouseDown);
+      }
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [rawRotation]);
+
+  useMotionValueEvent(rotation, "change", (latest) => {
     let minDistance = Infinity;
     let closestIndex = 0;
     for (let i = 0; i < N; i++) {
-      const cardAngle = (i * (360 / N) + totalDegrees) % 360;
+      const cardAngle = (((i * (360 / N) + latest) % 360) + 360) % 360;
       const dist = Math.min(cardAngle, 360 - cardAngle);
       if (dist < minDistance) {
         minDistance = dist;
@@ -190,9 +286,9 @@ export const Gallery: React.FC = () => {
   const cardHeight = isMobile ? 70 : 145;
 
   return (
-    <div ref={containerRef} className="relative h-[220vh] bg-[#050713]">
-      {/* Sticky viewport content */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-between pt-24 pb-8 select-none">
+    <div ref={containerRef} className="relative h-screen w-full overflow-hidden bg-[#050713]">
+      {/* Viewport content */}
+      <div className="h-full w-full flex flex-col items-center justify-between pt-24 pb-8 select-none relative">
         
         {/* Background glows */}
         <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-[#a855f7]/5 rounded-full blur-[140px] pointer-events-none" />
@@ -235,7 +331,7 @@ export const Gallery: React.FC = () => {
                 item={item}
                 index={index}
                 N={N}
-                scrollYProgress={scrollYProgress}
+                rotation={rotation}
                 radiusX={radiusX}
                 radiusY={radiusY}
                 cardWidth={cardWidth}
@@ -246,20 +342,6 @@ export const Gallery: React.FC = () => {
             ))}
           </div>
         )}
-
-        {/* Bottom scroll guide */}
-        <div className="w-full flex flex-col items-center gap-1.5 z-20 shrink-0 pointer-events-none pb-4">
-          <motion.div
-            animate={{ y: [0, 4, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="w-4 h-7 border border-white/20 rounded-full flex justify-center pt-0.5"
-          >
-            <div className="w-1 h-1 bg-[#a855f7] rounded-full" />
-          </motion.div>
-          <span className="text-[8px] uppercase tracking-widest text-slate-500 font-mono">
-            Scroll Down to Spin Deck
-          </span>
-        </div>
 
       </div>
 

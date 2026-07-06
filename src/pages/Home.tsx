@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   ArrowRight, Users, Calendar, ChevronRight, MessageSquare 
 } from 'lucide-react';
@@ -13,6 +13,7 @@ import { useLinkedinData } from '../utils/linkedin';
 import ShapeGrid from '../components/ui/ShapeGrid';
 import { EventsSection } from '../components/ui/EventsSection';
 import { ScrollText } from '../components/ui/ScrollReveal';
+import { StatsCard } from '../components/ui/StatsCard';
 import { LinkedinIcon, MeetupIcon } from '../components/ui/SocialIcons';
 
 
@@ -32,34 +33,7 @@ const MARQUEE_ITEMS = [
 export const Home: React.FC = () => {
   const { memberCount, pastEvents, upcomingEvents: liveUpcomingEvents, isLive } = useMeetupData();
   const { followerCount, isLive: isLinkedinLive } = useLinkedinData();
-  const [stats, setStats] = useState({ members: 0, events: 0, linkedin: 0 });
-  
-  const statsRef = useRef(null);
-  const isStatsInView = useInView(statsRef, { once: true, amount: 0.3 });
 
-  useEffect(() => {
-    if (isStatsInView) {
-      const duration = 2000;
-      const steps = 60;
-      const interval = duration / steps;
-      let step = 0;
-
-      const timer = setInterval(() => {
-        step++;
-        setStats({
-          members: Math.min(Math.round((memberCount / steps) * step), memberCount),
-          events: Math.min(Math.round((3 / steps) * step), 3),
-          linkedin: Math.min(Math.round((followerCount / steps) * step), followerCount)
-        });
-
-        if (step >= steps) {
-          clearInterval(timer);
-        }
-      }, interval);
-
-      return () => clearInterval(timer);
-    }
-  }, [isStatsInView, memberCount, followerCount]);
 
   // Merge live attendee/rsvp count into static EVENTS data
   const mergedEvents = EVENTS.map(e => {
@@ -247,61 +221,34 @@ export const Home: React.FC = () => {
 
 
       {/* 4. STATISTICS COUNTER SECTION */}
-      <section ref={statsRef} className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-          {/* Meetup Registered Members Card */}
-          <a
-            href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="glass p-6 rounded-2xl border border-white/5 text-center shadow-lg hover:border-[#a855f7]/30 transition-all duration-300 relative block group hover:scale-[1.03]"
-          >
-            {isLive && (
-              <span className="absolute top-3 right-3 flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-            )}
-            <div className="flex justify-center mb-3">
-              <div className="p-3 rounded-xl bg-[#a855f7]/10 text-[#a855f7] group-hover:bg-[#a855f7]/20 group-hover:scale-110 transition-all duration-300">
-                <MeetupIcon className="w-6 h-6" />
-              </div>
-            </div>
-            <div className="text-3xl sm:text-5xl font-extrabold text-[#a855f7] font-mono mb-2">
-              {stats.members}+
-            </div>
-            <div className="text-xs uppercase tracking-widest text-slate-400 font-sans font-medium flex items-center justify-center gap-1.5 group-hover:text-white transition-colors duration-300">
-              Registered Members
-              {isLive && <span className="text-[10px] text-emerald-400 font-mono font-bold lowercase tracking-normal">(live)</span>}
-            </div>
-          </a>
-
-          {/* LinkedIn Followers Card */}
-          <a
-            href="https://www.linkedin.com/company/aws-student-builder-group-guni/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="glass p-6 rounded-2xl border border-white/5 text-center shadow-lg hover:border-[#d946ef]/30 transition-all duration-300 relative block group hover:scale-[1.03]"
-          >
-            {isLinkedinLive && (
-              <span className="absolute top-3 right-3 flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-            )}
-            <div className="flex justify-center mb-3">
-              <div className="p-3 rounded-xl bg-[#d946ef]/10 text-[#d946ef] group-hover:bg-[#d946ef]/20 group-hover:scale-110 transition-all duration-300">
-                <LinkedinIcon className="w-6 h-6" />
-              </div>
-            </div>
-            <div className="text-3xl sm:text-5xl font-extrabold text-[#d946ef] font-mono mb-2">
-              {stats.linkedin}+
-            </div>
-            <div className="text-xs uppercase tracking-widest text-slate-400 font-sans font-medium flex items-center justify-center gap-1.5 group-hover:text-white transition-colors duration-300">
-              LinkedIn Followers
-              {isLinkedinLive && <span className="text-[10px] text-emerald-400 font-mono font-bold lowercase tracking-normal">(live)</span>}
-            </div>
-          </a>
+          <StatsCard
+            memberCount={memberCount}
+            isLive={isLive}
+            label="Registered Members"
+            link="https://www.meetup.com/aws-sbg-at-ganpat-university/"
+            icon={<MeetupIcon className="w-6 h-6" />}
+            themeColor="purple"
+            subStats={[
+              { label: "Growth", value: <span className="text-emerald-400">↑ +42 this month</span> },
+              { label: "Engagement", value: "95% Active" },
+              { label: "Events", value: "12 Community Events" }
+            ]}
+          />
+          <StatsCard
+            memberCount={followerCount}
+            isLive={isLinkedinLive}
+            label="LinkedIn Followers"
+            link="https://www.linkedin.com/company/aws-student-builder-group-guni/"
+            icon={<LinkedinIcon className="w-6 h-6" />}
+            themeColor="pink"
+            subStats={[
+              { label: "Growth", value: <span className="text-emerald-400">↑ +120 this month</span> },
+              { label: "Engagement", value: "88% Active" },
+              { label: "Posts", value: "24 Shared Updates" }
+            ]}
+          />
         </div>
       </section>
 

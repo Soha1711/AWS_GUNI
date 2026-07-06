@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Calendar, Tag } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Calendar, Tag, Download } from 'lucide-react';
 import type { GalleryItem } from '../../data/mockData';
 
 interface LightboxProps {
@@ -12,6 +12,30 @@ interface LightboxProps {
 
 export const Lightbox: React.FC<LightboxProps> = ({ item, onClose, onPrev, onNext }) => {
   
+  const handleDownload = async (imageUrl: string, title: string) => {
+    try {
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      const extension = imageUrl.split('.').pop() || 'jpg';
+      link.download = `${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.${extension}`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      const link = document.createElement('a');
+      link.href = imageUrl;
+      link.target = '_blank';
+      link.download = title;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -100,6 +124,16 @@ export const Lightbox: React.FC<LightboxProps> = ({ item, onClose, onPrev, onNex
                 <p className="text-sm text-slate-400 font-sans leading-relaxed mt-4">
                   AWS Student Builder Group (Ganpat University) hosts key hands-on training sessions, technical events, and hackathons throughout the year.
                 </p>
+              </div>
+
+              <div className="mt-6">
+                <button
+                  onClick={() => item && handleDownload(item.image, item.title)}
+                  className="w-full py-3 px-4 rounded-xl font-bold uppercase tracking-wider text-xs text-black bg-[#ff9900] hover:bg-[#ff9900]/80 shadow-lg shadow-[#ff9900]/20 hover:shadow-[#ff9900]/40 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <Download className="w-4 h-4" />
+                  Download Image
+                </button>
               </div>
 
               <div className="mt-8 flex justify-between items-center text-xs text-slate-500">
