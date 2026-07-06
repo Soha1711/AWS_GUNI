@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Cloud, Database, Server, Cpu, ArrowDown } from 'lucide-react';
+import { ArrowDown, BookOpen, Terminal, Users, Award, Cloud } from 'lucide-react';
 
 export const CircuitBentoGrid: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -76,63 +76,58 @@ export const CircuitBentoGrid: React.FC = () => {
   const card4Scale = useTransform(smoothProgress, [0.87, 0.91], [0.92, 1]);
   const card4X = useTransform(smoothProgress, [0.87, 0.91], [20, 0]);
 
-  // Final State Message (90% to 100%)
-  const finalMessageOpacity = useTransform(smoothProgress, [0.9, 0.95], [0, 1]);
-  const finalMessageBlur = useTransform(smoothProgress, [0.9, 0.95], ["blur(10px)", "blur(0px)"]);
-  const finalMessageY = useTransform(smoothProgress, [0.9, 0.95], [10, 0]);
-
   // SVG Paths for layout (1000x600 viewBox)
   const circuitPaths = {
-    p1: "M 500 300 L 500 210 L 340 210",
-    p2: "M 500 300 L 500 210 L 660 210",
-    p3: "M 500 300 L 500 470 L 340 470",
-    p4: "M 500 300 L 500 470 L 660 470"
+    p1: "M 500 300 L 500 170 L 340 170",
+    p2: "M 500 300 L 500 170 L 660 170",
+    p3: "M 500 300 L 500 430 L 340 430",
+    p4: "M 500 300 L 500 430 L 660 430"
   };
 
   const cardData = [
     {
       id: 1,
-      title: "Cloud Infrastructure",
-      desc: "Scalable compute power tailored for next-generation applications.",
-      icon: <Cloud className="w-6 h-6 text-white" />,
-      position: "top-[120px] left-[20px]",
+      title: "Learn AWS Cloud Fundamentals",
+      desc: "Master AWS cloud concepts through structured learning paths.",
+      icon: <BookOpen className="w-6 h-6 text-white" />,
+      position: "top-[70px] left-[20px]",
       opacity: card1Opacity,
       scale: card1Scale,
       x: card1X,
-      cta: "Built for scale"
+      cta: "Start Learning"
     },
     {
       id: 2,
-      title: "Distributed Data",
-      desc: "High-performance resilient database architectures globally.",
-      icon: <Database className="w-6 h-6 text-white" />,
-      position: "top-[120px] right-[20px]",
+      title: "Gain Hands-On Experience",
+      desc: "Build real-world cloud projects in secure AWS environments.",
+      icon: <Terminal className="w-6 h-6 text-white" />,
+      position: "top-[70px] right-[20px]",
       opacity: card2Opacity,
       scale: card2Scale,
       x: card2X,
-      cta: "Always available"
+      cta: "Build Projects"
     },
     {
       id: 3,
-      title: "Serverless Compute",
-      desc: "Event-driven functions executing with zero provisioning overhead.",
-      icon: <Server className="w-6 h-6 text-white" />,
-      position: "top-[380px] left-[20px]",
+      title: "Connect with Expert Speakers",
+      desc: "Learn directly from AWS experts through talks and workshops.",
+      icon: <Users className="w-6 h-6 text-white" />,
+      position: "top-[330px] left-[20px]",
       opacity: card3Opacity,
       scale: card3Scale,
       x: card3X,
-      cta: "Run without limits"
+      cta: "Join Events"
     },
     {
       id: 4,
-      title: "Machine Intelligence",
-      desc: "Advanced neural networks running on optimized AI accelerators.",
-      icon: <Cpu className="w-6 h-6 text-white" />,
-      position: "top-[380px] right-[20px]",
+      title: "Get Certified & Validated",
+      desc: "Prepare for AWS Certifications with guided study and support.",
+      icon: <Award className="w-6 h-6 text-white" />,
+      position: "top-[330px] right-[20px]",
       opacity: card4Opacity,
       scale: card4Scale,
       x: card4X,
-      cta: "Intelligence at scale"
+      cta: "Earn Badges"
     }
   ];
 
@@ -372,7 +367,7 @@ export const CircuitBentoGrid: React.FC = () => {
           {cardData.map((card) => (
             <motion.div
               key={card.id}
-              className={`absolute ${card.position} w-[320px] pointer-events-auto h-[180px]`}
+              className={`absolute ${card.position} w-[320px] pointer-events-auto h-[200px]`}
               style={{
                 opacity: card.opacity,
                 scale: card.scale,
@@ -398,36 +393,19 @@ export const CircuitBentoGrid: React.FC = () => {
                 </div>
 
                 {/* Typography details */}
-                <h3 className="text-base font-bold text-white font-heading mb-1.5 tracking-tight group-hover:text-[#c084fc]">
+                <h3 className="text-xl font-bold text-white font-heading mb-2 tracking-tight group-hover:text-[#c084fc]">
                   {card.title}
                 </h3>
-                <p className="text-xs text-gray-300 font-sans leading-relaxed mb-4 line-clamp-2">
+                <p className="text-sm text-gray-300 font-sans leading-relaxed mb-4">
                   {card.desc}
                 </p>
 
-                {/* Action CTA */}
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#C084FC] flex items-center gap-1.5 mt-auto">
-                  {card.cta}
-                  <span className="text-xs">→</span>
-                </span>
+
               </div>
             </motion.div>
           ))}
 
-          {/* ---------------- FINAL STATE: BOTTOM MESSAGE ---------------- */}
-          <motion.div 
-            style={{ 
-              opacity: finalMessageOpacity, 
-              filter: finalMessageBlur, 
-              y: finalMessageY 
-            }}
-            className="absolute bottom-[-40px] left-0 right-0 z-30 text-center px-4"
-          >
-            <p className="text-sm sm:text-base font-semibold tracking-wider text-[#F3E8FF] uppercase flex flex-col items-center gap-2">
-              One Community. Limitless Possibilities.
-              <span className="w-24 h-[3px] bg-gradient-to-r from-transparent via-[#A855F7] to-transparent rounded-full shadow-[0_0_8px_#A855F7]" />
-            </p>
-          </motion.div>
+
 
         </div>
 
@@ -444,18 +422,15 @@ export const CircuitBentoGrid: React.FC = () => {
                 <div className="w-10 h-10 rounded-xl bg-[#a855f7]/15 flex items-center justify-center mb-3 border border-[#a855f7]/45 inline-flex">
                   {card.icon}
                 </div>
-                <h3 className="text-base font-bold text-white font-heading mb-1.5">
+                <h3 className="text-lg font-bold text-white font-heading mb-1.5">
                   {card.title}
                 </h3>
-                <p className="text-xs text-gray-300 font-sans leading-relaxed">
+                <p className="text-sm text-gray-300 font-sans leading-relaxed">
                   {card.desc}
                 </p>
               </div>
             ))}
           </div>
-          <p className="text-xs font-semibold tracking-widest text-[#F3E8FF] uppercase pt-2 pb-6">
-            One Community. Limitless Possibilities.
-          </p>
         </div>
 
       </div>

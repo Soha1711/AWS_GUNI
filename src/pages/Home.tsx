@@ -12,6 +12,7 @@ import { useMeetupData } from '../utils/meetup';
 import ShapeGrid from '../components/ui/ShapeGrid';
 import { EventsSection } from '../components/ui/EventsSection';
 import { ScrollText } from '../components/ui/ScrollReveal';
+import { StatsCard } from '../components/ui/StatsCard';
 
 
 
@@ -174,6 +175,13 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* 2. ABOUT SUMMARY */}
+      <section className="py-12 bg-transparent text-center px-4 max-w-3xl mx-auto">
+        <p className="text-slate-300 font-sans text-sm sm:text-base leading-relaxed">
+          The AWS Student Builders Group at Ganpat University is a community of passionate builders, learning and experimenting with cloud technologies. Our mission is to empower students with the skills, hands-on experience, and network needed to thrive in a cloud-first world.
+        </p>
+      </section>
+
       {/* SCROLLING MARQUEE (SIGNAL RAIL) */}
       <section className="py-6 border-y border-white/5 bg-[#040408]/60 overflow-hidden relative group/marquee select-none">
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
@@ -211,23 +219,7 @@ export const Home: React.FC = () => {
 
       {/* 4. STATISTICS COUNTER SECTION */}
       <section ref={statsRef} className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 max-w-sm mx-auto">
-          <div className="glass p-6 rounded-2xl border border-white/5 text-center shadow-lg hover:border-[#a855f7]/20 transition-all relative">
-            {isLive && (
-              <span className="absolute top-3 right-3 flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-            )}
-            <div className="text-3xl sm:text-5xl font-extrabold text-[#a855f7] font-mono mb-2">
-              {stats.members}+
-            </div>
-            <div className="text-xs uppercase tracking-widest text-slate-400 font-sans font-medium flex items-center justify-center gap-1.5">
-              Registered Members
-              {isLive && <span className="text-[10px] text-emerald-400 font-mono font-bold lowercase tracking-normal">(live)</span>}
-            </div>
-          </div>
-        </div>
+        <StatsCard memberCount={stats.members} isLive={isLive} />
       </section>
 
       {/* 5. UPCOMING EVENTS PREVIEW */}

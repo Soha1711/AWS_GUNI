@@ -51,13 +51,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ events }) => {
       ref={containerRef} 
       className="py-24 bg-[#060814]/45 border-t border-white/5 relative overflow-hidden"
     >
-      {/* Scroll Progress Bar */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-white/5 z-40 overflow-hidden">
-        <motion.div 
-          className="h-full bg-gradient-to-r from-purple-500 via-fuchsia-500 to-cyan-400 origin-left"
-          style={{ scaleX: scrollYProgress }}
-        />
-      </div>
+
 
       {/* Parallax Background Grid & Glow Blobs */}
       <motion.div 
