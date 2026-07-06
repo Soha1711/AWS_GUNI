@@ -13,11 +13,7 @@ import { useLinkedinData } from '../utils/linkedin';
 import ShapeGrid from '../components/ui/ShapeGrid';
 import { EventsSection } from '../components/ui/EventsSection';
 import { ScrollText } from '../components/ui/ScrollReveal';
-<<<<<<< HEAD
-import { StatsCard } from '../components/ui/StatsCard';
-=======
 import { LinkedinIcon, MeetupIcon } from '../components/ui/SocialIcons';
->>>>>>> b8c38eaff9a451dafd4a4dd39dfb158beebf17f7
 
 
 
@@ -183,14 +179,40 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 2. ABOUT SUMMARY */}
-      <section className="py-12 bg-transparent text-center px-4 max-w-3xl mx-auto">
-        <p className="text-slate-300 font-sans text-sm sm:text-base leading-relaxed">
-          The AWS Student Builders Group at Ganpat University is a community of passionate builders, learning and experimenting with cloud technologies. Our mission is to empower students with the skills, hands-on experience, and network needed to thrive in a cloud-first world.
-        </p>
+      <section className="py-24 relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7]/20 via-transparent to-[#00f5ff]/20 rounded-[3rem] blur-3xl opacity-60 pointer-events-none" />
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 50, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative glass p-10 sm:p-16 rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(168,85,247,0.15)] overflow-hidden group hover:border-[#a855f7]/30 transition-all duration-700 hover:shadow-[0_0_80px_rgba(168,85,247,0.25)]"
+        >
+          {/* Animated corner gradients */}
+          <div className="absolute -top-24 -left-24 w-48 h-48 bg-[#a855f7] rounded-full mix-blend-screen filter blur-[80px] opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none" />
+          <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-[#00f5ff] rounded-full mix-blend-screen filter blur-[80px] opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none" />
+          
+          <div className="text-center space-y-8 relative z-10">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white font-heading tracking-tight drop-shadow-lg">
+              <ScrollText text="What Are We?" />
+            </h2>
+            
+            <div className="flex justify-center items-center gap-4">
+              <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#00f5ff]" />
+              <div className="w-2 h-2 rounded-full bg-[#a855f7] shadow-[0_0_10px_#a855f7]" />
+              <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#00f5ff]" />
+            </div>
+
+            <p className="text-slate-300 font-sans text-lg sm:text-2xl leading-relaxed max-w-4xl mx-auto font-light">
+              The AWS Student Builders Group at Ganpat University is a community of <strong className="font-bold text-white tracking-wide">passionate builders</strong>, learning and experimenting with <strong className="font-bold text-[#00f5ff] tracking-wide">cloud technologies</strong>. Our mission is to empower students with the skills, hands-on experience, and network needed to thrive in a <strong className="font-bold text-[#a855f7] tracking-wide">cloud-first world</strong>.
+            </p>
+          </div>
+        </motion.div>
       </section>
 
       {/* SCROLLING MARQUEE (SIGNAL RAIL) */}
-      <section className="py-6 border-y border-white/5 bg-[#040408]/60 overflow-hidden relative group/marquee select-none">
+      <section className="py-6 border-y border-white/5 bg-transparent overflow-hidden relative group/marquee select-none">
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
         
@@ -198,20 +220,20 @@ export const Home: React.FC = () => {
           {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, index) => (
             <div 
               key={index} 
-              className="flex-shrink-0 w-[280px] sm:w-[320px] glass p-3 rounded-2xl border border-white/5 flex flex-col gap-3 group/item hover:border-[#a855f7]/30 transition-all duration-300"
+              className="flex-shrink-0 w-[320px] sm:w-[420px] glass p-4 rounded-2xl border border-white/5 flex flex-col gap-4 group/item hover:border-[#a855f7]/30 transition-all duration-300"
             >
-              <div className="h-40 w-full overflow-hidden rounded-xl bg-slate-900 relative">
+              <div className="h-56 w-full overflow-hidden rounded-xl bg-slate-900 relative">
                 <img 
                   src={item.image} 
                   alt={item.title} 
                   className="w-full h-full object-cover group-hover/item:scale-105 transition-transform duration-500 opacity-90"
                 />
-                <span className="absolute top-2 left-2 px-2.5 py-0.5 text-[9px] font-bold tracking-wider uppercase bg-[#a855f7] text-white rounded-full">
+                <span className="absolute top-3 left-3 px-3 py-1 text-[11px] font-bold tracking-wider uppercase bg-[#a855f7] text-white rounded-full">
                   {item.category}
                 </span>
               </div>
-              <div>
-                <h4 className="text-white font-heading text-sm font-semibold tracking-wide truncate group-hover/item:text-[#d946ef] transition-colors duration-300">
+              <div className="px-1">
+                <h4 className="text-white font-heading text-base sm:text-lg font-semibold tracking-wide truncate group-hover/item:text-[#d946ef] transition-colors duration-300">
                   {item.title}
                 </h4>
               </div>
@@ -226,9 +248,6 @@ export const Home: React.FC = () => {
 
       {/* 4. STATISTICS COUNTER SECTION */}
       <section ref={statsRef} className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<<<<<<< HEAD
-        <StatsCard memberCount={stats.members} isLive={isLive} />
-=======
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
           {/* Meetup Registered Members Card */}
           <a
@@ -284,7 +303,6 @@ export const Home: React.FC = () => {
             </div>
           </a>
         </div>
->>>>>>> b8c38eaff9a451dafd4a4dd39dfb158beebf17f7
       </section>
 
       {/* 5. UPCOMING EVENTS PREVIEW */}
@@ -295,7 +313,7 @@ export const Home: React.FC = () => {
 
       {/* 6. PAST EVENTS HIGHLIGHTS */}
       {pastEventsList.length > 0 && upcomingEvents.length === 0 && (
-        <section className="py-20 bg-[#060814]/45 border-b border-white/5">
+        <section className="py-20 bg-transparent border-b border-white/5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             <div className="text-center space-y-2">
               <h3 className="text-2xl font-bold text-white font-heading">

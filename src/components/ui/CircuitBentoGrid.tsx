@@ -132,7 +132,7 @@ export const CircuitBentoGrid: React.FC = () => {
   ];
 
   return (
-    <div ref={containerRef} className="relative w-full h-[500vh] bg-[#05060B]">
+    <div ref={containerRef} className="relative w-full h-[500vh] bg-transparent">
       {/* Sticky Inner Viewport */}
       <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col items-center justify-center pt-20">
         
