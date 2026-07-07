@@ -161,7 +161,7 @@ export const Home: React.FC = () => {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative glass p-10 sm:p-16 rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(168,85,247,0.15)] overflow-hidden group hover:border-[#a855f7]/30 transition-all duration-700 hover:shadow-[0_0_80px_rgba(168,85,247,0.25)]"
+          className="relative glass p-10 sm:p-16 rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(168,85,247,0.15)] overflow-hidden group hover:border-[#a855f7]/30 transition-colors transition-shadow duration-700 hover:shadow-[0_0_80px_rgba(168,85,247,0.25)]"
         >
           {/* Animated corner gradients */}
           <div className="absolute -top-24 -left-24 w-48 h-48 bg-[#a855f7] rounded-full mix-blend-screen filter blur-[80px] opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none" />
@@ -222,7 +222,7 @@ export const Home: React.FC = () => {
 
       {/* 4. STATISTICS COUNTER SECTION */}
       <section className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-4xl mx-auto">
           <StatsCard
             memberCount={memberCount}
             isLive={isLive}

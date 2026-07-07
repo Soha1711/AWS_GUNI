@@ -83,9 +83,9 @@ const BenefitTimelineItem: React.FC<{
   // Circle node animations driven by scroll position
   const nodeScale = useTransform(smoothProgress, [0.2, 0.55], [0.8, 1.15]);
   const nodeBg = useTransform(smoothProgress, [0.2, 0.55], ['#0f172a', '#020205']);
-  const nodeBorder = useTransform(smoothProgress, [0.2, 0.55], ['rgba(255, 255, 255, 0.1)', '#00f5ff']);
+  const nodeBorder = useTransform(smoothProgress, [0.2, 0.55], ['rgba(255, 255, 255, 0.1)', '#a855f7']);
   const nodeGlowOpacity = useTransform(smoothProgress, [0.35, 0.55], [0, 0.6]);
-  const iconColor = useTransform(smoothProgress, [0.3, 0.55], ['#94a3b8', '#00f5ff']);
+  const iconColor = useTransform(smoothProgress, [0.3, 0.55], ['#94a3b8', '#a855f7']);
 
   return (
     <div 
@@ -104,7 +104,7 @@ const BenefitTimelineItem: React.FC<{
         isLast ? 'h-1/2' : 'bottom-0'
       }`}>
         <motion.div 
-          className="w-full h-full bg-gradient-to-b from-[#ffaa00] via-[#00f5ff] to-cyan-400 origin-top"
+          className="w-full h-full bg-gradient-to-b from-[#a855f7] via-[#c084fc] to-[#d946ef] origin-top"
           style={{ scaleY: smoothProgress }}
         />
       </div>
@@ -125,7 +125,7 @@ const BenefitTimelineItem: React.FC<{
           {/* Node Glow Effect when active */}
           <motion.div 
             style={{ opacity: nodeGlowOpacity }}
-            className="absolute inset-0 rounded-full bg-[#00f5ff]/25 blur-[6px] pointer-events-none"
+            className="absolute inset-0 rounded-full bg-[#a855f7]/25 blur-[6px] pointer-events-none"
           />
           <motion.div style={{ color: iconColor }} className="relative z-10 flex items-center justify-center">
             <IconComponent className="w-5 h-5" />
@@ -138,10 +138,10 @@ const BenefitTimelineItem: React.FC<{
         style={{ opacity: cardOpacity, x: cardX, y: cardY }}
         className="w-full md:w-[45%] z-0"
       >
-        <MagicBentoCard className="glass p-6 rounded-2xl border border-white/10 flex flex-col gap-3 hover:border-[#00f5ff]/40 transition-all h-full relative group">
-          <div className="absolute inset-0 bg-[#00f5ff]/5 opacity-0 group-hover:opacity-100 rounded-2xl blur-sm transition-opacity pointer-events-none" />
+        <MagicBentoCard className="glass p-6 rounded-2xl border border-white/10 flex flex-col gap-3 hover:border-[#a855f7]/40 transition-all h-full relative group">
+          <div className="absolute inset-0 bg-[#a855f7]/5 opacity-0 group-hover:opacity-100 rounded-2xl blur-sm transition-opacity pointer-events-none" />
           
-          <span className="text-[10px] font-mono font-bold tracking-wider text-[#ffaa00] uppercase">
+          <span className="text-[10px] font-mono font-bold tracking-wider text-[#a855f7] uppercase">
             Benefit 0{idx + 1}
           </span>
           <h3 className="text-xl font-bold text-white font-heading">

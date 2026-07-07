@@ -55,7 +55,8 @@ export function StatsCard({
   const containerRef = useRef<HTMLAnchorElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: '-50px' });
   const [count, setCount] = useState(0);
-  const targetCount = parseInt(memberCount.toString().replace(/[^0-9]/g, ''), 10) || 1174;
+  const rawTargetCount = parseInt(memberCount.toString().replace(/[^0-9]/g, ''), 10) || 1174;
+  const targetCount = rawTargetCount >= 100 ? Math.floor(rawTargetCount / 100) * 100 : rawTargetCount;
   
   const controls = useAnimation();
   const particleControls = useAnimation();

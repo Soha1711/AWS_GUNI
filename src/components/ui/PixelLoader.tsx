@@ -5,11 +5,14 @@ interface PixelLoaderProps {
   onComplete: () => void;
 }
 
-const COLORS = [
+
+
+const SCATTER_COLORS = [
   '#a855f7', // Purple
-  '#f43f5e', // Pink
-  '#f97316', // Orange
-  '#e2e8f0', // Light Grey
+  '#7e22ce', // Dark Purple
+  '#d946ef', // Pinkish Purple
+  '#4c1d95', // Deep Purple
+  '#c084fc', // Light Purple
 ];
 
 const PIXEL_SIZE = 16;
@@ -40,7 +43,7 @@ export const PixelLoader: React.FC<PixelLoaderProps> = ({ onComplete }) => {
         id: i,
         x: `${posX}vw`,
         y: `${posY}vh`,
-        color: COLORS[i % COLORS.length],
+        color: SCATTER_COLORS[i % SCATTER_COLORS.length],
         delay: Math.random() * 0.8 + 0.2, // 200ms to 1000ms delay
         initialYOffset: Math.random() > 0.5 ? 40 : -40, // Fade in from above or below
       });
@@ -132,53 +135,24 @@ export const PixelLoader: React.FC<PixelLoaderProps> = ({ onComplete }) => {
             transition={{ duration: 0.4, ease: 'easeOut' }}
             className="relative flex items-center gap-6 z-10"
           >
-            {/* 4-Pixel Rotating Spinner */}
-            <motion.div
-              className="relative w-12 h-12"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
-            >
-              {/* Top Pixel - Purple */}
-              <div 
-                className="absolute top-0 left-1/2 -translate-x-1/2"
-                style={{
-                  width: PIXEL_SIZE,
-                  height: PIXEL_SIZE,
-                  backgroundColor: COLORS[0],
-                  boxShadow: `0 0 10px ${COLORS[0]}40`
-                }}
+            {/* 3-Pixel Wave Spinner */}
+            <div className="flex flex-col gap-1.5">
+              <motion.div
+                className="w-3.5 h-3.5 bg-[#c084fc] shadow-[0_0_8px_#c084fc60]"
+                animate={{ opacity: [0.3, 1, 0.3] }}
+                transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0 }}
               />
-              {/* Right Pixel - Pink */}
-              <div 
-                className="absolute right-0 top-1/2 -translate-y-1/2"
-                style={{
-                  width: PIXEL_SIZE,
-                  height: PIXEL_SIZE,
-                  backgroundColor: COLORS[1],
-                  boxShadow: `0 0 10px ${COLORS[1]}40`
-                }}
+              <motion.div
+                className="w-3.5 h-3.5 bg-[#d946ef] shadow-[0_0_8px_#d946ef60] ml-3.5"
+                animate={{ opacity: [0.3, 1, 0.3] }}
+                transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
               />
-              {/* Bottom Pixel - Orange */}
-              <div 
-                className="absolute bottom-0 left-1/2 -translate-x-1/2"
-                style={{
-                  width: PIXEL_SIZE,
-                  height: PIXEL_SIZE,
-                  backgroundColor: COLORS[2],
-                  boxShadow: `0 0 10px ${COLORS[2]}40`
-                }}
+              <motion.div
+                className="w-3.5 h-3.5 bg-[#a855f7] shadow-[0_0_8px_#a855f760]"
+                animate={{ opacity: [0.3, 1, 0.3] }}
+                transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
               />
-              {/* Left Pixel - Light Grey */}
-              <div 
-                className="absolute left-0 top-1/2 -translate-y-1/2"
-                style={{
-                  width: PIXEL_SIZE,
-                  height: PIXEL_SIZE,
-                  backgroundColor: COLORS[3],
-                  boxShadow: `0 0 10px ${COLORS[3]}40`
-                }}
-              />
-            </motion.div>
+            </div>
 
             {/* Loading Text */}
             <div className="text-[#F8F8F8] font-medium tracking-[0.08em] text-lg">
