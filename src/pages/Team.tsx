@@ -49,7 +49,7 @@ const teamMembers: TeamMember[] = [
     id: 'pr-hetvi',
     name: 'Hetvi Dedania',
     role: 'PR Team member',
-    tagline: 'Connecting our technical builders with industry leaders and campus events.',
+    tagline: 'Turning ideas into meaning ful connection',
     photo: '/gallery/Hetvi.png',
     linkedin: 'https://linkedin.com/in/hetvi-dedania-788574383',
     team: 'PR Team'
@@ -67,7 +67,7 @@ const teamMembers: TeamMember[] = [
     id: 'pr-hiya',
     name: 'Hiya Vipulkumar Patel',
     role: 'PR Team member',
-    tagline: 'We Do not Do Boring Announcements — Only 99.99% Exciting Ones',
+    tagline: 'Growing through code, cloud, and collaboration',
     photo: '/gallery/Hiya.png',
     linkedin: 'https://linkedin.com/in/hiya-patel-bbb196379',
     team: 'PR Team'
@@ -169,7 +169,7 @@ const teamMembers: TeamMember[] = [
     id: 'ev-prajapati',
     name: 'Prajapati Aryan Rakeshbhai',
     role: 'Event Management Team member',
-    tagline: 'Providing general on-site organization and query support.',
+    tagline: 'Turning ideas into unforgettable experiences',
     photo: '/gallery/Aryan.png',
     linkedin: 'https://linkedin.com/in/aryan-prajapati-2946vish2211',
     team: 'Event Management Team'
@@ -188,7 +188,7 @@ const teamMembers: TeamMember[] = [
     id: 'doc-krina',
     name: 'Krina Koshti',
     role: 'Documentation Team member',
-    tagline: 'Because every achievement deserves to be remembered',
+    tagline: 'Capturing the journey that defines our community',
     photo: '/gallery/Krina.png',
     linkedin: 'https://linkedin.com/in/krina-koshti-41429b365',
     team: 'Documentation Team'
