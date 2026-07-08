@@ -153,7 +153,7 @@ export function StatsCard({
 
         <div className="relative z-10 flex flex-col h-full justify-center mt-2">
           {/* Main Counter */}
-          <div className="flex items-baseline gap-1">
+          <div className="flex items-center gap-0.5">
             <motion.div 
               variants={{ hover: { scale: 1.03 } }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -162,7 +162,7 @@ export function StatsCard({
             >
               {count}
             </motion.div>
-            <span className={`text-4xl font-bold ${theme.textPlus}`}>+</span>
+            <span className={`text-4xl sm:text-5xl font-extrabold pb-1 ${theme.textPlus}`}>+</span>
           </div>
           
           <div className="text-xs uppercase tracking-widest text-slate-400 font-sans font-medium mt-1">
@@ -192,7 +192,7 @@ export function StatsCard({
         </div>
 
         {/* Sparkline Graph */}
-        <div className="absolute bottom-4 right-4 w-[30%] h-8 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute bottom-0 left-0 right-0 w-full h-20 opacity-30 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none">
           <svg viewBox="0 0 100 30" className="w-full h-full overflow-visible" preserveAspectRatio="none">
             {/* Defs for Glow */}
             <defs>

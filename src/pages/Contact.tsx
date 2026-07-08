@@ -20,6 +20,14 @@ export const Contact: React.FC = () => {
       alert('Please fill out all fields.');
       return;
     }
+
+    const subject = encodeURIComponent(`Contact Form: Query from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nDepartment: ${formData.department}\n\nMessage:\n${formData.message}`
+    );
+
+    window.location.href = `mailto:aws.sbg@ganpatuniversity.ac.in?subject=${subject}&body=${body}`;
+    
     setFormSubmitted(true);
   };
 
@@ -32,7 +40,7 @@ export const Contact: React.FC = () => {
       {/* Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 space-y-4">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-white font-heading tracking-tight">
-          Connect With SBG Hub
+          Connect With SBG
         </h1>
         <p className="max-w-2xl mx-auto text-slate-400 text-sm sm:text-base">
           
@@ -55,7 +63,7 @@ export const Contact: React.FC = () => {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-white font-bold font-heading mb-1">Campus Hub Address</h4>
+                    <h4 className="text-white font-bold font-heading mb-1">Campus Address</h4>
                     <p className="text-slate-400 leading-relaxed text-xs">
                       AWS Student Builder Group, IT Building, UV Patel College of Engineering, Ganpat University Campus, Mehsana-Gandinagar Highway, Kherva, Gujarat, India - 384315.
                     </p>
@@ -81,7 +89,7 @@ export const Contact: React.FC = () => {
                   <div>
                     <h4 className="text-white font-bold font-heading mb-1">Contact Number</h4>
                     <a href="tel:+912762286080" className="text-slate-400 hover:text-white transition-colors">
-                      +91 27622 86080
+                      +91 79849 61282
                     </a>
                   </div>
                 </li>

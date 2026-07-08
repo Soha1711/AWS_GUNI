@@ -132,9 +132,9 @@ export const CircuitBentoGrid: React.FC = () => {
   ];
 
   return (
-    <div ref={containerRef} className="relative w-full h-[500vh] bg-transparent">
-      {/* Sticky Inner Viewport */}
-      <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col items-center justify-center pt-20">
+    <div ref={containerRef} className="relative w-full h-auto md:h-[500vh] bg-transparent">
+      {/* Sticky Inner Viewport (Desktop) / Normal Section (Mobile) */}
+      <div className="relative md:sticky top-0 w-full h-auto md:h-screen overflow-hidden flex flex-col items-center justify-center pt-10 pb-16 md:pt-20 md:pb-0">
         
         {/* Animated Background Grid */}
         <div className="absolute inset-0 z-0 opacity-[0.06] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />

@@ -19,8 +19,8 @@ export const Footer: React.FC = () => {
           {/* Brand Info Column */}
           <div className="md:col-span-1 space-y-4">
             <Link to="/" className="flex items-center gap-2.5 group">
-              <Logo size={24} className="group-hover:scale-105 transition-transform duration-300" />
-              <div className="flex flex-col">
+              <Logo size={24} className="group-hover:scale-105 transition-transform duration-300 shrink-0" />
+              <div className="flex flex-col border-r border-white/20 pr-3 shrink-0">
                 <span className="text-white font-bold text-sm font-heading tracking-wide group-hover:text-[#a855f7] transition-colors duration-300">
                   AWS Student Builder Group
                 </span>
@@ -28,6 +28,7 @@ export const Footer: React.FC = () => {
                   Ganpat University
                 </span>
               </div>
+              <img src="/guni-logo.png" alt="Ganpat University Centre of Excellence" className="h-7 sm:h-9 object-contain ml-1 shrink-0" />
             </Link>
             
             <p className="text-sm sm:text-base text-slate-400 leading-relaxed font-sans pr-4 pt-1">
@@ -132,7 +133,7 @@ export const Footer: React.FC = () => {
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-5 h-5 text-[#a855f7] shrink-0 mt-0.5" />
                 <span>
-                  Ganpat University (GNU), Mehsana-Gandinagar Highway, Kherva, Gujarat, India - 384315.
+                  Ganpat University (GNUI), Mehsana-Gandinagar Highway, Kherva, Gujarat, India - 384315.
                 </span>
               </li>
               <li className="flex items-center gap-2.5">
@@ -144,7 +145,7 @@ export const Footer: React.FC = () => {
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4.5 h-4.5 text-[#a855f7] shrink-0" />
                 <a href="tel:+912762286080" className="hover:text-white transition-colors">
-                  +91 2762 286080
+                  +91 79849 61282
                 </a>
               </li>
             </ul>

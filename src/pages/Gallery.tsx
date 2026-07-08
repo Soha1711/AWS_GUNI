@@ -314,7 +314,7 @@ export const Gallery: React.FC = () => {
             AWS SBG Ganpat University
           </span>
           <h2 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-white font-heading tracking-tight max-w-sm sm:max-w-md md:max-w-lg leading-tight uppercase">
-            A Glimpse from the community
+            CAPTURING THE JOURNEY
           </h2>
         </div>
 

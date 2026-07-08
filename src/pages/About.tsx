@@ -158,13 +158,13 @@ const BenefitTimelineItem: React.FC<{
 
 export const About: React.FC = () => {
   return (
-    <div className="relative pt-24 pb-16 font-sans overflow-hidden">
+    <div className="relative pt-16 sm:pt-24 pb-12 sm:pb-16 font-sans overflow-hidden">
       {/* Background glow effects */}
       <div className="absolute top-10 left-10 w-96 h-96 bg-[#00f5ff]/5 rounded-full blur-[130px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#ffaa00]/5 rounded-full blur-[130px] pointer-events-none" />
 
       {/* Hero Header */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-20 space-y-4">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12 sm:mb-20 space-y-4">
         <motion.h1
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -181,7 +181,7 @@ export const About: React.FC = () => {
           className="max-w-3xl mx-auto text-slate-400 text-base sm:text-lg"
         >
           <ScrollText
-            text="Learn who we are, our core drivers, and the timeline students traverse to morph from cloud novices into AWS Certified Builders."
+            text=""
             stagger={0.012}
             delay={0.25}
           />
@@ -189,7 +189,7 @@ export const About: React.FC = () => {
       </section>
 
       {/* Mission, Vision, and Objectives Cards */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-24">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -256,7 +256,7 @@ export const About: React.FC = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 relative bg-[#060814]/45 border-y border-white/5">
+      <section className="py-12 sm:py-20 relative bg-[#060814]/45 border-y border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
@@ -270,7 +270,7 @@ export const About: React.FC = () => {
             </h2>
             <p className="text-slate-400 font-sans">
               <ScrollText
-                text="Accelerate your engineering journey. As a certified group backed by AWS Academy and Ganpat University, we offer privileges designed for career launches."
+                text=""
                 stagger={0.01}
               />
             </p>

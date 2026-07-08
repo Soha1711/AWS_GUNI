@@ -59,7 +59,7 @@ export const Home: React.FC = () => {
           top: 0,
           left: '50%',
           transform: 'translateX(-50%)',
-          width: '100vw',
+          width: '100%',
           height: '100%',
           zIndex: 0,
           overflow: 'hidden'
@@ -78,7 +78,7 @@ export const Home: React.FC = () => {
         {/* Vignette — fades dot field into page bg at edges */}
         <div
           className="absolute pointer-events-none"
-          style={{ zIndex: 1, top: 0, left: '50%', transform: 'translateX(-50%)', width: '100vw', height: '100%', background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 35%, #030303 100%)' }}
+          style={{ zIndex: 1, top: 0, left: '50%', transform: 'translateX(-50%)', width: '100%', height: '100%', background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 35%, #030303 100%)' }}
         />
 
         {/* Glow blobs */}
@@ -153,7 +153,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 2. ABOUT SUMMARY */}
-      <section className="py-24 relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-24 relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7]/20 via-transparent to-[#00f5ff]/20 rounded-[3rem] blur-3xl opacity-60 pointer-events-none" />
         
         <motion.div 
@@ -161,7 +161,7 @@ export const Home: React.FC = () => {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative glass p-10 sm:p-16 rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(168,85,247,0.15)] overflow-hidden group hover:border-[#a855f7]/30 transition-colors transition-shadow duration-700 hover:shadow-[0_0_80px_rgba(168,85,247,0.25)]"
+          className="relative glass p-6 sm:p-16 rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(168,85,247,0.15)] overflow-hidden group hover:border-[#a855f7]/30 transition-colors transition-shadow duration-700 hover:shadow-[0_0_80px_rgba(168,85,247,0.25)]"
         >
           {/* Animated corner gradients */}
           <div className="absolute -top-24 -left-24 w-48 h-48 bg-[#a855f7] rounded-full mix-blend-screen filter blur-[80px] opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none" />
@@ -194,7 +194,7 @@ export const Home: React.FC = () => {
           {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, index) => (
             <div 
               key={index} 
-              className="flex-shrink-0 w-[320px] sm:w-[420px] glass p-4 rounded-2xl border border-white/5 flex flex-col gap-4 group/item hover:border-[#a855f7]/30 transition-all duration-300"
+              className="flex-shrink-0 w-[280px] sm:w-[420px] glass p-4 rounded-2xl border border-white/5 flex flex-col gap-4 group/item hover:border-[#a855f7]/30 transition-all duration-300"
             >
               <div className="h-56 w-full overflow-hidden rounded-xl bg-slate-900 relative">
                 <img 
@@ -332,7 +332,7 @@ export const Home: React.FC = () => {
 
 
       {/* 8. CALL TO ACTION SECTION */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-r from-cyan-950/10 via-[#0a0d24]/50 to-[#ffaa00]/5 border-y border-white/5">
+      <section className="py-12 sm:py-24 relative overflow-hidden bg-gradient-to-r from-cyan-950/10 via-[#0a0d24]/50 to-[#ffaa00]/5 border-y border-white/5">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full bg-[#ffaa00]/5 blur-[150px] pointer-events-none" />
         
         <div className="max-w-4xl mx-auto text-center px-4 relative z-10 space-y-6">
@@ -342,7 +342,7 @@ export const Home: React.FC = () => {
           </h2>
           <p className="max-w-xl mx-auto text-slate-300 font-sans text-sm sm:text-base leading-relaxed">
             <ScrollText
-              text="Expand your cloud horizon. Join study circles, collaborate on open-source code repositories, get sponsored for certifications, and build real-world systems."
+              text=""
               stagger={0.015}
             />
           </p>
@@ -353,7 +353,7 @@ export const Home: React.FC = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold uppercase tracking-wider text-sm text-black bg-[#ffaa00] hover:bg-amber-400 shadow-xl shadow-[#ffaa00]/25 hover:shadow-[#ffaa00]/45 transition-all"
             >
-              Join Meetup Hub
+              Join Meetup
               <ChevronRight className="w-4 h-4" />
             </a>
           </div>

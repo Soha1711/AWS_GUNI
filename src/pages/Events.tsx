@@ -34,10 +34,9 @@ export const Events: React.FC = () => {
       {/* Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 space-y-4">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-white font-heading tracking-tight">
-          Cloud Event Calendars
+          EVENT CALENDAR
         </h1>
         <p className="max-w-2xl mx-auto text-slate-400 text-sm sm:text-base">
-          Browse our upcoming bootcamps, hands-on academy sessions, global speaker panels, and past university hackathons.
         </p>
       </section>
 

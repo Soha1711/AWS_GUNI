@@ -57,7 +57,7 @@ const AppContent: React.FC = () => {
       <Navbar />
 
       {/* Main viewport routes with fade animation container */}
-      <main className="flex-1 flex flex-col relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+      <main className="flex-1 flex flex-col relative z-10 w-full">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<PageTransition><Home /></PageTransition>} />

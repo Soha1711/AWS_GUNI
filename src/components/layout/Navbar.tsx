@@ -11,7 +11,8 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
+      // Trigger when scrolling past 85% of the viewport height (roughly the Hero section height)
+      if (window.scrollY > window.innerHeight * 0.85) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -48,10 +49,15 @@ export const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo Brand */}
-            <Link to="/" className="flex items-center gap-2.5 group">
-              <Logo size={28} className="group-hover:scale-105 transition-transform duration-300" />
+            <Link 
+              to="/" 
+              className={`flex items-center gap-2.5 group transition-opacity duration-300 ${
+                (location.pathname === '/' && !scrolled) ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'
+              }`}
+            >
+              <Logo size={28} className="group-hover:scale-105 transition-transform duration-300 shrink-0" />
 
-              <div className="flex flex-col">
+              <div className="flex flex-col border-r border-white/20 pr-3 shrink-0">
                 <span className="text-white font-bold text-sm sm:text-base font-heading tracking-wide group-hover:text-[#a855f7] transition-colors duration-300">
                   AWS Student Builder Group
                 </span>
@@ -59,11 +65,17 @@ export const Navbar: React.FC = () => {
                   Ganpat University
                 </span>
               </div>
+              
+              <img src="/guni-logo.png" alt="Ganpat University Centre of Excellence" className="h-8 sm:h-10 object-contain ml-1 shrink-0" />
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              <div className="flex items-center gap-6">
+            <div className={`hidden md:flex items-center transition-all duration-500 ${
+              (location.pathname === '/' && !scrolled) ? 'gap-12 md:gap-16' : 'gap-8'
+            }`}>
+              <div className={`flex items-center transition-all duration-500 ${
+                (location.pathname === '/' && !scrolled) ? 'gap-8 md:gap-10' : 'gap-6'
+              }`}>
                 {navLinks.map((link) => {
                   const isActive = location.pathname === link.path;
                   return (
