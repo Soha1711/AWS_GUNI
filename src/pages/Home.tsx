@@ -64,10 +64,11 @@ export const Home: React.FC = () => {
             left: '50%',
             transform: 'translateX(-50%)',
             width: '100%',
-            height: '140%',
+            height: '100%',
             zIndex: 0,
-            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
+            overflow: 'hidden',
+            maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)'
           }}
         >
           <ShapeGrid 
@@ -168,7 +169,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 2. ABOUT SUMMARY */}
-      <section className="py-14 sm:py-20 relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-14 sm:py-20 relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 sm:-mt-24 z-10">
         <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7]/20 via-transparent to-[#00f5ff]/20 rounded-[3rem] blur-3xl opacity-60 pointer-events-none" />
         
         <motion.div 
