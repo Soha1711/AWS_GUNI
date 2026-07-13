@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useInView, useAnimation, animate } from 'framer-motion';
+import { motion, useInView, animate } from 'framer-motion';
 
 interface SubStat {
   label: string;
