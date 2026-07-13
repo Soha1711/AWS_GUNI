@@ -121,7 +121,7 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: 150 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-bold font-heading tracking-tight leading-[1.1] pb-2 whitespace-pre-wrap break-words"
+            className="text-5xl sm:text-7xl lg:text-[6rem] font-bold font-poppins tracking-tight leading-[1.1] pb-2 whitespace-pre-wrap break-words"
           >
             <TextType 
               className="text-transparent bg-clip-text bg-[linear-gradient(180deg,#190a2b_0%,#d6aeff_100%)] drop-shadow-xl"
