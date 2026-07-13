@@ -98,7 +98,7 @@ export const Home: React.FC = () => {
 
         {/* Glow blobs */}
         <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] rounded-full bg-[#a855f7]/5 blur-[120px] pointer-events-none animate-pulse" style={{ zIndex: 1 }} />
-        <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] rounded-full bg-[#d946ef]/5 blur-[120px] pointer-events-none animate-pulse" style={{ zIndex: 1 }} />
+        <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] rounded-full bg-[#d6aeff]/5 blur-[120px] pointer-events-none animate-pulse" style={{ zIndex: 1 }} />
         <div className="relative max-w-5xl mx-auto text-center z-10 space-y-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -173,7 +173,7 @@ export const Home: React.FC = () => {
         {/* Upward ambient glow to fill the gap between sections without pitch darkness */}
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] bg-gradient-to-b from-transparent via-[#a855f7]/15 to-transparent blur-[80px] pointer-events-none" />
         
-        <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7]/20 via-transparent to-[#00f5ff]/20 rounded-[3rem] blur-3xl opacity-60 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7]/20 via-transparent to-[#d6aeff]/20 rounded-[3rem] blur-3xl opacity-60 pointer-events-none" />
         
         <motion.div 
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
@@ -191,14 +191,16 @@ export const Home: React.FC = () => {
               <ScrollText text="What Are We?" />
             </h2>
             
-            <div className="flex justify-center items-center gap-4">
-              <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#00f5ff]" />
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="h-px bg-gradient-to-r from-transparent to-[#d6aeff]/50 w-16" />
               <div className="w-2 h-2 rounded-full bg-[#a855f7] shadow-[0_0_10px_#a855f7]" />
-              <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#00f5ff]" />
+              <div className="h-px bg-gradient-to-l from-transparent to-[#d6aeff]/50 w-16" />
             </div>
 
-            <p className="text-slate-300 font-sans text-base sm:text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto font-light px-2 sm:px-0">
-              The AWS Student Builders Group at Ganpat University is a community of <strong className="font-bold text-white tracking-wide">passionate builders</strong>, learning and experimenting with <strong className="font-bold text-[#00f5ff] tracking-wide">cloud technologies</strong>. Our mission is to empower students with the skills, hands-on experience, and network needed to thrive in a <strong className="font-bold text-[#a855f7] tracking-wide">cloud-first world</strong>.
+            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              The AWS Student Builders Group at Ganpat University is a community of <strong className="text-white">passionate builders</strong>, 
+              learning and experimenting with <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] to-[#d6aeff] font-semibold">cloud technologies</span>. 
+              Our mission is to empower students with the skills, hands-on experience, and network needed to thrive in a <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d6aeff] to-[#a855f7] font-semibold">cloud-first world</span>.
             </p>
           </div>
         </motion.div>
