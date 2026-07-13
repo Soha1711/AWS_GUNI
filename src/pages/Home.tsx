@@ -53,39 +53,44 @@ export const Home: React.FC = () => {
       {/* 1. HERO SECTION */}
       <section className="relative min-h-[92svh] flex items-center justify-center px-4">
 
-        {/* Background layer with mask to fade out at bottom */}
-        <div 
-          className="absolute inset-0 overflow-hidden" 
-          style={{ 
+        {/* Cubes interactive background -- breaks out of max-w container to fill full viewport */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2.5, ease: "easeOut" }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '100%',
+            height: '100%',
             zIndex: 0,
+            overflow: 'hidden',
             maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)',
             WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)'
           }}
         >
-          {/* Cubes interactive background */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2.5, ease: "easeOut" }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <ShapeGrid 
-              speed={0.54}
-              squareSize={40}
-              direction='diagonal'
-              borderColor="rgba(255, 255, 255, 0.08)"
-              hoverFillColor='#7C3AED'
-              shape='square'
-              hoverTrailAmount={1}
-            />
-          </motion.div>
-
-          {/* Vignette — fades dot field into page bg at edges */}
-          <div
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 35%, #030303 100%)' }}
+          <ShapeGrid 
+            speed={0.54}
+            squareSize={40}
+            direction='diagonal'
+            borderColor="rgba(255, 255, 255, 0.08)"
+            hoverFillColor='#7C3AED'
+            shape='square'
+            hoverTrailAmount={1}
           />
-        </div>
+        </motion.div>
+
+        {/* Vignette — fades dot field into page bg at edges */}
+        <div
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          style={{ 
+            background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 35%, #030303 100%)',
+            maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)'
+          }}
+        />
 
         {/* Glow blobs */}
         <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] rounded-full bg-[#a855f7]/5 blur-[120px] pointer-events-none animate-pulse" style={{ zIndex: 1 }} />
