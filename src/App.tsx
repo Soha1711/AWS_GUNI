@@ -49,7 +49,7 @@ const AppContent: React.FC = () => {
   const location = useLocation();
 
   return (
-    <div className="flex flex-col min-h-screen relative text-slate-100 selection:bg-[#ff9900]/30 selection:text-[#ff9900]">
+    <div className="flex flex-col min-h-screen relative text-slate-100 selection:bg-[#ff9900]/30 selection:text-[#ff9900] overflow-x-hidden w-full max-w-[100vw]">
       {/* Interactive global click sonar sweeping waves */}
       <SonarClickEffect />
 

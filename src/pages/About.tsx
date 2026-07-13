@@ -90,7 +90,7 @@ const BenefitTimelineItem: React.FC<{
   return (
     <div 
       ref={itemRef} 
-      className={`flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16 w-full relative py-12 ${
+      className={`flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16 w-full relative py-12 pl-16 md:pl-0 ${
         isEven ? 'md:flex-row-reverse' : ''
       }`}
     >
@@ -276,7 +276,7 @@ export const About: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="relative max-w-5xl mx-auto pl-12 md:pl-0 mt-16">
+          <div className="relative max-w-5xl mx-auto md:pl-0 mt-16">
             <div className="relative">
               {BENEFITS.map((benefit, idx) => {
                 const isEven = idx % 2 === 0;
