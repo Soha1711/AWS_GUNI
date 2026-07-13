@@ -137,7 +137,10 @@ export const CircuitBentoGrid: React.FC = () => {
       <div className="relative md:sticky top-0 w-full h-auto md:h-screen overflow-hidden flex flex-col items-center justify-center pt-10 pb-16 md:pt-20 md:pb-0">
         
         {/* Animated Background Grid */}
-        <div className="absolute inset-0 z-0 opacity-[0.06] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
+        <div 
+          className="absolute inset-0 z-0 opacity-[0.06] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" 
+          style={{ maskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)', WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)' }}
+        />
         
         {/* Soft Glow Radial Gradient blobs */}
         <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-purple-600/5 rounded-full blur-[150px] pointer-events-none" />
