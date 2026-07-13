@@ -58,9 +58,6 @@ export function StatsCard({
   const rawTargetCount = parseInt(memberCount.toString().replace(/[^0-9]/g, ''), 10) || 1174;
   const targetCount = rawTargetCount >= 100 ? Math.floor(rawTargetCount / 100) * 100 : rawTargetCount;
   
-  const controls = useAnimation();
-  const particleControls = useAnimation();
-
   useEffect(() => {
     if (isInView) {
       // Animate the main counter
@@ -69,40 +66,8 @@ export function StatsCard({
         ease: 'easeOut',
         onUpdate: (latest) => setCount(Math.floor(latest))
       });
-
-      // Start graph draw animation
-      controls.start({ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: 'easeInOut' } });
-      
-      // Initial particle run with draw
-      particleControls.start({
-        offsetDistance: ['0%', '100%'],
-        opacity: [0, 1, 0],
-        transition: { duration: 1.5, ease: 'easeInOut' }
-      }).then(() => {
-        // Start continuous loop
-        particleControls.start({
-          offsetDistance: ['0%', '100%'],
-          opacity: [0, 1, 0],
-          transition: { duration: 2, ease: 'easeInOut', repeat: Infinity, repeatDelay: 3 }
-        });
-      });
     }
-  }, [isInView, targetCount, controls, particleControls]);
-
-  const handleHoverStart = () => {
-    particleControls.start({
-      offsetDistance: ['0%', '100%'],
-      opacity: [0, 1, 0],
-      transition: { duration: 1, ease: 'easeInOut' }
-    }).then(() => {
-      // Resume continuous loop
-      particleControls.start({
-        offsetDistance: ['0%', '100%'],
-        opacity: [0, 1, 0],
-        transition: { duration: 2, ease: 'easeInOut', repeat: Infinity, repeatDelay: 3 }
-      });
-    });
-  };
+  }, [isInView, targetCount]);
 
   const theme = THEMES[themeColor];
 
@@ -116,7 +81,6 @@ export function StatsCard({
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       whileHover="hover"
-      onHoverStart={handleHoverStart}
       className="relative w-full max-w-sm mx-auto group perspective-1000 block"
     >
       <motion.div
@@ -191,48 +155,7 @@ export function StatsCard({
           )}
         </div>
 
-        {/* Sparkline Graph */}
-        <div className="absolute bottom-0 left-0 right-0 w-full h-20 opacity-30 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none">
-          <svg viewBox="0 0 100 30" className="w-full h-full overflow-visible" preserveAspectRatio="none">
-            {/* Defs for Glow */}
-            <defs>
-              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="2" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-            </defs>
-            {/* Track Path (Background) */}
-            <path
-              d="M 0 30 C 20 30, 30 15, 50 20 C 70 25, 80 5, 100 10"
-              fill="none"
-              stroke={theme.sparklineBg}
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            {/* Animated Path */}
-            <motion.path
-              d="M 0 30 C 20 30, 30 15, 50 20 C 70 25, 80 5, 100 10"
-              fill="none"
-              stroke={theme.sparklineStroke}
-              strokeWidth="2"
-              strokeLinecap="round"
-              filter="url(#glow)"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={controls}
-            />
-            {/* Traveling Particle */}
-            <motion.circle
-              r="2"
-              fill={theme.sparklineParticle}
-              filter="url(#glow)"
-              initial={{ opacity: 0 }}
-              animate={particleControls}
-              style={{
-                offsetPath: `path('M 0 30 C 20 30, 30 15, 50 20 C 70 25, 80 5, 100 10')`,
-              }}
-            />
-          </svg>
-        </div>
+
       </motion.div>
     </motion.a>
   );
