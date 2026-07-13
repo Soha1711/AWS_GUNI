@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
-  ArrowRight, Users, Calendar, ChevronRight, MessageSquare 
+  ArrowRight, Users, Calendar, ChevronRight, MessageSquare, MapPin 
 } from 'lucide-react';
 import { EVENTS } from '../data/mockData';
 import { Logo } from '../components/ui/Logo';
