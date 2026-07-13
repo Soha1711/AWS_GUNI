@@ -72,7 +72,7 @@ export const Home: React.FC = () => {
             speed={0.54}
             squareSize={40}
             direction='diagonal'
-            borderColor="rgba(255, 255, 255, 0.03)"
+            borderColor="rgba(255, 255, 255, 0.08)"
             hoverFillColor='#7C3AED'
             shape='square'
             hoverTrailAmount={1}
