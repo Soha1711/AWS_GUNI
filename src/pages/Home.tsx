@@ -160,7 +160,7 @@ export const Home: React.FC = () => {
               href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-8 min-h-[48px] flex items-center justify-center rounded-full font-bold uppercase tracking-wider text-sm text-white bg-[#a855f7] hover:bg-purple-600 shadow-lg shadow-[#a855f7]/20 hover:shadow-[#a855f7]/40 transition-all text-center active:scale-95"
+              className="w-full sm:w-auto px-8 min-h-[48px] flex items-center justify-center rounded-full font-bold uppercase tracking-wider text-sm text-white bg-white/5 border border-white/10 hover:border-[#a855f7] hover:text-[#a855f7] hover:bg-white/10 transition-all text-center gap-2 active:scale-95"
             >
               Join Community
             </a>
