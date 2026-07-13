@@ -96,6 +96,14 @@ export const Home: React.FC = () => {
           }}
         />
 
+        {/* Bottom Fade-out Blend — completely hides the hard edge of the grid */}
+        <div 
+          className="absolute bottom-0 left-0 w-full h-[250px] pointer-events-none z-10"
+          style={{
+            background: 'linear-gradient(to bottom, transparent 0%, #030303 100%)'
+          }}
+        />
+
         {/* Glow blobs */}
         <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] rounded-full bg-[#a855f7]/5 blur-[120px] pointer-events-none animate-pulse" style={{ zIndex: 1 }} />
         <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] rounded-full bg-[#d6aeff]/5 blur-[120px] pointer-events-none animate-pulse" style={{ zIndex: 1 }} />
