@@ -245,7 +245,7 @@ export const Team: React.FC = () => {
 
       {/* Main Section Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-32 relative z-10">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#d8b4fe] to-[#7e22ce] font-heading tracking-tight">
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#d8b4fe] to-[#7e22ce] font-heading tracking-tight">
           Our Team
         </h1>
       </section>
@@ -256,12 +256,12 @@ export const Team: React.FC = () => {
         {/* Coordinator */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
           <div className="flex-1 flex justify-end md:pr-8">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading tracking-tight flex items-center gap-4">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold font-heading tracking-tight flex items-center justify-center md:justify-end gap-4 w-full">
               <TypewriterText text="SBG Coordinator" speed={70} cursor={false} className="text-transparent bg-clip-text bg-gradient-to-r from-[#d8b4fe] to-[#7e22ce]" />
               <span className="w-2 h-10 rounded-full bg-[#a855f7] text-glow shrink-0" />
             </h2>
           </div>
-          <div className="flex-1 flex justify-start md:pl-8">
+          <div className="flex-1 flex justify-center md:justify-start md:pl-8 w-full">
             <TeamCard
               member={{
                 name: coordinator.name,
@@ -279,12 +279,12 @@ export const Team: React.FC = () => {
         {/* Leader */}
         <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-8 md:gap-16">
           <div className="flex-1 flex justify-start md:pl-8">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading tracking-tight flex items-center gap-4">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold font-heading tracking-tight flex items-center justify-center md:justify-start gap-4 w-full">
               <span className="w-2 h-10 rounded-full bg-[#d946ef] text-glow shrink-0" />
               <TypewriterText text="SBG Leader" speed={70} cursor={false} className="text-transparent bg-clip-text bg-gradient-to-r from-[#d8b4fe] to-[#7e22ce]" />
             </h2>
           </div>
-          <div className="flex-1 flex justify-end md:pr-8">
+          <div className="flex-1 flex justify-center md:justify-end md:pr-8 w-full">
             <TeamCard
               member={{
                 name: leader.name,
@@ -308,12 +308,12 @@ export const Team: React.FC = () => {
           <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 relative z-10">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
               <div className="flex-1 flex justify-end md:pr-8">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading tracking-tight flex items-center gap-4">
+                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold font-heading tracking-tight flex items-center justify-center md:justify-end gap-4 w-full">
                   <TypewriterText text="SBG Adviser" speed={70} cursor={false} className="text-transparent bg-clip-text bg-gradient-to-r from-[#d8b4fe] to-[#7e22ce]" />
                   <span className="w-2 h-10 rounded-full bg-[#ffaa00] text-glow shrink-0" />
                 </h2>
               </div>
-              <div className="flex-1 flex justify-start md:pl-8">
+              <div className="flex-1 flex justify-center md:justify-start md:pl-8 w-full">
                 <TeamCard
                   member={{
                     name: adviser.name,
@@ -334,7 +334,7 @@ export const Team: React.FC = () => {
       {/* Team Crew Showcase Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 relative z-10">
         <div className="flex items-center gap-4 mb-10 w-full">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading tracking-tight flex items-center gap-4">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold font-heading tracking-tight flex items-center gap-4">
             <span className="w-2 h-10 rounded-full bg-[#a855f7] text-glow shrink-0" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d8b4fe] to-[#7e22ce]">
               SBG Team Members

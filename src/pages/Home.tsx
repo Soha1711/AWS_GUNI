@@ -103,7 +103,7 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: 150 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-heading tracking-tight leading-[1.1] pb-2 text-glow whitespace-pre-wrap"
+            className="text-3xl sm:text-5xl lg:text-6xl font-black text-white font-heading tracking-tight leading-[1.1] pb-2 text-glow whitespace-pre-wrap break-words"
           >
             <TextType 
               text={"AWS\nStudent Builder Group\nGanpat University"}
@@ -172,7 +172,7 @@ export const Home: React.FC = () => {
           <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-[#00f5ff] rounded-full mix-blend-screen filter blur-[80px] opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none" />
           
           <div className="text-center space-y-8 relative z-10">
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-white font-heading tracking-tight drop-shadow-lg">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight drop-shadow-lg">
               <ScrollText text="What Are We?" />
             </h2>
             
@@ -182,7 +182,7 @@ export const Home: React.FC = () => {
               <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#00f5ff]" />
             </div>
 
-            <p className="text-slate-300 font-sans text-lg sm:text-2xl leading-relaxed max-w-4xl mx-auto font-light">
+            <p className="text-slate-300 font-sans text-base sm:text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto font-light px-2 sm:px-0">
               The AWS Student Builders Group at Ganpat University is a community of <strong className="font-bold text-white tracking-wide">passionate builders</strong>, learning and experimenting with <strong className="font-bold text-[#00f5ff] tracking-wide">cloud technologies</strong>. Our mission is to empower students with the skills, hands-on experience, and network needed to thrive in a <strong className="font-bold text-[#a855f7] tracking-wide">cloud-first world</strong>.
             </p>
           </div>
@@ -345,7 +345,7 @@ export const Home: React.FC = () => {
         
         <div className="max-w-4xl mx-auto text-center px-4 relative z-10 space-y-6">
           <MessageSquare className="w-12 h-12 text-[#00f5ff] mx-auto animate-bounce text-glow-blue" />
-          <h2 className="text-3xl sm:text-5xl font-bold text-white font-heading">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white font-heading">
             <ScrollText text="Connect With Our Community" />
           </h2>
           <p className="max-w-xl mx-auto text-slate-300 font-sans text-sm sm:text-base leading-relaxed">

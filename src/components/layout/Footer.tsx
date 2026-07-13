@@ -156,19 +156,19 @@ export const Footer: React.FC = () => {
         <div className="w-full h-px bg-white/10 my-8" />
 
         {/* Footer bottom */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-sans">
-          <p>
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-sans text-center sm:text-left">
+          <p className="max-w-[280px] sm:max-w-none mx-auto sm:mx-0">
             &copy; {currentYear} AWS Student Builder Group - Ganpat University. All rights reserved.
           </p>
-          <div className="flex items-center gap-5">
-            <a href="#" className="hover:text-white transition-colors">
+          <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-5 mt-2 sm:mt-0">
+            <a href="#" className="hover:text-white transition-colors whitespace-nowrap">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#" className="hover:text-white transition-colors whitespace-nowrap">
               Terms of Use
             </a>
-            <span className="text-slate-600">|</span>
-            <span className="text-slate-500">
+            <span className="text-slate-600 hidden sm:inline">|</span>
+            <span className="text-slate-500 w-full sm:w-auto text-center mt-1 sm:mt-0">
               Designed in Partnership with AWS Academy
             </span>
           </div>

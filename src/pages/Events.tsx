@@ -33,7 +33,7 @@ export const Events: React.FC = () => {
 
       {/* Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 space-y-4">
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-white font-heading tracking-tight">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-white font-heading tracking-tight">
           EVENT CALENDAR
         </h1>
         <p className="max-w-2xl mx-auto text-slate-400 text-sm sm:text-base">
@@ -44,7 +44,7 @@ export const Events: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 flex justify-center">
         <div className="bg-[#080d24]/50 border border-white/5 p-4 rounded-2xl glass">
           {/* Status Tabs */}
-          <div className="flex bg-slate-900/60 p-1.5 rounded-full border border-white/5">
+          <div className="flex flex-wrap justify-center sm:flex-nowrap bg-slate-900/60 p-1.5 rounded-2xl sm:rounded-full border border-white/5 gap-1">
             {['all', 'ongoing', 'upcoming', 'past'].map((status) => (
               <button
                 key={status}
