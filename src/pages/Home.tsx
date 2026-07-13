@@ -96,14 +96,6 @@ export const Home: React.FC = () => {
           }}
         />
 
-        {/* Bottom Fade-out Blend — completely hides the hard edge of the grid */}
-        <div 
-          className="absolute bottom-0 left-0 w-full h-[250px] pointer-events-none z-10"
-          style={{
-            background: 'linear-gradient(to bottom, transparent 0%, #030303 100%)'
-          }}
-        />
-
         {/* Glow blobs */}
         <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] rounded-full bg-[#a855f7]/5 blur-[120px] pointer-events-none animate-pulse" style={{ zIndex: 1 }} />
         <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] rounded-full bg-[#d6aeff]/5 blur-[120px] pointer-events-none animate-pulse" style={{ zIndex: 1 }} />
@@ -178,9 +170,6 @@ export const Home: React.FC = () => {
 
       {/* 2. ABOUT SUMMARY */}
       <section className="py-14 sm:py-24 relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 z-10 mt-8">
-        {/* Upward ambient glow to fill the gap between sections without pitch darkness */}
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] bg-gradient-to-b from-transparent via-[#a855f7]/15 to-transparent blur-[80px] pointer-events-none" />
-        
         <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7]/20 via-transparent to-[#d6aeff]/20 rounded-[3rem] blur-3xl opacity-60 pointer-events-none" />
         
         <motion.div 
