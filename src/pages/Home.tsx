@@ -67,6 +67,8 @@ export const Home: React.FC = () => {
             height: '100%',
             zIndex: 0,
             overflow: 'hidden',
+            maskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)'
           }}
         >
           <ShapeGrid 
@@ -96,7 +98,7 @@ export const Home: React.FC = () => {
 
         {/* Bottom Fade-out Blend — guarantees seamless transition into next section */}
         <div 
-          className="absolute bottom-0 left-0 w-full h-32 pointer-events-none"
+          className="absolute bottom-0 left-0 w-full h-[350px] pointer-events-none"
           style={{
             zIndex: 2,
             background: 'linear-gradient(to bottom, transparent 0%, #030303 100%)'
