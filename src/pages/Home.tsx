@@ -116,7 +116,7 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: 150 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-black text-white font-heading tracking-tight leading-[1.1] pb-2 text-glow whitespace-pre-wrap break-words"
+            className="text-3xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-br from-[#d6aeff] via-[#d6aeff] to-[#190a2b] text-transparent bg-clip-text font-heading tracking-tight leading-[1.1] pb-2 text-glow whitespace-pre-wrap break-words"
           >
             <TextType 
               text={"AWS\nStudent Builder Group\nGanpat University"}
