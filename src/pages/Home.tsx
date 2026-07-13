@@ -90,7 +90,7 @@ export const Home: React.FC = () => {
         {/* Glow blobs */}
         <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] rounded-full bg-[#a855f7]/5 blur-[120px] pointer-events-none animate-pulse" style={{ zIndex: 1 }} />
         <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] rounded-full bg-[#d946ef]/5 blur-[120px] pointer-events-none animate-pulse" style={{ zIndex: 1 }} />
-        <div className="max-w-5xl mx-auto text-center z-10 space-y-8">
+        <div className="relative max-w-5xl mx-auto text-center z-10 space-y-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
