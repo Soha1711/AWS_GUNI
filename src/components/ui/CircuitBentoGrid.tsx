@@ -33,8 +33,8 @@ export const CircuitBentoGrid: React.FC = () => {
 
   // Timeline Transitions
   // Step 0: Hero Title (0% to 20%)
-  const titleOpacity = useTransform(smoothProgress, [0, 0.12], [0, 1]);
-  const titleBlur = useTransform(smoothProgress, [0, 0.12], ["blur(25px)", "blur(0px)"]);
+  const titleOpacity = useTransform(smoothProgress, [0, 0.12], [1, 1]);
+  const titleBlur = useTransform(smoothProgress, [0, 0.12], ["blur(0px)", "blur(0px)"]);
   const titleScale = useTransform(smoothProgress, [0, 0.12, 0.25], [1.08, 1, 0.85]);
   const titleY = useTransform(smoothProgress, [0, 0.12, 0.25], [30, -20, -45]);
 
@@ -132,7 +132,7 @@ export const CircuitBentoGrid: React.FC = () => {
   ];
 
   return (
-    <div ref={containerRef} className="relative w-full h-auto md:h-[500vh] bg-transparent">
+    <div ref={containerRef} className="relative w-full h-auto md:h-[300vh] bg-transparent">
       {/* Sticky Inner Viewport (Desktop) / Normal Section (Mobile) */}
       <div className="relative md:sticky top-0 w-full h-auto md:h-screen overflow-hidden flex flex-col items-center justify-center pt-10 pb-16 md:pt-20 md:pb-0">
         
@@ -383,7 +383,11 @@ export const CircuitBentoGrid: React.FC = () => {
               }}
             >
               <div 
-                className="p-5 flex flex-col justify-start transition-all duration-300 h-full"
+                className={`glass rounded-2xl p-5 flex flex-col justify-start border transition-all duration-300 backdrop-blur-md h-full ${
+                  activeHoverCard === card.id 
+                    ? 'border-[#d946ef] shadow-[0_0_15px_rgba(217,70,239,0.2)] bg-black/80' 
+                    : 'border-[#a855f7]/25 bg-black/40'
+                }`}
               >
                 {/* Neon Icon Frame */}
                 <div className="w-10 h-10 rounded-xl bg-[#a855f7]/15 flex items-center justify-center mb-4 border border-[#a855f7]/45 shrink-0">
@@ -397,8 +401,6 @@ export const CircuitBentoGrid: React.FC = () => {
                 <p className="text-sm text-gray-300 font-sans leading-relaxed mb-4">
                   {card.desc}
                 </p>
-
-
               </div>
             </motion.div>
           ))}
