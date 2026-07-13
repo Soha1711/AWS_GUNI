@@ -343,8 +343,8 @@ export const Team: React.FC = () => {
           <div className="flex-1 h-[1px] bg-gradient-to-r from-[#a855f7]/20 to-transparent" />
         </div>
 
-        {/* Responsive Grid Setup: Desktop 4, Tablet 2, Mobile 1 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+        {/* Responsive Grid Setup: Desktop 4, Large Tablet 3, Tablet 2, Mobile 1 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-10">
           {teamMembers.filter(m => m.team !== 'Adviser').map((member) => (
             <TeamCard
               key={member.id}

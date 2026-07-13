@@ -91,7 +91,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
 
   return (
     <div
-      className="team-card-wrapper h-[340px] w-[250px]"
+      className="team-card-wrapper"
       style={{ perspective: 1200 }}
     >
       <motion.div

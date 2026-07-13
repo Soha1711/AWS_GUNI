@@ -78,7 +78,7 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
 
   const activeScaleValue = useMotionValue(1);
   useEffect(() => {
-    animate(activeScaleValue, isActive ? 1.45 : 1.0, {
+    animate(activeScaleValue, isActive ? 2.5 : 1.0, {
       type: "spring",
       stiffness: 120,
       damping: 15
@@ -107,33 +107,35 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
         opacity: opacity,
         scale: combinedScale,
         zIndex: zIndex,
-        pointerEvents: 'auto'
+        pointerEvents: isActive ? 'auto' : 'none'
       }}
-      className={`rounded-xl overflow-hidden border bg-slate-950/90 backdrop-blur-md transition-colors duration-500 shadow-2xl flex flex-col group cursor-zoom-in ${
+      className={`rounded-xl overflow-hidden border bg-slate-950/90 backdrop-blur-md transition-colors duration-500 shadow-2xl flex flex-col ${
         isActive 
-          ? 'border-[#a855f7]/60 shadow-[0_0_40px_rgba(168,85,247,0.2)]' 
+          ? 'border-[#a855f7]/60 shadow-[0_0_40px_rgba(168,85,247,0.2)] group cursor-zoom-in' 
           : 'border-white/10'
       }`}
-      onClick={onClick}
+      onClick={isActive ? onClick : undefined}
     >
       <div className="relative w-full h-full overflow-hidden">
         {/* Download button in GalleryCard */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            handleDownload(item.image, item.title);
-          }}
-          className="absolute top-2.5 left-2.5 p-1.5 rounded-full bg-black/60 border border-white/15 text-white hover:bg-[#ff9900] hover:text-black hover:scale-110 transition-all z-20 cursor-pointer opacity-0 group-hover:opacity-100"
-          title="Download image"
-        >
-          <Download className="w-3.5 h-3.5" />
-        </button>
+        {isActive && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDownload(item.image, item.title);
+            }}
+            className="absolute top-2.5 left-2.5 p-1.5 rounded-full bg-black/60 border border-white/15 text-white hover:bg-[#ff9900] hover:text-black hover:scale-110 transition-all z-20 cursor-pointer opacity-0 group-hover:opacity-100"
+            title="Download image"
+          >
+            <Download className="w-3.5 h-3.5" />
+          </button>
+        )}
 
         <img
           src={item.image}
           alt={item.title}
           className={`w-full h-full object-cover select-none transition-all duration-700 ${
-            isActive ? 'opacity-90 group-hover:opacity-100 group-hover:scale-105' : 'opacity-40 hover:opacity-70'
+            isActive ? 'opacity-90 group-hover:opacity-100 group-hover:scale-105' : 'opacity-40'
           }`}
           loading="lazy"
         />
@@ -165,11 +167,13 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
         </AnimatePresence>
 
         {/* Hover zoom icon */}
-        <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          <div className="p-2.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white">
-            <Maximize2 className="w-3.5 h-3.5" />
+        {isActive && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="p-2.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white">
+              <Maximize2 className="w-3.5 h-3.5" />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </motion.div>
   );
@@ -309,11 +313,11 @@ export const Gallery: React.FC = () => {
         <div className="absolute bottom-1/4 right-1/10 w-96 h-96 bg-[#d946ef]/5 rounded-full blur-[140px] pointer-events-none" />
 
         {/* Central heading - subtle and elegant */}
-        <div className="absolute flex flex-col items-center justify-center text-center pointer-events-none px-4 z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <span className="text-[8px] font-mono text-[#a855f7] uppercase tracking-widest mb-1 opacity-60">
+        <div className="absolute flex flex-col items-center justify-center text-center pointer-events-none px-4 z-20 top-24 sm:top-32 left-1/2 -translate-x-1/2 w-full">
+          <span className="text-[10px] sm:text-xs font-mono text-[#a855f7] uppercase tracking-widest mb-2 opacity-80">
             AWS SBG Ganpat University
           </span>
-          <h2 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-white font-heading tracking-tight max-w-sm sm:max-w-md md:max-w-lg leading-tight uppercase">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight max-w-sm sm:max-w-md md:max-w-2xl leading-tight uppercase">
             CAPTURING THE JOURNEY
           </h2>
         </div>

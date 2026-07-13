@@ -59,7 +59,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ events }) => {
   return (
     <section 
       ref={containerRef} 
-      className="py-24 bg-[#060814]/45 border-t border-white/5 relative overflow-hidden"
+      className="py-24 relative overflow-hidden"
     >
 
 
@@ -192,7 +192,7 @@ const EventCard: React.FC<{ event: EventData; index: number }> = ({ event, index
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={tiltStyle}
-      className="glass rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col group transition-shadow duration-500 hover:shadow-purple-500/10 cursor-pointer h-full"
+      className="rounded-2xl overflow-hidden flex flex-col group transition-shadow duration-500 cursor-pointer h-full"
     >
       <div className="relative h-56 overflow-hidden bg-black shrink-0">
         <img
@@ -256,7 +256,7 @@ const EmptyStateCard: React.FC = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="glass rounded-2xl p-8 sm:p-12 border border-white/5 text-center max-w-xl mx-auto space-y-6 relative overflow-hidden"
+      className="p-8 sm:p-12 text-center max-w-xl mx-auto space-y-6 relative overflow-hidden"
     >
       {/* Icon with soft pulsing rotation & outer glow */}
       <div className="relative w-16 h-16 mx-auto flex items-center justify-center">

@@ -54,7 +54,11 @@ export const Home: React.FC = () => {
       <section className="relative min-h-[92svh] flex items-center justify-center px-4">
 
         {/* Cubes interactive background -- breaks out of max-w container to fill full viewport */}
-        <div style={{
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2.5, ease: "easeOut" }}
+          style={{
           position: 'absolute',
           top: 0,
           left: '50%',
@@ -68,12 +72,12 @@ export const Home: React.FC = () => {
             speed={0.54}
             squareSize={40}
             direction='diagonal'
-            borderColor="#403750"
+            borderColor="rgba(255, 255, 255, 0.03)"
             hoverFillColor='#7C3AED'
             shape='square'
             hoverTrailAmount={1}
           />
-        </div>
+        </motion.div>
 
         {/* Vignette — fades dot field into page bg at edges */}
         <div
@@ -161,7 +165,7 @@ export const Home: React.FC = () => {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative glass p-6 sm:p-16 rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(168,85,247,0.15)] overflow-hidden group hover:border-[#a855f7]/30 transition-colors transition-shadow duration-700 hover:shadow-[0_0_80px_rgba(168,85,247,0.25)]"
+          className="relative p-6 sm:p-16 overflow-hidden group transition-colors transition-shadow duration-700"
         >
           {/* Animated corner gradients */}
           <div className="absolute -top-24 -left-24 w-48 h-48 bg-[#a855f7] rounded-full mix-blend-screen filter blur-[80px] opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none" />
@@ -186,7 +190,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* SCROLLING MARQUEE (SIGNAL RAIL) */}
-      <section className="py-6 border-y border-white/5 bg-transparent overflow-hidden relative group/marquee select-none">
+      <section className="py-6 bg-transparent overflow-hidden relative group/marquee select-none">
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
         
@@ -194,7 +198,7 @@ export const Home: React.FC = () => {
           {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, index) => (
             <div 
               key={index} 
-              className="flex-shrink-0 w-[280px] sm:w-[420px] glass p-4 rounded-2xl border border-white/5 flex flex-col gap-4 group/item hover:border-[#a855f7]/30 transition-all duration-300"
+              className="flex-shrink-0 w-[280px] sm:w-[420px] p-4 flex flex-col gap-4 group/item transition-all duration-300"
             >
               <div className="h-56 w-full overflow-hidden rounded-xl bg-slate-900 relative">
                 <img 
@@ -221,34 +225,38 @@ export const Home: React.FC = () => {
 
 
       {/* 4. STATISTICS COUNTER SECTION */}
-      <section className="py-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-4xl mx-auto">
-          <StatsCard
-            memberCount={memberCount}
-            isLive={isLive}
-            label="Registered Members"
-            link="https://www.meetup.com/aws-sbg-at-ganpat-university/"
-            icon={<MeetupIcon className="w-6 h-6" />}
-            themeColor="purple"
-            subStats={[
-              { label: "Growth", value: <span className="text-emerald-400">↑ +42 this month</span> },
-              { label: "Engagement", value: "95% Active" },
-              { label: "Events", value: "12 Community Events" }
-            ]}
-          />
-          <StatsCard
-            memberCount={followerCount}
-            isLive={isLinkedinLive}
-            label="LinkedIn Followers"
-            link="https://www.linkedin.com/company/aws-student-builder-group-guni/"
-            icon={<LinkedinIcon className="w-6 h-6" />}
-            themeColor="pink"
-            subStats={[
-              { label: "Growth", value: <span className="text-emerald-400">↑ +120 this month</span> },
-              { label: "Engagement", value: "88% Active" },
-              { label: "Posts", value: "24 Shared Updates" }
-            ]}
-          />
+      <section className="py-20 lg:py-24 relative max-w-7xl mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+        <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center gap-12 sm:gap-16 max-w-5xl mx-auto">
+          <div className="w-full lg:w-1/2 flex justify-center">
+            <StatsCard
+              memberCount={memberCount}
+              isLive={isLive}
+              label="Registered Members"
+              link="https://www.meetup.com/aws-sbg-at-ganpat-university/"
+              icon={<MeetupIcon className="w-6 h-6" />}
+              themeColor="purple"
+              subStats={[
+                { label: "Growth", value: <span className="text-emerald-400">↑ +42 this month</span> },
+                { label: "Engagement", value: "95% Active" },
+                { label: "Events", value: "12 Community Events" }
+              ]}
+            />
+          </div>
+          <div className="w-full lg:w-1/2 flex justify-center">
+            <StatsCard
+              memberCount={followerCount}
+              isLive={isLinkedinLive}
+              label="LinkedIn Followers"
+              link="https://www.linkedin.com/company/aws-student-builder-group-guni/"
+              icon={<LinkedinIcon className="w-6 h-6" />}
+              themeColor="pink"
+              subStats={[
+                { label: "Growth", value: <span className="text-emerald-400">↑ +120 this month</span> },
+                { label: "Engagement", value: "88% Active" },
+                { label: "Posts", value: "24 Shared Updates" }
+              ]}
+            />
+          </div>
         </div>
       </section>
 
@@ -260,7 +268,7 @@ export const Home: React.FC = () => {
 
       {/* 6. PAST EVENTS HIGHLIGHTS */}
       {pastEventsList.length > 0 && upcomingEvents.length === 0 && (
-        <section className="py-20 bg-transparent border-b border-white/5">
+        <section className="py-20 bg-transparent">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             <div className="text-center space-y-2">
               <h3 className="text-2xl font-bold text-white font-heading">
@@ -270,7 +278,7 @@ export const Home: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {pastEventsList.map((event) => (
-                      <div key={event.id} className="glass rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col group h-full">
+                      <div key={event.id} className="rounded-2xl overflow-hidden flex flex-col group h-full">
                         <div className="relative h-48 overflow-hidden bg-black shrink-0">
                           <img
                             src={event.poster}
@@ -332,7 +340,7 @@ export const Home: React.FC = () => {
 
 
       {/* 8. CALL TO ACTION SECTION */}
-      <section className="py-12 sm:py-24 relative overflow-hidden bg-gradient-to-r from-cyan-950/10 via-[#0a0d24]/50 to-[#ffaa00]/5 border-y border-white/5">
+      <section className="py-12 sm:py-24 relative overflow-hidden bg-transparent">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full bg-[#ffaa00]/5 blur-[150px] pointer-events-none" />
         
         <div className="max-w-4xl mx-auto text-center px-4 relative z-10 space-y-6">

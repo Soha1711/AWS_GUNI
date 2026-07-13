@@ -376,16 +376,11 @@ export const CircuitBentoGrid: React.FC = () => {
               onMouseEnter={() => setActiveHoverCard(card.id)}
               onMouseLeave={() => setActiveHoverCard(null)}
               whileHover={{ 
-                y: -6,
-                boxShadow: "0 0 30px rgba(168, 85, 247, 0.25)"
+                y: -6
               }}
             >
               <div 
-                className={`glass rounded-2xl p-5 flex flex-col justify-start border transition-all duration-300 backdrop-blur-md bg-black/60 h-full ${
-                  activeHoverCard === card.id 
-                    ? 'border-[#d946ef] shadow-[0_0_15px_rgba(217,70,239,0.2)]' 
-                    : 'border-[#a855f7]/25'
-                }`}
+                className="p-5 flex flex-col justify-start transition-all duration-300 h-full"
               >
                 {/* Neon Icon Frame */}
                 <div className="w-10 h-10 rounded-xl bg-[#a855f7]/15 flex items-center justify-center mb-4 border border-[#a855f7]/45 shrink-0">
@@ -418,7 +413,7 @@ export const CircuitBentoGrid: React.FC = () => {
           </div>
           <div className="grid grid-cols-1 gap-4">
             {cardData.map((card) => (
-              <div key={card.id} className="glass rounded-xl p-5 border border-[#a855f7]/25 bg-black/60 text-left">
+              <div key={card.id} className="p-5 text-left">
                 <div className="w-10 h-10 rounded-xl bg-[#a855f7]/15 flex items-center justify-center mb-3 border border-[#a855f7]/45 inline-flex">
                   {card.icon}
                 </div>

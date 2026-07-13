@@ -124,7 +124,7 @@ export function StatsCard({
           hover: { y: -4, scale: 1.01 }
         }}
         transition={{ duration: 0.3 }}
-        className={`relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#0B0B12] to-[#090914] p-6 border ${theme.border} shadow-lg ${theme.shadow} transition-all duration-500`}
+        className="relative overflow-hidden p-6 transition-all duration-500"
       >
         {/* Background Aurora Effect */}
         <div className={`absolute -top-24 -left-24 w-64 h-64 ${theme.auroraStart} rounded-full blur-3xl opacity-50 group-hover:opacity-80 transition-all duration-700 animate-[pulse_4s_ease-in-out_infinite]`}></div>
