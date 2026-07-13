@@ -316,7 +316,7 @@ export const Gallery: React.FC = () => {
         <div className="absolute bottom-1/4 right-1/10 w-96 h-96 bg-[#d946ef]/5 rounded-full blur-[140px] pointer-events-none" />
 
         {/* Central heading - subtle and elegant */}
-        <div className="absolute flex flex-col items-center justify-center text-center pointer-events-none px-4 z-20 top-24 sm:top-32 left-1/2 -translate-x-1/2 w-full">
+        <div className={`absolute flex flex-col items-center justify-center text-center pointer-events-none px-4 z-20 w-full left-1/2 -translate-x-1/2 ${isMobile ? 'top-20' : 'top-24 sm:top-32'}`}>
           <span className="text-[10px] sm:text-xs font-mono text-[#a855f7] uppercase tracking-widest mb-2 opacity-80">
             AWS SBG Ganpat University
           </span>
@@ -325,7 +325,7 @@ export const Gallery: React.FC = () => {
           </h2>
         </div>
 
-        {/* Ellipse Orbiting Gallery */}
+        {/* Ellipse Orbiting Gallery OR Bento Grid on Mobile */}
         {filteredItems.length === 0 ? (
           <div className="text-center py-20 glass border border-white/5 rounded-2xl max-w-md mx-auto space-y-4 z-20 my-auto">
             <Compass className="w-12 h-12 text-[#a855f7] mx-auto animate-spin-slow" />
@@ -333,6 +333,48 @@ export const Gallery: React.FC = () => {
             <p className="text-xs text-slate-400 font-sans">
               We haven't uploaded images yet. Check back soon!
             </p>
+          </div>
+        ) : isMobile ? (
+          <div className="w-full h-full pt-32 pb-4 px-4 overflow-y-auto scrollbar-hide z-10 flex flex-col">
+            <div className="grid grid-cols-2 gap-3 auto-rows-[120px] w-full">
+              {filteredItems.map((item, index) => {
+                const isLarge = index % 5 === 0;
+                const isWide = index % 5 === 3;
+                const spanClasses = isLarge 
+                  ? "col-span-2 row-span-2" 
+                  : isWide 
+                    ? "col-span-2 row-span-1" 
+                    : "col-span-1 row-span-1";
+                    
+                return (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ delay: 0.05 }}
+                    onClick={() => setLightboxItem(item)}
+                    className={`relative rounded-xl overflow-hidden group cursor-pointer border border-white/10 hover:border-[#a855f7]/60 shadow-lg ${spanClasses}`}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80" />
+                    <div className="absolute bottom-0 left-0 p-3 w-full">
+                      <span className="text-[9px] font-mono text-[#a855f7] uppercase tracking-wider block">
+                        {item.category}
+                      </span>
+                      <h4 className="text-xs font-bold text-white truncate mt-0.5 shadow-sm">
+                        {item.title}
+                      </h4>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         ) : (
           <div 
@@ -344,7 +386,7 @@ export const Gallery: React.FC = () => {
               alignItems: 'center',
               justifyContent: 'center'
             }}
-            className="z-10 mt-8 mb-4"
+            className="z-10 mt-8 mb-4 hidden md:flex"
           >
             {filteredItems.map((item, index) => (
               <GalleryCard
