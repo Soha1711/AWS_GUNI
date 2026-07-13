@@ -77,13 +77,16 @@ const GalleryCard: React.FC<GalleryCardProps> = ({
   });
 
   const activeScaleValue = useMotionValue(1);
+  const isMobile = window.innerWidth < 768;
+  const activeScaleMultiplier = isMobile ? 1.6 : 2.5;
+
   useEffect(() => {
-    animate(activeScaleValue, isActive ? 2.5 : 1.0, {
+    animate(activeScaleValue, isActive ? activeScaleMultiplier : 1.0, {
       type: "spring",
       stiffness: 120,
       damping: 15
     });
-  }, [isActive, activeScaleValue]);
+  }, [isActive, activeScaleValue, activeScaleMultiplier]);
 
   const combinedScale = useTransform(
     [scale, activeScaleValue],
@@ -298,10 +301,10 @@ export const Gallery: React.FC = () => {
   };
 
   // Sleeker dimensions with more breathing room
-  const radiusX = isMobile ? 120 : 430;
-  const radiusY = isMobile ? 80 : 150;
-  const cardWidth = isMobile ? 110 : 230;
-  const cardHeight = isMobile ? 70 : 145;
+  const radiusX = isMobile ? 140 : 430;
+  const radiusY = isMobile ? 90 : 150;
+  const cardWidth = isMobile ? 160 : 230;
+  const cardHeight = isMobile ? 100 : 145;
 
   return (
     <div ref={containerRef} className="relative h-screen w-full overflow-hidden bg-[#050713]">

@@ -36,51 +36,51 @@ export const Footer: React.FC = () => {
             </p>
 
             {/* Social Links */}
-            <div className="flex items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-5 pt-4">
               <a
                 href="https://www.linkedin.com/company/aws-student-builder-group-guni/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-white/10 hover:border-[#a855f7] hover:text-[#a855f7] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
+                className="w-12 h-12 rounded-full border border-white/10 hover:border-[#a855f7] hover:text-[#a855f7] flex items-center justify-center bg-white/5 transition-all hover:scale-105 active:scale-95"
                 aria-label="LinkedIn Profile"
               >
-                <LinkedinIcon className="w-4.5 h-4.5" />
+                <LinkedinIcon className="w-5 h-5" />
               </a>
               <a
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-white/10 hover:border-[#d946ef] hover:text-[#d946ef] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
+                className="w-12 h-12 rounded-full border border-white/10 hover:border-[#d946ef] hover:text-[#d946ef] flex items-center justify-center bg-white/5 transition-all hover:scale-105 active:scale-95"
                 aria-label="GitHub Repository"
               >
-                <GithubIcon className="w-4.5 h-4.5" />
+                <GithubIcon className="w-5 h-5" />
               </a>
               <a
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-white/10 hover:border-[#a855f7] hover:text-[#a855f7] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
+                className="w-12 h-12 rounded-full border border-white/10 hover:border-[#a855f7] hover:text-[#a855f7] flex items-center justify-center bg-white/5 transition-all hover:scale-105 active:scale-95"
                 aria-label="Twitter Profile"
               >
-                <TwitterIcon className="w-4.5 h-4.5" />
+                <TwitterIcon className="w-5 h-5" />
               </a>
               <a
                 href="https://ganpatuniversity.ac.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-white/10 hover:border-[#d946ef] hover:text-[#d946ef] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
+                className="w-12 h-12 rounded-full border border-white/10 hover:border-[#d946ef] hover:text-[#d946ef] flex items-center justify-center bg-white/5 transition-all hover:scale-105 active:scale-95"
                 aria-label="University Website"
               >
-                <Globe className="w-4.5 h-4.5" />
+                <Globe className="w-5 h-5" />
               </a>
               <a
                 href="https://www.meetup.com/aws-sbg-at-ganpat-university/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-white/10 hover:border-[#a855f7] hover:text-[#a855f7] flex items-center justify-center bg-white/5 transition-all hover:scale-105"
+                className="w-12 h-12 rounded-full border border-white/10 hover:border-[#a855f7] hover:text-[#a855f7] flex items-center justify-center bg-white/5 transition-all hover:scale-105 active:scale-95"
                 aria-label="Meetup Community Group"
               >
-                <MeetupIcon className="w-4.5 h-4.5" />
+                <MeetupIcon className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -136,15 +136,15 @@ export const Footer: React.FC = () => {
                   Ganpat University (GNUI), Mehsana-Gandinagar Highway, Kherva, Gujarat, India - 384315.
                 </span>
               </li>
-              <li className="flex items-center gap-2.5">
-                <Mail className="w-4.5 h-4.5 text-[#a855f7] shrink-0" />
-                <a href="mailto:aws.sbg@ganpatuniversity.ac.in" className="hover:text-white transition-colors">
+              <li className="flex items-center gap-4">
+                <Mail className="w-5 h-5 text-[#a855f7] shrink-0" />
+                <a href="mailto:aws.sbg@ganpatuniversity.ac.in" className="hover:text-white transition-colors py-1">
                   aws.sbg@ganpatuniversity.ac.in
                 </a>
               </li>
-              <li className="flex items-center gap-2.5">
-                <Phone className="w-4.5 h-4.5 text-[#a855f7] shrink-0" />
-                <a href="tel:+912762286080" className="hover:text-white transition-colors">
+              <li className="flex items-center gap-4">
+                <Phone className="w-5 h-5 text-[#a855f7] shrink-0" />
+                <a href="tel:+912762286080" className="hover:text-white transition-colors py-1">
                   +91 79849 61282
                 </a>
               </li>

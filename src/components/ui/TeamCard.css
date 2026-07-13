@@ -23,8 +23,8 @@
 /* Hover lift transition on card wrapper */
 .team-card-wrapper {
   width: 100% !important;
-  max-width: 280px !important;
-  height: 340px !important;
+  max-width: 320px !important;
+  height: 380px !important;
   margin: 0 auto;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }

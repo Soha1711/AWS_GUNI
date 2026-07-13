@@ -151,18 +151,18 @@ export const Events: React.FC = () => {
                       </div>
 
                       {/* Footer Details Info */}
-                      <div className="pt-4 border-t border-white/5 flex items-center justify-between">
-                        <span className="text-[10px] font-mono text-slate-500 truncate max-w-[140px] flex items-center gap-1">
+                      <div className="flex flex-col gap-4 pt-4 border-t border-white/5">
+                        <span className="text-[11px] font-mono text-slate-500 truncate max-w-[200px] flex items-center gap-1">
                           <MapPin className="w-3.5 h-3.5 text-[#a855f7] shrink-0" />
                           {event.venue}
                         </span>
                         
                         <Link
                           to={`/events?id=${event.id}`}
-                          className="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-black bg-white group-hover:bg-[#a855f7] group-hover:text-white rounded-full transition-colors flex items-center gap-1 shrink-0 cursor-pointer"
+                          className="w-full flex justify-center items-center px-4 min-h-[48px] text-xs font-bold uppercase tracking-wider text-black bg-white group-hover:bg-[#a855f7] group-hover:text-white rounded-full transition-colors gap-2 shrink-0 cursor-pointer active:scale-95"
                         >
                           Inspect
-                          <ChevronRight className="w-3 h-3" />
+                          <ChevronRight className="w-4 h-4" />
                         </Link>
                       </div>
                     </div>

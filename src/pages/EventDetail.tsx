@@ -224,7 +224,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                     href={event.registrationUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-3.5 rounded-full text-black bg-[#ffaa00] hover:bg-amber-400 font-bold uppercase tracking-wider text-xs transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-[#ffaa00]/25"
+                    className="w-full h-12 rounded-full text-black bg-[#ffaa00] hover:bg-amber-400 font-bold uppercase tracking-wider text-xs transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-[#ffaa00]/25 active:scale-95"
                   >
                     RSVP on Meetup
                   </a>
@@ -255,7 +255,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                         placeholder="e.g. Aryan Patel"
-                        className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#a855f7]/60 transition-all"
+                        className="w-full px-4 h-12 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#a855f7]/60 transition-all"
                         required
                       />
                     </div>
@@ -267,7 +267,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="e.g. yourname@ganpatuniversity.ac.in"
-                        className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#a855f7]/60 transition-all"
+                        className="w-full px-4 h-12 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#a855f7]/60 transition-all"
                         required
                       />
                     </div>
@@ -279,7 +279,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                         value={formData.enrollment}
                         onChange={(e) => setFormData({ ...formData, enrollment: e.target.value })}
                         placeholder="e.g. 21012011001"
-                        className="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#a855f7]/60 transition-all"
+                        className="w-full px-4 h-12 rounded-lg bg-slate-900 border border-white/10 text-white placeholder-slate-600 focus:border-[#a855f7]/60 transition-all"
                         required
                       />
                     </div>
@@ -290,7 +290,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                         <select
                           value={formData.department}
                           onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                          className="w-full px-3 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white focus:border-[#a855f7]/60 transition-all select-none"
+                          className="w-full px-3 h-12 rounded-lg bg-slate-900 border border-white/10 text-white focus:border-[#a855f7]/60 transition-all select-none"
                         >
                           <option value="CSE">CSE</option>
                           <option value="IT">IT</option>
@@ -303,7 +303,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                         <select
                           value={formData.year}
                           onChange={(e) => setFormData({ ...formData, year: e.target.value })}
-                          className="w-full px-3 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white focus:border-[#a855f7]/60 transition-all select-none"
+                          className="w-full px-3 h-12 rounded-lg bg-slate-900 border border-white/10 text-white focus:border-[#a855f7]/60 transition-all select-none"
                         >
                           <option value="1st Year">1st Year</option>
                           <option value="2nd Year">2nd Year</option>
@@ -315,7 +315,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
 
                     <button
                       type="submit"
-                      className="w-full py-3.5 rounded-full font-bold uppercase tracking-wider text-xs text-white bg-[#a855f7] hover:bg-purple-600 shadow-md shadow-[#a855f7]/25 hover:scale-101 transition-all flex items-center justify-center gap-2 cursor-pointer mt-4"
+                      className="w-full h-12 rounded-full font-bold uppercase tracking-wider text-xs text-white bg-[#a855f7] hover:bg-purple-600 shadow-md shadow-[#a855f7]/25 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer mt-4"
                     >
                       <Send className="w-3.5 h-3.5" />
                       Submit Application
@@ -343,7 +343,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                   
                   <Link
                     to="/events"
-                    className="w-full block py-2.5 border border-white/10 hover:border-purple-400 text-white hover:bg-white/5 rounded-full font-bold uppercase tracking-wider text-xs transition-all"
+                    className="w-full flex items-center justify-center h-12 border border-white/10 hover:border-purple-400 text-white hover:bg-white/5 rounded-full font-bold uppercase tracking-wider text-xs transition-all active:scale-95"
                   >
                     View other events
                   </Link>
@@ -364,7 +364,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
                     href="https://github.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full text-center block py-3 border border-white/10 hover:border-[#a855f7] text-slate-300 hover:text-white rounded-full text-xs uppercase tracking-wider transition-all"
+                    className="w-full flex items-center justify-center h-12 border border-white/10 hover:border-[#a855f7] text-slate-300 hover:text-white rounded-full text-xs uppercase tracking-wider transition-all active:scale-95"
                   >
                     Access Cloud Resources
                   </a>

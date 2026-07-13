@@ -230,17 +230,17 @@ const EventCard: React.FC<{ event: EventData; index: number }> = ({ event, index
           </p>
         </div>
 
-        <div className="flex items-center justify-between pt-4 border-t border-white/5">
+        <div className="flex flex-col gap-4 pt-4 border-t border-white/5">
           <span className="text-[11px] font-mono text-slate-500 truncate max-w-[200px] flex items-center gap-1">
             <MapPin className="w-3.5 h-3.5 text-purple-400" />
             {event.venue}
           </span>
           <Link
             to={`/events?id=${event.id}`}
-            className="px-4.5 py-2 text-xs font-bold uppercase tracking-wider text-black bg-white group-hover:bg-[#a855f7] group-hover:text-white rounded-lg transition-colors flex items-center gap-1 shrink-0"
+            className="w-full flex justify-center items-center px-4.5 min-h-[48px] text-xs font-bold uppercase tracking-wider text-black bg-white group-hover:bg-[#a855f7] group-hover:text-white rounded-full transition-colors gap-2 shrink-0 active:scale-95"
           >
             Inspect
-            <ChevronRight className="w-3.5 h-3.5" />
+            <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
