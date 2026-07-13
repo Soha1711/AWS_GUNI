@@ -67,8 +67,6 @@ export const Home: React.FC = () => {
             height: '100%',
             zIndex: 0,
             overflow: 'hidden',
-            maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)'
           }}
         >
           <ShapeGrid 
@@ -82,7 +80,7 @@ export const Home: React.FC = () => {
           />
         </motion.div>
 
-        {/* Vignette — fades dot field into page bg at edges */}
+        {/* Radial Vignette — fades grid at all edges */}
         <div
           className="absolute pointer-events-none"
           style={{ 
@@ -93,8 +91,15 @@ export const Home: React.FC = () => {
             width: '100%',
             height: '100%',
             background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 35%, #030303 100%)',
-            maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)'
+          }}
+        />
+
+        {/* Bottom Fade-out Blend — guarantees seamless transition into next section */}
+        <div 
+          className="absolute bottom-0 left-0 w-full h-32 pointer-events-none"
+          style={{
+            zIndex: 2,
+            background: 'linear-gradient(to bottom, transparent 0%, #030303 100%)'
           }}
         />
 
@@ -116,9 +121,10 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: 150 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-bold font-heading tracking-tight leading-[1.1] pb-2 whitespace-pre-wrap break-words text-transparent bg-clip-text bg-[linear-gradient(180deg,#190a2b_0%,#d6aeff_100%)]"
+            className="text-3xl sm:text-5xl lg:text-6xl font-bold font-heading tracking-tight leading-[1.1] pb-2 whitespace-pre-wrap break-words"
           >
             <TextType 
+              className="text-transparent bg-clip-text bg-[linear-gradient(180deg,#190a2b_0%,#d6aeff_100%)] drop-shadow-xl"
               text={"AWS\nStudent Builder Group\nGanpat University"}
               typingSpeed={75}
               pauseDuration={1500}
