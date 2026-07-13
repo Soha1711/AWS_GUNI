@@ -336,15 +336,12 @@ export const Gallery: React.FC = () => {
           </div>
         ) : isMobile ? (
           <div className="w-full h-full pt-32 pb-4 px-4 overflow-y-auto scrollbar-hide z-10 flex flex-col">
-            <div className="grid grid-cols-2 gap-3 auto-rows-[120px] w-full">
+            <div className="grid grid-cols-2 gap-3 auto-rows-[140px] grid-flow-row-dense w-full pb-20">
               {filteredItems.map((item, index) => {
-                const isLarge = index % 5 === 0;
-                const isWide = index % 5 === 3;
-                const spanClasses = isLarge 
-                  ? "col-span-2 row-span-2" 
-                  : isWide 
-                    ? "col-span-2 row-span-1" 
-                    : "col-span-1 row-span-1";
+                const mod = index % 6;
+                let spanClasses = "col-span-1 row-span-1";
+                if (mod === 0) spanClasses = "col-span-2 row-span-2"; // Large hero
+                else if (mod === 3) spanClasses = "col-span-1 row-span-2"; // Tall
                     
                 return (
                   <motion.div
