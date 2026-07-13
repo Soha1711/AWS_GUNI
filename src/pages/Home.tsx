@@ -66,7 +66,9 @@ export const Home: React.FC = () => {
           width: '100%',
           height: '100%',
           zIndex: 0,
-          overflow: 'hidden'
+          overflow: 'hidden',
+          maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
         }}>
           <ShapeGrid 
             speed={0.54}
